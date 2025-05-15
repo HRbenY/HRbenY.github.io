@@ -3,18 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const noteTitle = document.getElementById('note-title');
     const noteContent = document.getElementById('note-content');
 
-    // 更新笔记列表，包含子文件夹路径
     const notes = [
         '恩施/恩施.md',
         '岳阳/岳阳.md'
     ];
 
-    // 动态生成笔记链接
     notes.forEach(note => {
         const li = document.createElement('li');
         const a = document.createElement('a');
         a.href = '#';
-        // 显示文件名（去除路径和 .md 扩展名）
         a.textContent = note.split('/')[1].replace('.md', '');
         a.addEventListener('click', (e) => {
             e.preventDefault();
@@ -24,10 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
         notesList.appendChild(li);
     });
 
-    // 加载和渲染 Markdown 文件
     function loadNote(note) {
         const filePath = `notes/${note}`;
-        noteContent.innerHTML = '<p>加载中...</p>'; // 添加加载提示
+        // 提取当前 Markdown 文件的目录（例如 notes/恩施/ 或 notes/岳阳/）
+        const directory = `notes/${note.split('/')[0]}/`;
+        noteContent.innerHTML = '<p>加载中...</p>';
         fetch(filePath)
             .then(response => {
                 if (!response.ok) {
@@ -37,7 +35,23 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(data => {
                 noteTitle.textContent = note.split('/')[1].replace('.md', '');
-                noteContent.innerHTML = marked.parse(data);
+                // 渲染 Markdown
+                let html = marked.parse(data);
+                // 动态调整图片路径
+                html = html.replace(/<img([^>]*?)src="([^"]+)"([^>]*?)>/g, (match, p1, src, p2) => {
+                    // 如果 src 已经是绝对路径（以 http:// 或 https:// 开头），不修改
+                    if (src.startsWith('http://') || src.startsWith('https://')) {
+                        return match;
+                    }
+                    // 如果 src 已包含 notes/，不修改（避免重复添加前缀）
+                    if (src.startsWith('notes/')) {
+                        return match;
+                    }
+                    // 否则，添加动态目录前缀（例如 notes/恩施/ 或 notes/岳阳/）
+                    const newSrc = `${directory}${src}`;
+                    return `<img${p1}src="${newSrc}"${p2}>`;
+                });
+                noteContent.innerHTML = html;
             })
             .catch(error => {
                 noteTitle.textContent = '加载错误';
@@ -45,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // 默认加载第一个笔记（如果存在）
     if (notes.length > 0) {
         loadNote(notes[0]);
     }
