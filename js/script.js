@@ -1,7 +1,7 @@
 // 假设 notes 文件夹中的 Markdown 文件列表
 const notes = [
-    'note1.md',
-    'note2.md'
+    '恩施.md',
+    '岳阳.md'
     // 添加更多笔记文件
 ];
 
