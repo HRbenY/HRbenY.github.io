@@ -40,9 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // 动态调整图片路径
                 html = html.replace(/<img([^>]*?)src="([^"]+)"([^>]*?)>/g, (match, p1, src, p2) => {
                     // 如果 src 已经是绝对路径（以 http:// 或 https:// 开头），不修改
-                    if (src.startsWith('http://') || src.startsWith('https://')) {
-                        return match;
-                    }
+                    //if (src.startsWith('http://') || src.startsWith('https://')) {
+                    //    return match;
+                    //}
                     // 如果 src 已包含 notes/，不修改（避免重复添加前缀）
                     if (src.startsWith('notes/')) {
                         return match;
