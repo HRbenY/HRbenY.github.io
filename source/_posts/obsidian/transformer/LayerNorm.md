@@ -62,11 +62,7 @@ $$\sigma = \sqrt{\sigma^2 + \varepsilon}
 \frac{\partial \sigma}{\partial x_j}
 = \frac{x_j - \mu}{D \sigma}$$
 - 最终结果
-$$\frac{\partial L}{\partial x_i}
-=
-\frac{1}{D \sigma}
+$$\frac{\partial L}{\partial x_i}=\frac{1}{D \sigma}
 \left(
-D \cdot d\hat{x}_i
-- \sum_j d\hat{x}_j
-- \hat{x}_i \sum_j d\hat{x}_j \hat{x}_j
+D \cdot d\hat{x}_i-\sum_j d\hat{x}_j-\hat{x}_i \sum_j d\hat{x}_j \hat{x}_j
 \right)$$
