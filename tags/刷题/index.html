@@ -8,8 +8,8 @@
 <head>
   <meta charset="UTF-8">
 
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/mai.png">
+  <link rel="icon" href="/img/mai.png">
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -23,7 +23,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="标签 - 刷题">
 <meta property="og:url" content="https://hrbeny.github.io/tags/%E5%88%B7%E9%A2%98/index.html">
-<meta property="og:site_name" content="HRbenY 的博客">
+<meta property="og:site_name" content="Spa-Master 的博客">
 <meta property="og:description" content="个人技术博客">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="HRbenY">
@@ -31,7 +31,7 @@
   
   
   
-  <title>标签 - 刷题 - HRbenY 的博客</title>
+  <title>标签 - 刷题 - Spa-Master 的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -89,7 +89,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>HRbenY 的博客</strong>
+      <strong>Spa-Master 的博客</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -324,9 +324,24 @@
         return;
       }
       var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
+
+      function fallbackTyping() {
+        
+          typing(text);
+        
+      }
+
+      function runTyping() {
+        
+          fallbackTyping();
+        
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', runTyping);
+      } else {
+        runTyping();
+      }
     })(window, document);
   </script>
 
@@ -343,6 +358,10 @@
   <script  src="/js/local-search.js" ></script>
 
 
+
+
+  
+<script src="/js/slogan-pool.js"></script>
 
 
 

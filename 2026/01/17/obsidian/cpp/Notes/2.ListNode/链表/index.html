@@ -8,8 +8,8 @@
 <head>
   <meta charset="UTF-8">
 
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/mai.png">
+  <link rel="icon" href="/img/mai.png">
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -23,15 +23,15 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="链表">
 <meta property="og:url" content="https://hrbeny.github.io/2026/01/17/obsidian/cpp/Notes/2.ListNode/%E9%93%BE%E8%A1%A8/index.html">
-<meta property="og:site_name" content="HRbenY 的博客">
+<meta property="og:site_name" content="Spa-Master 的博客">
 <meta property="og:description" content="链表链表是一种通过指针串联在一起的线性结构，每一个节点由两部分组成，一个是数据域一个是指针域（存放指向下一个节点的指针），最后一个节点的指针域指向null（空指针的意思）。 链表的入口节点称为链表的头结点也就是head。  在此基础上，每个节点新增一个指针域，一个指向下一个节点，一个指向上一个节点，就形成了双链表。  将单链表首尾相连，就是循环链表  链表的操作定义123456&#x2F;&#x2F; 单链表stru">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260117145443363.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260117145443364.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260117145443365.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260117145443366.png">
-<meta property="article:published_time" content="2026-01-17T10:10:31.483Z">
-<meta property="article:modified_time" content="2026-01-17T10:10:31.483Z">
+<meta property="article:published_time" content="2026-01-17T13:55:19.109Z">
+<meta property="article:modified_time" content="2026-01-17T13:55:19.109Z">
 <meta property="article:author" content="HRbenY">
 <meta property="article:tag" content="cpp">
 <meta property="article:tag" content="linked-list">
@@ -40,7 +40,7 @@
   
   
   
-  <title>链表 - HRbenY 的博客</title>
+  <title>链表 - Spa-Master 的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -104,7 +104,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>HRbenY 的博客</strong>
+      <strong>Spa-Master 的博客</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -217,7 +217,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-01-17 18:10" pubdate>
+        <time datetime="2026-01-17 21:55" pubdate>
           2026年1月17日 晚上
         </time>
       </span>
@@ -433,9 +433,9 @@ l=(n-1)(x+y)+y
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/01/17/obsidian/cpp/Notes/1.Array/%E6%95%B0%E7%BB%84/" title="数组">
+                      <a href="/2026/01/17/obsidian/cpp/Notes/12.graph/%E5%9B%BE/" title="图">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">数组</span>
+                        <span class="hidden-mobile">图</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -443,8 +443,8 @@ l=(n-1)(x+y)+y
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/01/17/obsidian/cpp/Notes/12.graph/%E5%9B%BE/" title="图">
-                        <span class="hidden-mobile">图</span>
+                      <a href="/2026/01/17/obsidian/cpp/Notes/3.Hash%20table/%E5%93%88%E5%B8%8C%E8%A1%A8/" title="哈希表">
+                        <span class="hidden-mobile">哈希表</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -585,9 +585,24 @@ l=(n-1)(x+y)+y
         return;
       }
       var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
+
+      function fallbackTyping() {
+        
+          typing(text);
+        
+      }
+
+      function runTyping() {
+        
+          fallbackTyping();
+        
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', runTyping);
+      } else {
+        runTyping();
+      }
     })(window, document);
   </script>
 
@@ -697,6 +712,10 @@ l=(n-1)(x+y)+y
   <script  src="/js/local-search.js" ></script>
 
 
+
+
+  
+<script src="/js/slogan-pool.js"></script>
 
 
 
