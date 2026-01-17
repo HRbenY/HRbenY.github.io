@@ -230,15 +230,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2026/01/17/obsidian/cpp/Notes/10.dp/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" target="_self">
-          动态规划
+        <a href="/2026/01/17/obsidian/cpp/Notes/4.String/%E5%AD%97%E7%AC%A6%E4%B8%B2/" target="_self">
+          字符串
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/cpp/Notes/10.dp/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/cpp/Notes/4.String/%E5%AD%97%E7%AC%A6%E4%B8%B2/" target="_self">
         <div>
-          343.整数拆分原题链接 这里dp[i]代表把i拆分之后乘积的最大值。那么递推过程可以是dp[i]从dp[i], j * (i - j), j * dp[i - j]中选一个最大的。其中j从1到i&#x2F;2遍历。代码如下 1234567891011121314class Solution &#123;public:    int integerBreak(int n) &#123;
+          字符串循环写法   循环写法 含义 性能 能否修改原始元素？ 适用场景    for (string s : words) 值拷贝 (Pass by Value) 慢 (每次循环都复制整个字符串) 不能 很少使用，除非你需要在循环内修改副本且不影响原数据。   for (string&amp; s : words) 引用 (Pass by Reference) 快 (没有复制开销) 能 当你需要遍
         </div>
       </a>
 
@@ -246,7 +246,7 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 22:21" pubdate>
+            <time datetime="2026-01-17 22:22" pubdate>
               2026-01-17
             </time>
           </div>
@@ -258,7 +258,7 @@
             
               <a href="/tags/cpp/">#cpp</a>
             
-              <a href="/tags/dynamic-programming/">#dynamic-programming</a>
+              <a href="/tags/string/">#string</a>
             
           </div>
         
@@ -272,15 +272,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2026/01/17/obsidian/cpp/Notes/1.Array/%E6%95%B0%E7%BB%84/" target="_self">
-          数组
+        <a href="/2026/01/17/obsidian/cpp/Notes/6.StackandQueue/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/" target="_self">
+          栈和队列
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/cpp/Notes/1.Array/%E6%95%B0%E7%BB%84/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/cpp/Notes/6.StackandQueue/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/" target="_self">
         <div>
-          数组数组是存放在连续内存空间上的相同类型数据的集合。正因为如此，可以方便地通过下标索引的方式（地址）获取到下标对应的数据。   由于内存空间是连续的，所以我们在删除或者增添元素的时候，就难免要移动其他元素的地址。 数组的元素是不能删的，只能覆盖。 C++的话，要注意vector 和 array的区别，vector的底层实现是array，严格来讲vector是容器，不是数组。 成员函数成员函数（Me
+          栈和队列 STL概念STL (Standard Template Library, 标准模板库) 是 C++ 标准库的核心部分，它提供了一套功能强大的通用数据结构和算法。STL 基于泛型编程 (Generic Programming) 的思想，通过模板实现了代码的高度可重用性。 STL 四大核心组件 容器 (Containers)  作用：用于存储和管理数据的类模板，即各种数据结构。 分类： 序列
         </div>
       </a>
 
@@ -288,7 +288,7 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 22:21" pubdate>
+            <time datetime="2026-01-17 22:22" pubdate>
               2026-01-17
             </time>
           </div>
@@ -300,7 +300,9 @@
             
               <a href="/tags/cpp/">#cpp</a>
             
-              <a href="/tags/array/">#array</a>
+              <a href="/tags/stack/">#stack</a>
+            
+              <a href="/tags/queue/">#queue</a>
             
           </div>
         

@@ -27,8 +27,8 @@
 <meta property="og:description" content="回溯法回溯法，一般可以解决如下几种问题：  组合问题：N个数里面按一定规则找出k个数的集合 切割问题：一个字符串按一定规则有几种切割方式 子集问题：一个N个数的集合里有多少符合条件的子集 排列问题：N个数按一定规则全排列，有几种排列方式 棋盘问题：N皇后，解数独等等  回溯法解决的问题都可以抽象为树形结构，是的，所有回溯法的问题都可以抽象为树形结构！ 因为回溯法解决的都是在集合中递归查找子集，集合">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260117145556494.png">
-<meta property="article:published_time" content="2026-01-17T14:21:41.887Z">
-<meta property="article:modified_time" content="2026-01-17T14:21:41.887Z">
+<meta property="article:published_time" content="2026-01-17T14:22:01.018Z">
+<meta property="article:modified_time" content="2026-01-17T14:22:01.018Z">
 <meta property="article:author" content="HRbenY">
 <meta property="article:tag" content="backtracking">
 <meta property="article:tag" content="cpp">
@@ -214,7 +214,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-01-17 22:21" pubdate>
+        <time datetime="2026-01-17 22:22" pubdate>
           2026年1月17日 晚上
         </time>
       </span>
@@ -502,8 +502,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/01/17/obsidian/GPU/SM/" title="SM">
-                        <span class="hidden-mobile">SM</span>
+                      <a href="/2026/01/17/obsidian/cpp/Notes/9.greedy%20algorithm/%E8%B4%AA%E5%BF%83/" title="贪心">
+                        <span class="hidden-mobile">贪心</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -560,6 +560,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -767,6 +773,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
