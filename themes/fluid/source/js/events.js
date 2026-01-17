@@ -151,6 +151,92 @@ Fluid.events = {
     }
   },
 
+  registerQrCodeEvent: function() {
+    var modalId = 'qr-code-modal';
+    var modalActiveClass = 'is-active';
+    var modal;
+    var lastActiveElement;
+
+    function ensureModal() {
+      if (modal) {
+        return modal;
+      }
+      modal = document.getElementById(modalId);
+      if (modal) {
+        return modal;
+      }
+      modal = document.createElement('div');
+      modal.id = modalId;
+      modal.className = 'qr-modal';
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      modal.setAttribute('aria-hidden', 'true');
+      modal.setAttribute('tabindex', '-1');
+      modal.innerHTML = '<img class="qr-modal__img" alt="qrcode" />';
+      document.body.appendChild(modal);
+      modal.addEventListener('click', function() {
+        closeModal();
+      });
+      return modal;
+    }
+
+    function openModal(src, alt) {
+      var m = ensureModal();
+      var img = m.querySelector('.qr-modal__img');
+      img.src = src;
+      if (alt) {
+        img.alt = alt;
+      }
+      lastActiveElement = document.activeElement;
+      m.classList.add(modalActiveClass);
+      m.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('qr-modal-open');
+      m.focus();
+    }
+
+    function closeModal() {
+      if (!modal) {
+        modal = document.getElementById(modalId);
+      }
+      if (!modal || !modal.classList.contains(modalActiveClass)) {
+        return;
+      }
+      modal.classList.remove(modalActiveClass);
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('qr-modal-open');
+      var img = modal.querySelector('.qr-modal__img');
+      if (img) {
+        img.removeAttribute('src');
+      }
+      if (lastActiveElement && lastActiveElement.focus) {
+        lastActiveElement.focus();
+      }
+    }
+
+    jQuery(document)
+      .off('click.qrcode', 'a.qr-trigger')
+      .on('click.qrcode', 'a.qr-trigger', function(e) {
+        var src = this.getAttribute('data-qrcode');
+        if (!src) {
+          var qrImg = this.querySelector('.qr-img');
+          src = qrImg && (qrImg.getAttribute('src') || qrImg.src);
+        }
+        if (!src) {
+          return;
+        }
+        e.preventDefault();
+        openModal(src, this.getAttribute('aria-label') || 'qrcode');
+      });
+
+    jQuery(document)
+      .off('keydown.qrcode')
+      .on('keydown.qrcode', function(e) {
+        if (e.key === 'Escape') {
+          closeModal();
+        }
+      });
+  },
+
   registerRefreshCallback: function(callback) {
     if (!Array.isArray(Fluid.events._refreshCallbacks)) {
       Fluid.events._refreshCallbacks = [];

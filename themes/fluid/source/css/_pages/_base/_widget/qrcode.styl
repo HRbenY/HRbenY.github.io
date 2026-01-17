@@ -15,3 +15,30 @@
   border-radius .2rem
   background-color transparent
   box-shadow 0 0 20px -5px hsla(0, 0%, 62%, .2)
+
+body.qr-modal-open
+  overflow hidden
+
+.qr-modal
+  position fixed
+  top 0
+  right 0
+  bottom 0
+  left 0
+  z-index 1200
+  display none
+  align-items center
+  justify-content center
+  padding 1.5rem
+  background-color rgba(0, 0, 0, .65)
+
+  &.is-active
+    display flex
+
+.qr-modal__img
+  max-width 90vw
+  max-height 90vh
+  border-radius .3rem
+  cursor zoom-out
+  background-color #fff
+  box-shadow 0 0 30px rgba(0, 0, 0, .25)
