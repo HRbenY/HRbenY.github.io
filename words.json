@@ -1,0 +1,1202 @@
+[
+  {
+    "word": "Equanimity",
+    "meaning": "平常心；镇定"
+  },
+  {
+    "word": "Magnanimity",
+    "meaning": "宽宏大量"
+  },
+  {
+    "word": "Benevolence",
+    "meaning": "仁慈；善意"
+  },
+  {
+    "word": "Altruism",
+    "meaning": "利他；无私"
+  },
+  {
+    "word": "Resilience",
+    "meaning": "韧性；复原力"
+  },
+  {
+    "word": "Fortitude",
+    "meaning": "坚韧；刚毅"
+  },
+  {
+    "word": "Integrity",
+    "meaning": "正直；操守"
+  },
+  {
+    "word": "Humility",
+    "meaning": "谦逊"
+  },
+  {
+    "word": "Sagacity",
+    "meaning": "睿智"
+  },
+  {
+    "word": "Discernment",
+    "meaning": "洞察力；鉴别力"
+  },
+  {
+    "word": "Prudence",
+    "meaning": "审慎"
+  },
+  {
+    "word": "Temperance",
+    "meaning": "克制；节制"
+  },
+  {
+    "word": "Rectitude",
+    "meaning": "正直；刚正"
+  },
+  {
+    "word": "Gratitude",
+    "meaning": "感恩"
+  },
+  {
+    "word": "Compassion",
+    "meaning": "慈悲；怜悯"
+  },
+  {
+    "word": "Empathy",
+    "meaning": "共情"
+  },
+  {
+    "word": "Serenity",
+    "meaning": "宁静"
+  },
+  {
+    "word": "Tranquility",
+    "meaning": "恬静"
+  },
+  {
+    "word": "Mindfulness",
+    "meaning": "正念；觉察"
+  },
+  {
+    "word": "Conscientiousness",
+    "meaning": "尽责；一丝不苟"
+  },
+  {
+    "word": "Diligence",
+    "meaning": "勤勉"
+  },
+  {
+    "word": "Perseverance",
+    "meaning": "毅力；坚持"
+  },
+  {
+    "word": "Tenacity",
+    "meaning": "顽强；坚毅"
+  },
+  {
+    "word": "Purposefulness",
+    "meaning": "目标感；有使命感"
+  },
+  {
+    "word": "Fulfillment",
+    "meaning": "充实；满足"
+  },
+  {
+    "word": "Contentment",
+    "meaning": "知足"
+  },
+  {
+    "word": "Optimism",
+    "meaning": "乐观"
+  },
+  {
+    "word": "Hopefulness",
+    "meaning": "充满希望"
+  },
+  {
+    "word": "Steadfastness",
+    "meaning": "坚定不移"
+  },
+  {
+    "word": "Loyalty",
+    "meaning": "忠诚"
+  },
+  {
+    "word": "Sincerity",
+    "meaning": "真诚"
+  },
+  {
+    "word": "Candor",
+    "meaning": "坦率"
+  },
+  {
+    "word": "Authenticity",
+    "meaning": "真实；真我"
+  },
+  {
+    "word": "Accountability",
+    "meaning": "担当；可追责"
+  },
+  {
+    "word": "Reliability",
+    "meaning": "可靠性"
+  },
+  {
+    "word": "Dependability",
+    "meaning": "值得信赖"
+  },
+  {
+    "word": "Fairness",
+    "meaning": "公正"
+  },
+  {
+    "word": "Justice",
+    "meaning": "正义"
+  },
+  {
+    "word": "Civility",
+    "meaning": "文明礼貌"
+  },
+  {
+    "word": "Courtesy",
+    "meaning": "礼貌"
+  },
+  {
+    "word": "Decency",
+    "meaning": "体面；得体"
+  },
+  {
+    "word": "Dignity",
+    "meaning": "尊严"
+  },
+  {
+    "word": "Honor",
+    "meaning": "荣誉"
+  },
+  {
+    "word": "Virtue",
+    "meaning": "美德"
+  },
+  {
+    "word": "Merit",
+    "meaning": "功绩；优点"
+  },
+  {
+    "word": "Excellence",
+    "meaning": "卓越"
+  },
+  {
+    "word": "Mastery",
+    "meaning": "精通"
+  },
+  {
+    "word": "Proficiency",
+    "meaning": "熟练；精通"
+  },
+  {
+    "word": "Competence",
+    "meaning": "胜任力"
+  },
+  {
+    "word": "Aptitude",
+    "meaning": "天赋；资质"
+  },
+  {
+    "word": "Vocation",
+    "meaning": "志业；使命"
+  },
+  {
+    "word": "Calling",
+    "meaning": "使命感；召唤"
+  },
+  {
+    "word": "Aspiration",
+    "meaning": "抱负；志向"
+  },
+  {
+    "word": "Ambition",
+    "meaning": "雄心"
+  },
+  {
+    "word": "Determination",
+    "meaning": "决心"
+  },
+  {
+    "word": "Resolve",
+    "meaning": "决意"
+  },
+  {
+    "word": "Commitment",
+    "meaning": "投入；承诺"
+  },
+  {
+    "word": "Dedication",
+    "meaning": "奉献；专注投入"
+  },
+  {
+    "word": "Devotion",
+    "meaning": "虔诚；投入"
+  },
+  {
+    "word": "Grit",
+    "meaning": "坚毅"
+  },
+  {
+    "word": "Endurance",
+    "meaning": "耐久；耐力"
+  },
+  {
+    "word": "Stamina",
+    "meaning": "耐力"
+  },
+  {
+    "word": "Bravery",
+    "meaning": "勇敢"
+  },
+  {
+    "word": "Valor",
+    "meaning": "英勇"
+  },
+  {
+    "word": "Courage",
+    "meaning": "勇气"
+  },
+  {
+    "word": "Audacity",
+    "meaning": "胆识；无畏"
+  },
+  {
+    "word": "Initiative",
+    "meaning": "主动性"
+  },
+  {
+    "word": "Momentum",
+    "meaning": "势能；推进力"
+  },
+  {
+    "word": "Vigor",
+    "meaning": "精力；活力"
+  },
+  {
+    "word": "Vitality",
+    "meaning": "活力"
+  },
+  {
+    "word": "Ingenuity",
+    "meaning": "机智；创造力"
+  },
+  {
+    "word": "Creativity",
+    "meaning": "创造力"
+  },
+  {
+    "word": "Imagination",
+    "meaning": "想象力"
+  },
+  {
+    "word": "Curiosity",
+    "meaning": "好奇心"
+  },
+  {
+    "word": "Wonder",
+    "meaning": "惊奇；好奇"
+  },
+  {
+    "word": "Awe",
+    "meaning": "敬畏"
+  },
+  {
+    "word": "Reverence",
+    "meaning": "敬重；崇敬"
+  },
+  {
+    "word": "Graciousness",
+    "meaning": "优雅得体；宽厚"
+  },
+  {
+    "word": "Poise",
+    "meaning": "沉着；优雅"
+  },
+  {
+    "word": "Composure",
+    "meaning": "镇定"
+  },
+  {
+    "word": "Clarity",
+    "meaning": "清晰；明晰"
+  },
+  {
+    "word": "Coherence",
+    "meaning": "连贯；条理"
+  },
+  {
+    "word": "Precision",
+    "meaning": "精确"
+  },
+  {
+    "word": "Rigor",
+    "meaning": "严谨"
+  },
+  {
+    "word": "Thoroughness",
+    "meaning": "周密；彻底"
+  },
+  {
+    "word": "Nuance",
+    "meaning": "细微差别；微妙"
+  },
+  {
+    "word": "Subtlety",
+    "meaning": "细腻；微妙"
+  },
+  {
+    "word": "Elegance",
+    "meaning": "优雅"
+  },
+  {
+    "word": "Simplicity",
+    "meaning": "简洁；简朴"
+  },
+  {
+    "word": "Frugality",
+    "meaning": "节俭"
+  },
+  {
+    "word": "Moderation",
+    "meaning": "适度"
+  },
+  {
+    "word": "Balance",
+    "meaning": "平衡"
+  },
+  {
+    "word": "Harmony",
+    "meaning": "和谐"
+  },
+  {
+    "word": "Concord",
+    "meaning": "一致；和睦"
+  },
+  {
+    "word": "Solidarity",
+    "meaning": "团结；同心"
+  },
+  {
+    "word": "Unity",
+    "meaning": "团结"
+  },
+  {
+    "word": "Community",
+    "meaning": "共同体；社群"
+  },
+  {
+    "word": "Belonging",
+    "meaning": "归属感"
+  },
+  {
+    "word": "Friendship",
+    "meaning": "友谊"
+  },
+  {
+    "word": "Camaraderie",
+    "meaning": "战友情；同事情谊"
+  },
+  {
+    "word": "Kindliness",
+    "meaning": "和善"
+  },
+  {
+    "word": "Warmheartedness",
+    "meaning": "热心；温暖"
+  },
+  {
+    "word": "Generosity",
+    "meaning": "慷慨"
+  },
+  {
+    "word": "Charity",
+    "meaning": "慈善"
+  },
+  {
+    "word": "Philanthropy",
+    "meaning": "慈善事业"
+  },
+  {
+    "word": "Hospitality",
+    "meaning": "好客"
+  },
+  {
+    "word": "Gentleness",
+    "meaning": "温柔"
+  },
+  {
+    "word": "Tenderness",
+    "meaning": "柔情；温和"
+  },
+  {
+    "word": "Patience",
+    "meaning": "耐心"
+  },
+  {
+    "word": "Forbearance",
+    "meaning": "忍让；克制"
+  },
+  {
+    "word": "Tolerance",
+    "meaning": "包容；容忍"
+  },
+  {
+    "word": "Forgiveness",
+    "meaning": "宽恕"
+  },
+  {
+    "word": "Mercy",
+    "meaning": "仁慈；怜悯"
+  },
+  {
+    "word": "Understanding",
+    "meaning": "理解"
+  },
+  {
+    "word": "Consideration",
+    "meaning": "体谅；周到"
+  },
+  {
+    "word": "Thoughtfulness",
+    "meaning": "体贴；深思"
+  },
+  {
+    "word": "Attentiveness",
+    "meaning": "专注留意"
+  },
+  {
+    "word": "Responsiveness",
+    "meaning": "反应敏捷；应对"
+  },
+  {
+    "word": "Adaptability",
+    "meaning": "适应力"
+  },
+  {
+    "word": "Flexibility",
+    "meaning": "灵活性"
+  },
+  {
+    "word": "Resourcefulness",
+    "meaning": "机敏；应变"
+  },
+  {
+    "word": "Pragmatism",
+    "meaning": "务实"
+  },
+  {
+    "word": "Practicality",
+    "meaning": "实用性"
+  },
+  {
+    "word": "Sustainability",
+    "meaning": "可持续性"
+  },
+  {
+    "word": "Stewardship",
+    "meaning": "管理与守护"
+  },
+  {
+    "word": "Custodianship",
+    "meaning": "守护与照管"
+  },
+  {
+    "word": "Service",
+    "meaning": "服务精神"
+  },
+  {
+    "word": "Contribution",
+    "meaning": "贡献"
+  },
+  {
+    "word": "Collaboration",
+    "meaning": "协作"
+  },
+  {
+    "word": "Cooperation",
+    "meaning": "合作"
+  },
+  {
+    "word": "Synergy",
+    "meaning": "协同效应"
+  },
+  {
+    "word": "Leadership",
+    "meaning": "领导力"
+  },
+  {
+    "word": "Mentorship",
+    "meaning": "导师式指导"
+  },
+  {
+    "word": "Guidance",
+    "meaning": "引导"
+  },
+  {
+    "word": "Support",
+    "meaning": "支持"
+  },
+  {
+    "word": "Encouragement",
+    "meaning": "鼓励"
+  },
+  {
+    "word": "Inspiration",
+    "meaning": "启发；灵感"
+  },
+  {
+    "word": "Motivation",
+    "meaning": "动力"
+  },
+  {
+    "word": "Empowerment",
+    "meaning": "赋能"
+  },
+  {
+    "word": "Advocacy",
+    "meaning": "倡导；拥护"
+  },
+  {
+    "word": "Initiation",
+    "meaning": "开启；启动"
+  },
+  {
+    "word": "Exploration",
+    "meaning": "探索"
+  },
+  {
+    "word": "Discovery",
+    "meaning": "发现"
+  },
+  {
+    "word": "Inquiry",
+    "meaning": "探究"
+  },
+  {
+    "word": "Reflection",
+    "meaning": "反思"
+  },
+  {
+    "word": "Introspection",
+    "meaning": "内省"
+  },
+  {
+    "word": "Contemplation",
+    "meaning": "沉思"
+  },
+  {
+    "word": "Meditation",
+    "meaning": "冥想；静思"
+  },
+  {
+    "word": "Awareness",
+    "meaning": "觉察"
+  },
+  {
+    "word": "Presence",
+    "meaning": "临在"
+  },
+  {
+    "word": "Stillness",
+    "meaning": "静定"
+  },
+  {
+    "word": "Quietude",
+    "meaning": "静谧"
+  },
+  {
+    "word": "Ease",
+    "meaning": "从容"
+  },
+  {
+    "word": "Grace",
+    "meaning": "风度；优雅"
+  },
+  {
+    "word": "Refinement",
+    "meaning": "精炼；文雅"
+  },
+  {
+    "word": "Cultivation",
+    "meaning": "修养；培养"
+  },
+  {
+    "word": "Erudition",
+    "meaning": "博学"
+  },
+  {
+    "word": "Scholarship",
+    "meaning": "学术修养"
+  },
+  {
+    "word": "Intellect",
+    "meaning": "智识"
+  },
+  {
+    "word": "Reason",
+    "meaning": "理性"
+  },
+  {
+    "word": "Judgment",
+    "meaning": "判断力"
+  },
+  {
+    "word": "Wisdom",
+    "meaning": "智慧"
+  },
+  {
+    "word": "Insight",
+    "meaning": "洞见"
+  },
+  {
+    "word": "Foresight",
+    "meaning": "远见"
+  },
+  {
+    "word": "Perspective",
+    "meaning": "视角"
+  },
+  {
+    "word": "Vision",
+    "meaning": "愿景"
+  },
+  {
+    "word": "Pragmatics",
+    "meaning": "务实作风"
+  },
+  {
+    "word": "Discipline",
+    "meaning": "自律"
+  },
+  {
+    "word": "Consistency",
+    "meaning": "一致性；持之以恒"
+  },
+  {
+    "word": "Orderliness",
+    "meaning": "有条理"
+  },
+  {
+    "word": "Organization",
+    "meaning": "组织性"
+  },
+  {
+    "word": "Prioritization",
+    "meaning": "优先级排序"
+  },
+  {
+    "word": "Focus",
+    "meaning": "专注"
+  },
+  {
+    "word": "Concentration",
+    "meaning": "集中"
+  },
+  {
+    "word": "Attunement",
+    "meaning": "调适；协调"
+  },
+  {
+    "word": "Alignment",
+    "meaning": "对齐；一致"
+  },
+  {
+    "word": "Calibration",
+    "meaning": "校准"
+  },
+  {
+    "word": "Optimization",
+    "meaning": "优化"
+  },
+  {
+    "word": "Improvement",
+    "meaning": "改进"
+  },
+  {
+    "word": "Progress",
+    "meaning": "进步"
+  },
+  {
+    "word": "Advancement",
+    "meaning": "提升；进展"
+  },
+  {
+    "word": "Growth",
+    "meaning": "成长"
+  },
+  {
+    "word": "Flourishing",
+    "meaning": "兴盛；茁壮"
+  },
+  {
+    "word": "Thrive",
+    "meaning": "蓬勃发展"
+  },
+  {
+    "word": "Prosperity",
+    "meaning": "兴旺；繁荣"
+  },
+  {
+    "word": "Wellbeing",
+    "meaning": "身心安好"
+  },
+  {
+    "word": "Wholeness",
+    "meaning": "完整；圆满"
+  },
+  {
+    "word": "Health",
+    "meaning": "健康"
+  },
+  {
+    "word": "Strength",
+    "meaning": "力量"
+  },
+  {
+    "word": "Courageousness",
+    "meaning": "勇敢品质"
+  },
+  {
+    "word": "Confidence",
+    "meaning": "自信"
+  },
+  {
+    "word": "Assurance",
+    "meaning": "笃定"
+  },
+  {
+    "word": "Faith",
+    "meaning": "信念"
+  },
+  {
+    "word": "Conviction",
+    "meaning": "坚定信念"
+  },
+  {
+    "word": "Trust",
+    "meaning": "信任"
+  },
+  {
+    "word": "Credibility",
+    "meaning": "可信度"
+  },
+  {
+    "word": "Transparency",
+    "meaning": "透明"
+  },
+  {
+    "word": "Openness",
+    "meaning": "开放"
+  },
+  {
+    "word": "Receptivity",
+    "meaning": "接纳性"
+  },
+  {
+    "word": "Inclusivity",
+    "meaning": "包容性"
+  },
+  {
+    "word": "Equity",
+    "meaning": "公平；公正"
+  },
+  {
+    "word": "Impartiality",
+    "meaning": "不偏不倚"
+  },
+  {
+    "word": "Objectivity",
+    "meaning": "客观"
+  },
+  {
+    "word": "Respect",
+    "meaning": "尊重"
+  },
+  {
+    "word": "Esteem",
+    "meaning": "敬重"
+  },
+  {
+    "word": "Admiration",
+    "meaning": "敬佩"
+  },
+  {
+    "word": "Appreciation",
+    "meaning": "欣赏；感激"
+  },
+  {
+    "word": "Recognition",
+    "meaning": "认可"
+  },
+  {
+    "word": "Gracious",
+    "meaning": "宽厚得体"
+  },
+  {
+    "word": "Courteous",
+    "meaning": "彬彬有礼"
+  },
+  {
+    "word": "Politeness",
+    "meaning": "礼貌"
+  },
+  {
+    "word": "Etiquette",
+    "meaning": "礼仪"
+  },
+  {
+    "word": "Gentility",
+    "meaning": "文雅；礼貌"
+  },
+  {
+    "word": "Tact",
+    "meaning": "得体；分寸"
+  },
+  {
+    "word": "Discretion",
+    "meaning": "谨慎；分寸"
+  },
+  {
+    "word": "Sensitivity",
+    "meaning": "敏感度；体察"
+  },
+  {
+    "word": "Companionship",
+    "meaning": "陪伴；伙伴关系"
+  },
+  {
+    "word": "Affinity",
+    "meaning": "亲和；契合"
+  },
+  {
+    "word": "Goodwill",
+    "meaning": "善意"
+  },
+  {
+    "word": "Kindness",
+    "meaning": "善良"
+  },
+  {
+    "word": "Patronage",
+    "meaning": "扶持；资助"
+  },
+  {
+    "word": "Fellowship",
+    "meaning": "同道；团契"
+  },
+  {
+    "word": "Serendipity",
+    "meaning": "意外之喜；机缘"
+  },
+  {
+    "word": "Delight",
+    "meaning": "欣喜"
+  },
+  {
+    "word": "Joy",
+    "meaning": "喜悦"
+  },
+  {
+    "word": "Cheerfulness",
+    "meaning": "愉快"
+  },
+  {
+    "word": "Brightness",
+    "meaning": "明朗"
+  },
+  {
+    "word": "Radiance",
+    "meaning": "光彩"
+  },
+  {
+    "word": "Luster",
+    "meaning": "光泽；光彩"
+  },
+  {
+    "word": "Spark",
+    "meaning": "火花；灵感"
+  },
+  {
+    "word": "Enthusiasm",
+    "meaning": "热情"
+  },
+  {
+    "word": "Zest",
+    "meaning": "热忱；兴致"
+  },
+  {
+    "word": "Eagerness",
+    "meaning": "渴望；积极"
+  },
+  {
+    "word": "Readiness",
+    "meaning": "准备就绪"
+  },
+  {
+    "word": "Preparedness",
+    "meaning": "准备充分"
+  },
+  {
+    "word": "Enterprise",
+    "meaning": "进取心；事业心"
+  },
+  {
+    "word": "Industry",
+    "meaning": "勤奋；勤勉"
+  },
+  {
+    "word": "Craftsmanship",
+    "meaning": "匠心；手艺"
+  },
+  {
+    "word": "Artistry",
+    "meaning": "艺术感；技艺"
+  },
+  {
+    "word": "Eloquence",
+    "meaning": "雄辩；表达力"
+  },
+  {
+    "word": "Articulation",
+    "meaning": "清晰表达"
+  },
+  {
+    "word": "Lucidity",
+    "meaning": "清晰明了"
+  },
+  {
+    "word": "Reconciliation",
+    "meaning": "和解"
+  },
+  {
+    "word": "Amity",
+    "meaning": "友好关系"
+  },
+  {
+    "word": "Conviviality",
+    "meaning": "欢聚；友善气氛"
+  },
+  {
+    "word": "Peace",
+    "meaning": "和平；安宁"
+  },
+  {
+    "word": "Equilibrium",
+    "meaning": "平衡；均衡"
+  },
+  {
+    "word": "Stability",
+    "meaning": "稳定"
+  },
+  {
+    "word": "Constancy",
+    "meaning": "恒常；不变"
+  },
+  {
+    "word": "Sustenance",
+    "meaning": "滋养；支撑"
+  },
+  {
+    "word": "Nurturance",
+    "meaning": "滋养；培育"
+  },
+  {
+    "word": "Care",
+    "meaning": "关怀"
+  },
+  {
+    "word": "Compassionate",
+    "meaning": "富有同情心"
+  },
+  {
+    "word": "Generous",
+    "meaning": "慷慨的"
+  },
+  {
+    "word": "Mindful",
+    "meaning": "正念的"
+  },
+  {
+    "word": "Reflective",
+    "meaning": "善于反思的"
+  },
+  {
+    "word": "Prudent",
+    "meaning": "谨慎的"
+  },
+  {
+    "word": "Diligent",
+    "meaning": "勤勉的"
+  },
+  {
+    "word": "Courageous",
+    "meaning": "勇敢的"
+  },
+  {
+    "word": "Resilient",
+    "meaning": "有韧性的"
+  },
+  {
+    "word": "Steadfast",
+    "meaning": "坚定的"
+  },
+  {
+    "word": "Uplift",
+    "meaning": "振奋；提升"
+  },
+  {
+    "word": "Uplifting",
+    "meaning": "鼓舞人心的"
+  },
+  {
+    "word": "Inspire",
+    "meaning": "启发"
+  },
+  {
+    "word": "Inspiring",
+    "meaning": "鼓舞人心的"
+  },
+  {
+    "word": "Aspire",
+    "meaning": "立志"
+  },
+  {
+    "word": "Aspiring",
+    "meaning": "有抱负的"
+  },
+  {
+    "word": "Evolve",
+    "meaning": "进化；成长"
+  },
+  {
+    "word": "Mature",
+    "meaning": "成熟"
+  },
+  {
+    "word": "Maturity",
+    "meaning": "成熟"
+  },
+  {
+    "word": "Comity",
+    "meaning": "礼让；友好"
+  },
+  {
+    "word": "Probity",
+    "meaning": "廉正；诚实"
+  },
+  {
+    "word": "Veracity",
+    "meaning": "真实；诚实"
+  },
+  {
+    "word": "Solemnity",
+    "meaning": "庄重"
+  },
+  {
+    "word": "Earnestness",
+    "meaning": "诚恳；认真"
+  },
+  {
+    "word": "Alacrity",
+    "meaning": "欣然迅速；敏捷"
+  },
+  {
+    "word": "Rapidity",
+    "meaning": "迅速"
+  },
+  {
+    "word": "Promptness",
+    "meaning": "迅速；及时"
+  },
+  {
+    "word": "Punctuality",
+    "meaning": "守时"
+  },
+  {
+    "word": "Reliance",
+    "meaning": "依赖；信赖"
+  },
+  {
+    "word": "Trustworthiness",
+    "meaning": "可信赖"
+  },
+  {
+    "word": "Fidelity",
+    "meaning": "忠诚；忠实"
+  },
+  {
+    "word": "Devotedness",
+    "meaning": "投入；奉献"
+  },
+  {
+    "word": "Serviceability",
+    "meaning": "可用性；实用性"
+  },
+  {
+    "word": "Usefulness",
+    "meaning": "有用性"
+  },
+  {
+    "word": "Relevance",
+    "meaning": "相关性"
+  },
+  {
+    "word": "Significance",
+    "meaning": "意义；重要性"
+  },
+  {
+    "word": "Meaningfulness",
+    "meaning": "有意义"
+  },
+  {
+    "word": "Cohesion",
+    "meaning": "凝聚；衔接"
+  },
+  {
+    "word": "Stimulation",
+    "meaning": "激励；促进"
+  },
+  {
+    "word": "Rejuvenation",
+    "meaning": "焕新；恢复活力"
+  },
+  {
+    "word": "Renewal",
+    "meaning": "更新"
+  },
+  {
+    "word": "Revival",
+    "meaning": "复苏；振作"
+  },
+  {
+    "word": "Awakening",
+    "meaning": "觉醒"
+  },
+  {
+    "word": "Awaken",
+    "meaning": "唤醒"
+  },
+  {
+    "word": "Enlightenment",
+    "meaning": "启迪；开悟"
+  },
+  {
+    "word": "Illumination",
+    "meaning": "启示；照亮"
+  },
+  {
+    "word": "Elevation",
+    "meaning": "提升；拔高"
+  },
+  {
+    "word": "Transcendence",
+    "meaning": "超越"
+  },
+  {
+    "word": "Endeavor",
+    "meaning": "努力；事业"
+  }
+]

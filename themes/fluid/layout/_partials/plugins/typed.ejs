@@ -8,45 +8,69 @@
         return;
       }
       var text = subtitle.getAttribute('data-typed-text');
-      <% if (is_home() && theme.index.slogan.api && theme.index.slogan.api.enable) { %>
-        jQuery.ajax({
-          type: '<%= theme.index.slogan.api.method %>',
-          url: '<%- theme.index.slogan.api.url %>',
-          headers: <%- JSON.stringify(theme.index.slogan.api.headers || {}) %>,
-          dataType: 'json',
-          success: function(result) {
-            var apiText;
-            if (result) {
-              var keys = '<%= theme.index.slogan.api.keys %>'.split(',');
-              if (result instanceof Array) {
-                result = result[0];
-              }
-              for (const k of keys) {
-                var value = result[k];
-                if (typeof value === 'string') {
-                  apiText = value;
-                  break;
-                } else if (value instanceof Object) {
-                  result = value;
+
+      function fallbackTyping() {
+        <% if (is_home() && theme.index.slogan.api && theme.index.slogan.api.enable) { %>
+          jQuery.ajax({
+            type: '<%= theme.index.slogan.api.method %>',
+            url: '<%- theme.index.slogan.api.url %>',
+            headers: <%- JSON.stringify(theme.index.slogan.api.headers || {}) %>,
+            dataType: 'json',
+            success: function(result) {
+              var apiText;
+              if (result) {
+                var keys = '<%= theme.index.slogan.api.keys %>'.split(',');
+                if (result instanceof Array) {
+                  result = result[0];
+                }
+                for (const k of keys) {
+                  var value = result[k];
+                  if (typeof value === 'string') {
+                    apiText = value;
+                    break;
+                  } else if (value instanceof Object) {
+                    result = value;
+                  }
                 }
               }
+              apiText ? typing(apiText) : typing(text);
+            },
+            error: function(xhr, status, error) {
+              if (error) {
+                console.error('Failed to request <%= theme.index.slogan.api.url %>:', error);
+              }
+              typing(text);
             }
-            apiText ? typing(apiText) : typing(text);
-          },
-          error: function(xhr, status, error) {
-            if (error) {
-              console.error('Failed to request <%= theme.index.slogan.api.url %>:', error);
-            }
-            typing(text);
+          })
+        <% } else if (is_home() && Array.isArray(theme.index.slogan.text) && theme.index.slogan.text.length > 0) { %>
+          var texts = <%- JSON.stringify(theme.index.slogan.text) %>;
+          var idx = Math.floor(Math.random() * texts.length);
+          typing(texts[idx]);
+        <% } else { %>
+          typing(text);
+        <% } %>
+      }
+
+      function runTyping() {
+        <% if (is_home()) { %>
+          var pool = window.SpaMasterSloganPool;
+          if (!pool || typeof pool.getRandomText !== 'function') {
+            fallbackTyping();
+            return;
           }
-        })
-      <% } else if (is_home() && Array.isArray(theme.index.slogan.text) && theme.index.slogan.text.length > 0) { %>
-        var texts = <%- JSON.stringify(theme.index.slogan.text) %>;
-        var idx = Math.floor(Math.random() * texts.length);
-        typing(texts[idx]);
-      <% } else { %>
-        typing(text);
-      <% } %>
+          pool.getRandomText({ fallbackText: text })
+            .then(function (t) { typing(t || text); })
+            .catch(function () { fallbackTyping(); });
+        <% } else { %>
+          fallbackTyping();
+        <% } %>
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', runTyping);
+      } else {
+        runTyping();
+      }
     })(window, document);
   </script>
 <% } %>
