@@ -19,15 +19,15 @@
   <meta name="author" content="HRbenY">
   <meta name="keywords" content="">
   
-    <meta name="description" content="从SGD到Adamw，所有优化器的形式都类似$$\boxed{w ;\leftarrow; w - \text{lr} \cdot \text{transformed_grad}}$$区别只在于transformed_grad 是如何由原始梯度 grad 得到的。 1. SGD$$w \leftarrow w - \text{lr} \cdot \nabla_w L$$ 2. SGD+Moment">
+    <meta name="description" content="从SGD到Adamw，所有优化器的形式都类似$$w ;\leftarrow; w - \text{lr} \cdot \text{transformed_grad}$$区别只在于transformed_grad 是如何由原始梯度 grad 得到的。 1. SGD$$w \leftarrow w - \text{lr} \cdot \nabla_w L$$ 2. SGD+Momentum在SGD的基">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Adamw">
 <meta property="og:url" content="https://hrbeny.github.io/2026/01/17/obsidian/transformer/Adamw/index.html">
 <meta property="og:site_name" content="Spa-Master 的博客">
-<meta property="og:description" content="从SGD到Adamw，所有优化器的形式都类似$$\boxed{w ;\leftarrow; w - \text{lr} \cdot \text{transformed_grad}}$$区别只在于transformed_grad 是如何由原始梯度 grad 得到的。 1. SGD$$w \leftarrow w - \text{lr} \cdot \nabla_w L$$ 2. SGD+Moment">
+<meta property="og:description" content="从SGD到Adamw，所有优化器的形式都类似$$w ;\leftarrow; w - \text{lr} \cdot \text{transformed_grad}$$区别只在于transformed_grad 是如何由原始梯度 grad 得到的。 1. SGD$$w \leftarrow w - \text{lr} \cdot \nabla_w L$$ 2. SGD+Momentum在SGD的基">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-01-17T14:22:01.018Z">
-<meta property="article:modified_time" content="2026-01-17T14:22:01.018Z">
+<meta property="article:published_time" content="2026-01-17T14:28:16.423Z">
+<meta property="article:modified_time" content="2026-01-17T14:28:16.423Z">
 <meta property="article:author" content="HRbenY">
 <meta property="article:tag" content="adamw">
 <meta property="article:tag" content="optimization">
@@ -213,7 +213,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-01-17 22:22" pubdate>
+        <time datetime="2026-01-17 22:28" pubdate>
           2026年1月17日 晚上
         </time>
       </span>
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          1.6k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          15 分钟
+          14 分钟
         
       </span>
     
@@ -278,13 +278,13 @@
             
               <div class="markdown-body">
                 
-                <p>从SGD到Adamw，所有优化器的形式都类似<br>$$\boxed{<br>w ;\leftarrow; w - \text{lr} \cdot \text{transformed_grad}<br>}$$<br>区别只在于<code>transformed_grad</code> 是如何由原始梯度 <code>grad</code> 得到的。</p>
+                <p>从SGD到Adamw，所有优化器的形式都类似<br>$$<br>w ;\leftarrow; w - \text{lr} \cdot \text{transformed_grad}<br>$$<br>区别只在于<code>transformed_grad</code> 是如何由原始梯度 <code>grad</code> 得到的。</p>
 <h2 id="1-SGD"><a href="#1-SGD" class="headerlink" title="1. SGD"></a>1. SGD</h2><p>$$w \leftarrow w - \text{lr} \cdot \nabla_w L$$</p>
 <h2 id="2-SGD-Momentum"><a href="#2-SGD-Momentum" class="headerlink" title="2. SGD+Momentum"></a>2. SGD+Momentum</h2><p>在SGD的基础上，进行时间维度平滑。<br>$$v_t &#x3D; \mu v_{t-1} + \nabla L$$<br>$$w \leftarrow w - \text{lr} \cdot v_t$$</p>
 <ul>
 <li>transformed_grad<br>$$transformed_grad &#x3D; EMA(grad)$$</li>
 </ul>
-<h2 id="3-AdaGrad"><a href="#3-AdaGrad" class="headerlink" title="3. AdaGrad"></a>3. AdaGrad</h2><p>Adagrad认为不同的参数应该使用不同的学习率。<br>$$r_t &#x3D; \beta r_{t-1} + (1-\beta)\nabla L^2$$<br>$$\boxed{<br>w \leftarrow w - \text{lr} \cdot \frac{\nabla L}{\sqrt{r_t} + \epsilon}<br>}$$</p>
+<h2 id="3-AdaGrad"><a href="#3-AdaGrad" class="headerlink" title="3. AdaGrad"></a>3. AdaGrad</h2><p>Adagrad认为不同的参数应该使用不同的学习率。<br>$$r_t &#x3D; \beta r_{t-1} + (1-\beta)\nabla L^2$$<br>$$<br>w \leftarrow w - \text{lr} \cdot \frac{\nabla L}{\sqrt{r_t} + \epsilon}<br>$$</p>
 <ul>
 <li>transformed_grad<br>$$transformed_grad &#x3D; grad &#x2F; sqrt(EMA(grad^2))$$</li>
 </ul>
@@ -294,7 +294,7 @@
 <li>二阶矩：梯度尺度。</li>
 </ul>
 <p>$$m_t &#x3D; \beta_1 m_{t-1} + (1-\beta_1)\nabla L$$<br>$$v_t &#x3D; \beta_2 v_{t-1} + (1-\beta_2)\nabla L^2$$<br>除此之外，因为 EMA 初期偏向 0，所以要对m和v进行偏置修正。（t是t次幂）<br>$$\hat m_t &#x3D; \frac{m_t}{1-\beta_1^t},<br>\quad<br>\hat v_t &#x3D; \frac{v_t}{1-\beta_2^t}$$</p>
-<p>最终公式是<br>$$\boxed{w \leftarrow w - \text{lr} \cdot \frac{\hat m_t}{\sqrt{\hat v_t} + \epsilon}<br>}$$</p>
+<p>最终公式是<br>$$w \leftarrow w - \text{lr} \cdot \frac{\hat m_t}{\sqrt{\hat v_t} + \epsilon}<br>$$</p>
 <ul>
 <li>transformed_grad<br>$$transformed_grad &#x3D; EMA(grad) &#x2F; sqrt(EMA(grad^2))$$</li>
 </ul>
@@ -302,7 +302,7 @@
 <p>我们上面提到Adam的更新是$$\Delta{\omega_i} &#x3D; -\text{lr} \cdot \frac{\hat m_t}{\sqrt{\hat v_t} + \epsilon}$$<br>注意，这里分子和分母中的$\hat{m}_t$和$\hat{v}_t$都是$\nabla L$的函数。我们在[[L2 Regularization]]提到，L2正则化会给总Loss加上一项，使得最终的梯度$\nabla L’ &#x3D; \nabla L + \lambda \omega$。因此，$\lambda \omega$会混入到分子和分母中，并因为Adam的自适应机制（$m_t$的平滑和 $v_t$的缩放）而扭曲，导致不同参数的正则化程度不同。</p>
 <h2 id="正确方式"><a href="#正确方式" class="headerlink" title="正确方式"></a>正确方式</h2><p>解决方式很简单，我们调整一下加入$\lambda \omega$的时机，不在求出$\nabla L$后立刻引入，而是在最终的公式中加上一项$\lambda \omega$。即</p>
 <p>$$<br>\Delta{\omega_i} &#x3D; -\text{lr} \cdot (\frac{\hat m_t}{\sqrt{\hat v_t} + \epsilon} + \lambda\omega)<br>$$</p>
-<p>最终公式是$$\boxed{w \leftarrow w - \text{lr} \cdot (\frac{\hat m_t}{\sqrt{\hat v_t} + \epsilon} + \lambda\omega)<br>}$$</p>
+<p>最终公式是$$w \leftarrow w - \text{lr} \cdot (\frac{\hat m_t}{\sqrt{\hat v_t} + \epsilon} + \lambda\omega)<br>$$</p>
 
                 
               </div>

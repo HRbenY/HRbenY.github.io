@@ -230,218 +230,6 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2026/01/17/obsidian/cpp/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" target="_self">
-          刷题笔记
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/cpp/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" target="_self">
-        <div>
-          随想录[[数组]][[链表]][[哈希表]][[字符串]][[栈和队列]][[二叉树]][[回溯]][[贪心]][[动态规划]][[图]]
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 22:22" pubdate>
-              2026-01-17
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/cpp/">#cpp</a>
-            
-              <a href="/tags/%E5%88%B7%E9%A2%98/">#刷题</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2026/01/17/obsidian/transformer/Adamw/" target="_self">
-          Adamw
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/transformer/Adamw/" target="_self">
-        <div>
-          从SGD到Adamw，所有优化器的形式都类似$$\boxed{w ;\leftarrow; w - \text{lr} \cdot \text{transformed_grad}}$$区别只在于transformed_grad 是如何由原始梯度 grad 得到的。 1. SGD$$w \leftarrow w - \text{lr} \cdot \nabla_w L$$ 2. SGD+Moment
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 22:22" pubdate>
-              2026-01-17
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/transformer/">#transformer</a>
-            
-              <a href="/tags/adamw/">#adamw</a>
-            
-              <a href="/tags/optimization/">#optimization</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2026/01/17/obsidian/transformer/L2%20Regularization/" target="_self">
-          L2 Regularization
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/transformer/L2%20Regularization/" target="_self">
-        <div>
-          L2正则化的目的是权重衰减，让Loss和权重的L2范数正相关。在SGD和Momentum中不需多余处理就能达到这样的效果。但是Adagrad和Adam由于对梯度做了预处理，不能直接应用公式。（见[[Adamw]]） 作用防止模型过拟合 (Overfitting)。通过限制参数（权重 $w$）的大小，使模型变得更简单、更平滑，避免对训练数据中的噪声死记硬背。 公式总损失可以表示如下 $$\boxed
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 22:22" pubdate>
-              2026-01-17
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/transformer/">#transformer</a>
-            
-              <a href="/tags/regularization/">#regularization</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2026/01/17/obsidian/transformer/LayerNorm/" target="_self">
-          LayerNorm
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/transformer/LayerNorm/" target="_self">
-        <div>
-          并不是BatchNorm简单的交换N和D。  前向传播在前向传播中，LayerNorm的公式就是BatchNorm交换N和D维度。LayerNorm在每个批次内部进行Normalization，而BatchNorm是跨Batch的Norm。导致mean和std_dev稍有不同。 (1) 均值$$\mu &#x3D; \frac{1}{D} \sum_{i&#x3D;1}^{D} x_i$$ (2
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 22:22" pubdate>
-              2026-01-17
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/transformer/">#transformer</a>
-            
-              <a href="/tags/normalization/">#normalization</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2026/01/17/obsidian/transformer/Self-Attention%E6%9C%BA%E5%88%B6(Q,K,V)/" target="_self">
-          Self-Attention机制(Q,K,V)
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/transformer/Self-Attention%E6%9C%BA%E5%88%B6(Q,K,V)/" target="_self">
-        <div>
-          $$\text{Attention}(Q, K, V) &#x3D; \text{softmax}\left( \frac{QK^T}{\sqrt{d_k}} \right) V$$ 1. 核心思想转变 之前 (Weighted Sum): 我们用全 1 的矩阵做平均，所有 token 对过去的关注度是一样的（平权的），这与内容无关。  现在 (Self-Attention): 我们希望 toke
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 22:22" pubdate>
-              2026-01-17
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/transformer/">#transformer</a>
-            
-              <a href="/tags/attention/">#attention</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
         <a href="/2026/01/17/obsidian/transformer/Tokenizer/" target="_self">
           Tokenizer
         </a>
@@ -458,7 +246,7 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 22:22" pubdate>
+            <time datetime="2026-01-17 22:28" pubdate>
               2026-01-17
             </time>
           </div>
@@ -500,7 +288,7 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 22:22" pubdate>
+            <time datetime="2026-01-17 22:28" pubdate>
               2026-01-17
             </time>
           </div>
@@ -513,6 +301,218 @@
               <a href="/tags/transformer/">#transformer</a>
             
               <a href="/tags/masking/">#masking</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2026/01/17/obsidian/cpp/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" target="_self">
+          刷题笔记
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/cpp/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" target="_self">
+        <div>
+          随想录[[数组]][[链表]][[哈希表]][[字符串]][[栈和队列]][[二叉树]][[回溯]][[贪心]][[动态规划]][[图]]
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2026-01-17 22:28" pubdate>
+              2026-01-17
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/cpp/">#cpp</a>
+            
+              <a href="/tags/%E5%88%B7%E9%A2%98/">#刷题</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2026/01/17/obsidian/transformer/Adamw/" target="_self">
+          Adamw
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/transformer/Adamw/" target="_self">
+        <div>
+          从SGD到Adamw，所有优化器的形式都类似$$w ;\leftarrow; w - \text{lr} \cdot \text{transformed_grad}$$区别只在于transformed_grad 是如何由原始梯度 grad 得到的。 1. SGD$$w \leftarrow w - \text{lr} \cdot \nabla_w L$$ 2. SGD+Momentum在SGD的基
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2026-01-17 22:28" pubdate>
+              2026-01-17
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/transformer/">#transformer</a>
+            
+              <a href="/tags/adamw/">#adamw</a>
+            
+              <a href="/tags/optimization/">#optimization</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2026/01/17/obsidian/transformer/L2%20Regularization/" target="_self">
+          L2 Regularization
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/transformer/L2%20Regularization/" target="_self">
+        <div>
+          L2正则化的目的是权重衰减，让Loss和权重的L2范数正相关。在SGD和Momentum中不需多余处理就能达到这样的效果。但是Adagrad和Adam由于对梯度做了预处理，不能直接应用公式。（见[[Adamw]]） 作用防止模型过拟合 (Overfitting)。通过限制参数（权重 $w$）的大小，使模型变得更简单、更平滑，避免对训练数据中的噪声死记硬背。 公式总损失可以表示如下 $$\mathc
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2026-01-17 22:28" pubdate>
+              2026-01-17
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/transformer/">#transformer</a>
+            
+              <a href="/tags/regularization/">#regularization</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2026/01/17/obsidian/transformer/LayerNorm/" target="_self">
+          LayerNorm
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/transformer/LayerNorm/" target="_self">
+        <div>
+          并不是BatchNorm简单的交换N和D。  前向传播在前向传播中，LayerNorm的公式就是BatchNorm交换N和D维度。LayerNorm在每个批次内部进行Normalization，而BatchNorm是跨Batch的Norm。导致mean和std_dev稍有不同。 (1) 均值$$\mu &#x3D; \frac{1}{D} \sum_{i&#x3D;1}^{D} x_i$$ (2
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2026-01-17 22:28" pubdate>
+              2026-01-17
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/transformer/">#transformer</a>
+            
+              <a href="/tags/normalization/">#normalization</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2026/01/17/obsidian/transformer/Self-Attention%E6%9C%BA%E5%88%B6(Q,K,V)/" target="_self">
+          Self-Attention机制(Q,K,V)
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/transformer/Self-Attention%E6%9C%BA%E5%88%B6(Q,K,V)/" target="_self">
+        <div>
+          $$\text{Attention}(Q, K, V) &#x3D; \text{softmax}\left( \frac{QK^T}{\sqrt{d_k}} \right) V$$ 1. 核心思想转变 之前 (Weighted Sum): 我们用全 1 的矩阵做平均，所有 token 对过去的关注度是一样的（平权的），这与内容无关。  现在 (Self-Attention): 我们希望 toke
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2026-01-17 22:28" pubdate>
+              2026-01-17
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/transformer/">#transformer</a>
+            
+              <a href="/tags/attention/">#attention</a>
             
           </div>
         
@@ -542,7 +542,7 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 22:22" pubdate>
+            <time datetime="2026-01-17 22:28" pubdate>
               2026-01-17
             </time>
           </div>
@@ -584,7 +584,7 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 22:22" pubdate>
+            <time datetime="2026-01-17 22:28" pubdate>
               2026-01-17
             </time>
           </div>
@@ -626,7 +626,7 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 22:22" pubdate>
+            <time datetime="2026-01-17 22:28" pubdate>
               2026-01-17
             </time>
           </div>
