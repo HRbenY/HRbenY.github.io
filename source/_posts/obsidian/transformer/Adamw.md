@@ -9,9 +9,9 @@ title: Adamw
 ---
 
 从SGD到Adamw，所有优化器的形式都类似
-$$\boxed{
+$$
 w \;\leftarrow\; w - \text{lr} \cdot \text{transformed\_grad}
-}$$
+$$
 区别只在于`transformed_grad` 是如何由原始梯度 `grad` 得到的。
 ## 1. SGD
 $$w \leftarrow w - \text{lr} \cdot \nabla_w L$$
@@ -26,9 +26,9 @@ $$transformed\_grad = EMA(grad)$$
 
 Adagrad认为不同的参数应该使用不同的学习率。
 $$r_t = \beta r_{t-1} + (1-\beta)\nabla L^2$$
-$$\boxed{
+$$
 w \leftarrow w - \text{lr} \cdot \frac{\nabla L}{\sqrt{r_t} + \epsilon}
-}$$
+$$
 
 - transformed_grad
 $$transformed\_grad = grad / sqrt(EMA(grad^2))$$
@@ -46,8 +46,8 @@ $$\hat m_t = \frac{m_t}{1-\beta_1^t},
 \hat v_t = \frac{v_t}{1-\beta_2^t}$$
 
 最终公式是
-$$\boxed{w \leftarrow w - \text{lr} \cdot \frac{\hat m_t}{\sqrt{\hat v_t} + \epsilon}
-}$$
+$$w \leftarrow w - \text{lr} \cdot \frac{\hat m_t}{\sqrt{\hat v_t} + \epsilon}
+$$
 -  transformed_grad
 $$transformed_grad = EMA(grad) / sqrt(EMA(grad^2))$$
 
@@ -65,5 +65,5 @@ $$
 \Delta{\omega_i} = -\text{lr} \cdot (\frac{\hat m_t}{\sqrt{\hat v_t} + \epsilon} + \lambda\omega)
 $$
 
-最终公式是$$\boxed{w \leftarrow w - \text{lr} \cdot (\frac{\hat m_t}{\sqrt{\hat v_t} + \epsilon} + \lambda\omega)
-}$$
+最终公式是$$w \leftarrow w - \text{lr} \cdot (\frac{\hat m_t}{\sqrt{\hat v_t} + \epsilon} + \lambda\omega)
+$$
