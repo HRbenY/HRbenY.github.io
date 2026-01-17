@@ -1,0 +1,781 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="HRbenY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="哈希表什么时候使用哈希法？ 当我们需要查询一个元素是否出现过，或者一个元素是否在集合里的时候，就要第一时间想到哈希法。 概述和初始化  std::unordered_map (哈希映射): 存储唯一的键值对（key-value pairs）。键用于快速查找和访问，值可以重复。适合需要通过键来获取关联值的场景。  初始化：std::unordered_map&lt;KeyType, ValueTyp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="哈希表">
+<meta property="og:url" content="https://hrbeny.github.io/2026/01/17/obsidian/cpp/Notes/3.Hash%20table/%E5%93%88%E5%B8%8C%E8%A1%A8/index.html">
+<meta property="og:site_name" content="HRbenY 的博客">
+<meta property="og:description" content="哈希表什么时候使用哈希法？ 当我们需要查询一个元素是否出现过，或者一个元素是否在集合里的时候，就要第一时间想到哈希法。 概述和初始化  std::unordered_map (哈希映射): 存储唯一的键值对（key-value pairs）。键用于快速查找和访问，值可以重复。适合需要通过键来获取关联值的场景。  初始化：std::unordered_map&lt;KeyType, ValueTyp">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-17T10:09:33.295Z">
+<meta property="article:modified_time" content="2026-01-17T10:09:33.296Z">
+<meta property="article:author" content="HRbenY">
+<meta property="article:tag" content="cpp">
+<meta property="article:tag" content="hash-table">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>哈希表 - HRbenY 的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"hrbeny.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>HRbenY 的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/obsidian/" target="_self">
+                
+                <span>Obsidian</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="哈希表"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-17 18:09" pubdate>
+          2026年1月17日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">哈希表</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h1><p><strong>什么时候使用哈希法？</strong> 当我们需要查询一个元素是否出现过，或者一个元素是否在集合里的时候，就要第一时间想到哈希法。</p>
+<p>概述和初始化</p>
+<ul>
+<li><p>std::unordered_map (哈希映射): 存储唯一的<strong>键值对</strong>（key-value pairs）。<strong>键用于快速查找和访问</strong>，值可以重复。适合需要通过键来获取关联值的场景。</p>
+<ul>
+<li>初始化：<code>std::unordered_map&lt;KeyType, ValueType&gt; myMap = &#123;&#123;key1, val1&#125;, &#123;key2, val2&#125;&#125;</code>;</li>
+<li>示例：<code>std::unordered_map&lt;std::string, int&gt; ages = &#123;&#123;&quot;Alice&quot;, 25&#125;, &#123;&quot;Bob&quot;, 30&#125;&#125;</code>;</li>
+</ul>
+</li>
+<li><p>std::unordered_set (哈希集合): 存储唯一的元素（unique keys）。它只关心元素本身，不存储额外的值。适合需要快速判断一个元素是否存在的场景。</p>
+<ul>
+<li>初始化：<code>std::unordered_set&lt;ElementType&gt; mySet = &#123;elem1, elem2, elem3&#125;</code>;</li>
+<li>示例：<code>std::unordered_set&lt;std::string&gt; names = &#123;&quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;&#125;</code>;</li>
+</ul>
+</li>
+</ul>
+<p>常用成员函数对比</p>
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">std::unordered_map (哈希映射)</th>
+<th align="left">std::unordered_set (哈希集合)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">插入</td>
+<td align="left">mymap.insert({key, value})<br>myMap.[key] &#x3D; value;</td>
+<td align="left">insert(element)（如果元素已存在，操作无效）</td>
+</tr>
+<tr>
+<td align="left">查找</td>
+<td align="left">find(key)：返回指向键值对的迭代器，未找到则返回 end()</td>
+<td align="left">find(element)：返回指向元素的迭代器，未找到则返回 end()</td>
+</tr>
+<tr>
+<td align="left">访问</td>
+<td align="left">myMap.at(key) <br> myMap[key]</td>
+<td align="left">不支持通过索引访问，需使用迭代器或遍历</td>
+</tr>
+<tr>
+<td align="left">删除</td>
+<td align="left">erase(key)<br>erase(iterator)</td>
+<td align="left">erase(element)<br>erase(iterator)</td>
+</tr>
+<tr>
+<td align="left">清空</td>
+<td align="left">clear()</td>
+<td align="left">clear()</td>
+</tr>
+<tr>
+<td align="left">大小</td>
+<td align="left">size()</td>
+<td align="left">size()</td>
+</tr>
+<tr>
+<td align="left">判断空</td>
+<td align="left">empty()</td>
+<td align="left">empty()</td>
+</tr>
+<tr>
+<td align="left">计数</td>
+<td align="left">count(key)：键是唯一的，返回 0 或 1</td>
+<td align="left">count(element)：元素是唯一的，返回 0 或 1</td>
+</tr>
+</tbody></table>
+<p>区别总结</p>
+<ul>
+<li>存储结构：map 存储键和值，而 set 只存储键（即元素本身）。</li>
+<li>访问方式：map 可以通过 at(key) 或 [] 运算符快速访问值，而 set 只能通过遍历或查找获得元素本身。</li>
+<li>应用场景：当你需要一个**“查找表”（通过键找值）时，使用 map；当你需要一个“去重集合”**（快速判断元素是否存在）时，使用 set。</li>
+</ul>
+<h3 id="242-有效的字母异位词"><a href="#242-有效的字母异位词" class="headerlink" title="242. 有效的字母异位词"></a>242. 有效的字母异位词</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/valid-anagram/description/">原题链接</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">int</span> record[<span class="hljs-number">26</span>] = &#123;<span class="hljs-number">0</span>&#125;;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; s.<span class="hljs-built_in">size</span>(); i++ )&#123;<br>            record[s[i] - <span class="hljs-string">&#x27;a&#x27;</span>] += <span class="hljs-number">1</span>;<br>        &#125;<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; t.<span class="hljs-built_in">size</span>(); i++ )&#123;<br>            record[t[i] - <span class="hljs-string">&#x27;a&#x27;</span>] -= <span class="hljs-number">1</span>;<br>        &#125;<br></code></pre></td></tr></table></figure>
+
+<p>在C++中，<code>std::string</code>类型可以被看作是一个字符数组。可以用之前学到的.size()计算长度，用索引访问内部元素等。</p>
+<p>这两个for循环体现了哈希表的思想：<code>record</code>是哈希表，<code>s[i] - &#39;a&#39;</code>是哈希函数，字符串中的每个字符是索引，<code>record</code>数组中对应索引位置的数是值。这个过程可以总结为</p>
+<blockquote>
+<p>遍历字符串 s 时，取出一个字符（键），用哈希函数 <code>s[i] - &#39;a&#39;</code> 算出它在 <code>record</code> 数组中的位置，然后在这个位置上将值加1。</p>
+</blockquote>
+<p>这里可以用数组做哈希的题目的原因是，题目限定了索引数（26个字母）</p>
+<h3 id="349-两个数组的交集"><a href="#349-两个数组的交集" class="headerlink" title="349. 两个数组的交集"></a>349. 两个数组的交集</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-arrays/description/">原题链接</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++">unordered_set&lt;<span class="hljs-type">int</span>&gt; result_set;<br><span class="hljs-function">unordered_set&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">nums1_set</span><span class="hljs-params">(nums<span class="hljs-number">1.</span>begin(), nums<span class="hljs-number">1.</span>end())</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p>unordered_set的初始化方式。注意要声明元素格式。</p>
+<blockquote>
+<p>初始化unorderes_set的方式有四种。  </p>
+<ul>
+<li>默认初始化不赋值</li>
+<li>范围初始化。使用begin和end进行范围赋值</li>
+<li>列表初始化，例如<code>unordered_set&lt;string&gt; fruits = &#123;&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;, &quot;apple&quot;&#125;;</code></li>
+<li>拷贝和移动初始化。例如</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c++">std::unordered_set&lt;<span class="hljs-type">double</span>&gt; s1 = &#123;<span class="hljs-number">1.1</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">3.3</span>&#125;;<br><br><span class="hljs-comment">// 拷贝构造函数：s2 是 s1 的一个完整副本</span><br><span class="hljs-function">std::unordered_set&lt;<span class="hljs-type">double</span>&gt; <span class="hljs-title">s2</span><span class="hljs-params">(s1)</span></span>; <br><br><span class="hljs-comment">// 移动构造函数：s3 “接管”了 s1 的资源，效率更高</span><br><span class="hljs-function">std::unordered_set&lt;<span class="hljs-type">double</span>&gt; <span class="hljs-title">s3</span><span class="hljs-params">(std::move(s1))</span></span>; <br><span class="hljs-comment">// s1 现在处于一个不确定的状态，通常不应再使用</span><br></code></pre></td></tr></table></figure></blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> num : nums2)&#123;<br>    <span class="hljs-keyword">if</span> (nums1_set.<span class="hljs-built_in">find</span>(num) != nums1_set.<span class="hljs-built_in">end</span>())&#123;<br>    result_set.<span class="hljs-built_in">insert</span>(num);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>注意这里的for条件，<code>int num : nums2</code>的意思是<code>num</code>遍历<code>nums2</code>中的所有值。所以num的格式与nums中元素的格式要保持一致。int可以换成auto，就不用考虑格式的事情了。或者，<code>const auto&amp; num : nums2</code>  ,这是最正确的写法。</p>
+<p><code>if (nums1_set.find(num) != nums1_set.end())</code>中，if条件的意思是，如果nums1_set中没找到num。<code>.find(num)</code>可以在nums1_set中遍历寻找num。找到则返回指向num的迭代器。没找到则返回的迭代器指向末尾虚位，即nums1_set.end()。</p>
+<h3 id="202-快乐数"><a href="#202-快乐数" class="headerlink" title="202. 快乐数"></a>202. 快乐数</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/happy-number/description/">原题链接</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>    <span class="hljs-keyword">if</span>(n == <span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(hash_n.<span class="hljs-built_in">count</span>(n) == <span class="hljs-number">0</span>)&#123;<br>        hash_n.<span class="hljs-built_in">insert</span>(n);<br>        n = <span class="hljs-built_in">sum</span>(n);<br>    &#125;<br>    <span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>哈希表法，利用哈希表快速判断元素是否存在于集合中。这里当陷入死循环或确定是快乐数都会陷入循环，通过检查元素是否重复可以判断出来。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">while</span>(slow != fast)&#123;<br>    slow = <span class="hljs-built_in">sum</span>(slow);<br>    fast = <span class="hljs-built_in">sum</span>(<span class="hljs-built_in">sum</span>(fast));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>快慢指针，陷入循环快慢指针就会碰面。</p>
+<h3 id="15-三数之和"><a href="#15-三数之和" class="headerlink" title="15. 三数之和"></a>15. 三数之和</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum/description/">原题链接</a></p>
+<p>这题用双指针简单一点。之后再补一下哈希表的做法？做的时候把各指针去重逻辑想清楚。尤其是left和right，使用<code>(nums[left + 1] == nums[left])</code>判断去重后，实际上left是指向的最后一个重复元素，此时还需要在最后补上一句<code>left++</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());<br></code></pre></td></tr></table></figure>
+
+<p>sort的用法，要引用algorithm头文件。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++">result.<span class="hljs-built_in">push_back</span>(vector&lt;<span class="hljs-type">int</span>&gt;&#123;nums[i], nums[left], nums[right]&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><code>.push_back()</code>在<code>result</code>最后添加一个元素。要注意这里添加的元素类型要和<code>result</code>定义的保持一致。对于一个向量，所有元素要用花括号括起来。</p>
+<h3 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="1. 两数之和"></a>1. 两数之和</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/">原题链接</a></p>
+<p>这题的思路就是逐个取给定数组中的元素x，计算要与target的差值y，然后查找这个差值y存不存在。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++">unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; num_map;<br></code></pre></td></tr></table></figure>
+
+<p>哈希map的定义，这里定义成<code>&lt;int, int&gt;</code> 键值对。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">return</span> &#123;i, (num_map.<span class="hljs-built_in">find</span>(target - nums[i])-&gt;second)&#125;;<br></code></pre></td></tr></table></figure>
+<p>iterator-&gt;second表示迭代器指向键值对的第二项，即键值对的值。</p>
+<h3 id="454-四数相加-II"><a href="#454-四数相加-II" class="headerlink" title="454. 四数相加 II"></a>454. 四数相加 II</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum-ii/description/">原题链接</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> a : nums1)&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> b : nums2)&#123;<br>        A[a+b]++;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>先注意这里循环的写法，直接用元素值遍历数组，更简洁。也可以写成用索引遍历的，如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> a = <span class="hljs-number">0</span>; a &lt; nums<span class="hljs-number">1.</span><span class="hljs-built_in">size</span>(); a++)&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> b = <span class="hljs-number">0</span>; b &lt; nums<span class="hljs-number">2.</span><span class="hljs-built_in">size</span>(); b++)&#123;<br>        A[nums1[a]+nums2[b]]++;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后在对unordered_map添加键值对的时候，可以直接使用<code>A[a+b]++</code>。或者用insert函数插入。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> c : nums3)&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> d : nums4)&#123;<br>        <span class="hljs-comment">// if(A.count(0 - c - d))&#123;</span><br>            <span class="hljs-comment">// result += A.find(0 - c - d)-&gt;second;</span><br>            result += A[<span class="hljs-number">0</span> - c - d];<br>            <span class="hljs-comment">// &#125;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里要注意，如果用.find的话，在更新result值的时候不能直接<code>result += A.find(0 - c - d)-&gt;second</code>，必须要先if判断一下该键是否存在，不然find如果找不到键值对会返回末尾虚节点，导致报错。使用A[0 - c - d]就不用if判断了</p>
+<h3 id="18-四数之和"><a href="#18-四数之和" class="headerlink" title="18. 四数之和"></a>18. 四数之和</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum/description/">原题链接</a></p>
+<p>这题是15.三数之和再套一层循环。还是一对left right，再由i 和j 两层循环来查找剩下两个元素。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; (nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">3</span>); i++)&#123;<br>    <span class="hljs-keyword">if</span> (i != <span class="hljs-number">0</span> &amp;&amp; nums[i] == nums[i - <span class="hljs-number">1</span>])&#123;<br>        <span class="hljs-keyword">continue</span>;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>一开始写成</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">while</span> (i != <span class="hljs-number">0</span> &amp;&amp; nums[i] == nums[i - <span class="hljs-number">1</span>])&#123;<br>        i++;<br></code></pre></td></tr></table></figure>
+<p>这样i有越界的风险。要写成上面正确的形式，用<code>continue</code>跳过循环。此外，使用<code>continue</code>的时候，要记得把<code>while</code>循环改成<code>if</code>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">if</span>((<span class="hljs-built_in">long</span>(nums[i]) + nums[j] + nums[left] + nums[right]) &lt; target)&#123;<br>    left ++;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>小心数值溢出！这里四个int加一起，先强制转换一个为long就可以了。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/cpp/" class="print-no-link">#cpp</a>
+      
+        <a href="/tags/hash-table/" class="print-no-link">#hash-table</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>哈希表</div>
+      <div>https://hrbeny.github.io/2026/01/17/obsidian/cpp/Notes/3.Hash table/哈希表/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>HRbenY</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年1月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/01/17/obsidian/cpp/Notes/2.ListNode/%E9%93%BE%E8%A1%A8/" title="链表">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">链表</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/01/16/hello-world/" title="你好，世界">
+                        <span class="hidden-mobile">你好，世界</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

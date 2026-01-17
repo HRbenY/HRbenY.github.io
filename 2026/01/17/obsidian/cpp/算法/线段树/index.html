@@ -1,0 +1,739 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="HRbenY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. 核心概念线段树是一种基于分治思想的二叉树结构，主要用于解决数组的区间查询和单点&#x2F;区间修改问题。  本质：将数组不断二分，每一个节点代表一个区间 [start, end]。  时间复杂度：  建树 (Build): $O(N)$  单点修改 (Update): $O(\log N)$  区间查询 (Query): $O(\log N)$    空间复杂度：$O(4N)$ (需要开 4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线段树">
+<meta property="og:url" content="https://hrbeny.github.io/2026/01/17/obsidian/cpp/%E7%AE%97%E6%B3%95/%E7%BA%BF%E6%AE%B5%E6%A0%91/index.html">
+<meta property="og:site_name" content="HRbenY 的博客">
+<meta property="og:description" content="1. 核心概念线段树是一种基于分治思想的二叉树结构，主要用于解决数组的区间查询和单点&#x2F;区间修改问题。  本质：将数组不断二分，每一个节点代表一个区间 [start, end]。  时间复杂度：  建树 (Build): $O(N)$  单点修改 (Update): $O(\log N)$  区间查询 (Query): $O(\log N)$    空间复杂度：$O(4N)$ (需要开 4">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-17T10:09:33.296Z">
+<meta property="article:modified_time" content="2026-01-17T10:09:33.296Z">
+<meta property="article:author" content="HRbenY">
+<meta property="article:tag" content="cpp">
+<meta property="article:tag" content="segment-tree">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>线段树 - HRbenY 的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"hrbeny.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>HRbenY 的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/obsidian/" target="_self">
+                
+                <span>Obsidian</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="线段树"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-17 18:09" pubdate>
+          2026年1月17日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">线段树</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="1-核心概念"><a href="#1-核心概念" class="headerlink" title="1. 核心概念"></a>1. 核心概念</h2><p>线段树是一种基于<strong>分治思想</strong>的二叉树结构，主要用于解决数组的<strong>区间查询</strong>和<strong>单点&#x2F;区间修改</strong>问题。</p>
+<ul>
+<li><p><strong>本质</strong>：将数组不断二分，每一个节点代表一个区间 <code>[start, end]</code>。</p>
+</li>
+<li><p><strong>时间复杂度</strong>：</p>
+<ul>
+<li><p>建树 (Build): $O(N)$</p>
+</li>
+<li><p>单点修改 (Update): $O(\log N)$</p>
+</li>
+<li><p>区间查询 (Query): $O(\log N)$</p>
+</li>
+</ul>
+</li>
+<li><p><strong>空间复杂度</strong>：$O(4N)$ (需要开 4 倍数组空间以防越界)。</p>
+</li>
+</ul>
+<h2 id="2-存储方式-数组模拟"><a href="#2-存储方式-数组模拟" class="headerlink" title="2. 存储方式 (数组模拟)"></a>2. 存储方式 (数组模拟)</h2><p>通常不使用指针建树，而是使用数组模拟堆结构。</p>
+<p>假设根节点下标为 1 (根节点不能是0，否则乘法计算子节点会出错)：</p>
+<ul>
+<li><p><strong>父节点</strong>：<code>node</code></p>
+</li>
+<li><p><strong>左孩子</strong>：<code>2 * node</code> (或 <code>node &lt;&lt; 1</code>)</p>
+</li>
+<li><p><strong>右孩子</strong>：<code>2 * node + 1</code> (或 <code>node &lt;&lt; 1 | 1</code>)</p>
+</li>
+<li><p><strong>中点</strong>：<code>mid = start + (end - start) / 2</code></p>
+</li>
+</ul>
+<h2 id="3-核心操作模板"><a href="#3-核心操作模板" class="headerlink" title="3. 核心操作模板"></a>3. 核心操作模板</h2><h3 id="3-1-节点定义-Node-Struct"><a href="#3-1-节点定义-Node-Struct" class="headerlink" title="3.1 节点定义 (Node Struct)"></a>3.1 节点定义 (Node Struct)</h3><p>对于简单求和，只存 <code>val</code> 即可。对于复杂题 (如 LC 3165)，需要维护状态机。</p>
+<p>C++</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Node</span> &#123;<br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> val; <br>    <span class="hljs-comment">// LC 3165 特例：维护 l00, l01, l10, l11 四个状态</span><br>&#125;;<br>vector&lt;Node&gt; tree;<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-2-向上合并-PushUp-最重要的函数"><a href="#3-2-向上合并-PushUp-最重要的函数" class="headerlink" title="3.2 向上合并 (PushUp) - 最重要的函数"></a>3.2 向上合并 (PushUp) - <strong>最重要的函数</strong></h3><p>线段树的灵魂。决定了父节点如何通过两个子节点计算出自己的值。</p>
+<ul>
+<li><p><strong>求和</strong>：<code>tree[node] = left + right</code></p>
+</li>
+<li><p><strong>最大值</strong>：<code>tree[node] = max(left, right)</code></p>
+</li>
+<li><p><strong>复杂合并 (LC 3165)</strong>：也就是 DP 的状态转移过程。</p>
+</li>
+</ul>
+<p>C++</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-keyword">Node</span> <span class="hljs-title">pushUp</span>(const <span class="hljs-keyword">Node</span><span class="hljs-title">&amp; l</span>, const <span class="hljs-keyword">Node</span><span class="hljs-title">&amp; r</span>) &#123;<br>    <span class="hljs-keyword">Node</span> <span class="hljs-title">res</span>;<br>    // 逻辑：父区间的状态 = max(左子区间组合 + 右子区间组合)<br>    // 关键点：注意连接处是否冲突<br>    return res;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-3-建树-Build"><a href="#3-3-建树-Build" class="headerlink" title="3.3 建树 (Build)"></a>3.3 建树 (Build)</h3><p>自底向上构建。递归到叶子节点初始化，然后回溯 <code>pushUp</code>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">build</span><span class="hljs-params">(<span class="hljs-type">int</span> node, <span class="hljs-type">int</span> start, <span class="hljs-type">int</span> end, <span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (start == end) &#123;<br>		<span class="hljs-built_in">max</span>(<span class="hljs-number">0LL</span>, (<span class="hljs-type">long</span> <span class="hljs-type">long</span>)nums[start])<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-type">int</span> mid = start + (end - start) / <span class="hljs-number">2</span>;<br>    <span class="hljs-built_in">build</span>(node * <span class="hljs-number">2</span>, start, mid, nums);<br>    <span class="hljs-built_in">build</span>(node * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>, mid + <span class="hljs-number">1</span>, end, nums);<br>    tree[node] = <span class="hljs-built_in">pushUp</span>(tree[node * <span class="hljs-number">2</span>], tree[node * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>]);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-4-单点更新-Update"><a href="#3-4-单点更新-Update" class="headerlink" title="3.4 单点更新 (Update)"></a>3.4 单点更新 (Update)</h3><p>类似二分查找，找到目标叶子并修改，<strong>回溯时刷新路径上的所有父节点</strong>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++">    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> node, <span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt; &amp; nums, <span class="hljs-type">int</span> start, <span class="hljs-type">int</span> end, <span class="hljs-type">int</span> idx)</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(start == end)&#123;<br>            tree[node].l11 = <span class="hljs-built_in">max</span>(nums[idx], <span class="hljs-number">0</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-type">int</span> mid = start + (end - start) / <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">if</span>(idx &lt;= mid)&#123;<br>            <span class="hljs-built_in">update</span>(node * <span class="hljs-number">2</span>, nums, start, mid, idx);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-built_in">update</span>(node * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>, nums, mid + <span class="hljs-number">1</span>, end, idx);<br>        &#125;<br>        tree[node] = <span class="hljs-built_in">pushUp</span>(tree[node * <span class="hljs-number">2</span>], tree[node * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>]);<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-实战避坑指南-Lessons-Learned-from-LC-3165"><a href="#4-实战避坑指南-Lessons-Learned-from-LC-3165" class="headerlink" title="4. 实战避坑指南 (Lessons Learned from LC 3165)"></a>4. 实战避坑指南 (Lessons Learned from LC 3165)</h2><p>细节：</p>
+<ol>
+<li><p><strong>数据类型陷阱</strong>：</p>
+<ul>
+<li><p>❌ <strong>错误</strong>：<code>unsigned int</code>。一旦遇到负数，强转 <code>unsigned</code> 会变成巨大正数，导致结果错误。</p>
+</li>
+<li><p>✅ <strong>正确</strong>：统一使用 <code>long long</code>。既能处理负数，又能防止累加溢出。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>返回结果</strong>：</p>
+<ul>
+<li><p>树根通常存储在 <code>tree[1]</code>，不要去读 <code>tree[0]</code>。</p>
+</li>
+<li><p>如果有取模需求，注意累加过程中每一步都要防止溢出。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>数组大小</strong>：</p>
+<ul>
+<li>线段树数组必须开 <code>4 * N</code> 大小。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="5-经典题目清单"><a href="#5-经典题目清单" class="headerlink" title="5. 经典题目清单"></a>5. 经典题目清单</h2><p>建议按顺序练习，巩固模板：</p>
+<ol>
+<li><p><strong>基础模板题</strong>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/range-sum-query-mutable/">307. 区域和检索 - 数组可修改</a> (单点修改 + 区间求和)</li>
+</ul>
+</li>
+<li><p><strong>进阶应用 (维护最大值)</strong>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-subarray/">53. 最大子数组和</a> (虽然是 DP 题，但可以用线段树做，维护 <code>maxSub</code>, <code>lMax</code>, <code>rMax</code>, <code>sum</code>)</li>
+</ul>
+</li>
+<li><p><strong>复杂状态合并 (Hard)</strong>：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-sum-of-subsequence-with-non-adjacent-elements/">3165. 不包含相邻元素的子序列的最大和</a> (即本题)</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-substring-of-one-repeating-character/">2213. 由单个字符重复的最长子字符串</a> (维护字符前缀、后缀、最长连续长度)</p>
+</li>
+</ul>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/cpp/" class="print-no-link">#cpp</a>
+      
+        <a href="/tags/segment-tree/" class="print-no-link">#segment-tree</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>线段树</div>
+      <div>https://hrbeny.github.io/2026/01/17/obsidian/cpp/算法/线段树/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>HRbenY</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年1月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/01/17/obsidian/cpp/%E7%AE%97%E6%B3%95/Floyd%E5%88%A4%E5%9C%88%E6%B3%95(%E5%AF%BB%E6%89%BE%E9%87%8D%E5%A4%8D%E6%95%B0)/" title="Floyd判圈法(寻找重复数)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Floyd判圈法(寻找重复数)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/01/17/obsidian/cpp/%E7%AE%97%E6%B3%95/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" title="编辑距离">
+                        <span class="hidden-mobile">编辑距离</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
