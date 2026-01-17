@@ -8,7 +8,7 @@ title: SM
 ---
 
 流式多处理器
-![[Pasted image 20260104221619.png]]
+![Pasted image 20260104221619](https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260117231048749.png)
 上面是H100的一个SM，显示了 4_个子分区_，每个子分区包含一个张量核心、一个线程束调度器、一个寄存器文件以及不同精度的 CUDA 核心组。
 
 ## Memmory
