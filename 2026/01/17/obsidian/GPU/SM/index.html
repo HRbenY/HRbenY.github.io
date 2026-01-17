@@ -19,19 +19,21 @@
   <meta name="author" content="HRbenY">
   <meta name="keywords" content="">
   
-    <meta name="description" content="流式多处理器![[Pasted image 20260104221619.png]]上面是H100的一个SM，显示了 4_个子分区_，每个子分区包含一个张量核心、一个线程束调度器、一个寄存器文件以及不同精度的 CUDA 核心组。 Memmory除了计算单元之外，GPU 还具有内存层次结构，其中最大的是 HBM（GPU 主内存），然后是一系列较小的缓存（L2、L1&#x2F;SMEM、TMEM、寄存">
+    <meta name="description" content="流式多处理器上面是H100的一个SM，显示了 4_个子分区_，每个子分区包含一个张量核心、一个线程束调度器、一个寄存器文件以及不同精度的 CUDA 核心组。 Memmory除了计算单元之外，GPU 还具有内存层次结构，其中最大的是 HBM（GPU 主内存），然后是一系列较小的缓存（L2、L1&#x2F;SMEM、TMEM、寄存器内存）。  寄存器： 每个子分区都有自己的寄存器文件，其中包含 H10">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SM">
 <meta property="og:url" content="https://hrbeny.github.io/2026/01/17/obsidian/GPU/SM/index.html">
 <meta property="og:site_name" content="Spa-Master 的博客">
-<meta property="og:description" content="流式多处理器![[Pasted image 20260104221619.png]]上面是H100的一个SM，显示了 4_个子分区_，每个子分区包含一个张量核心、一个线程束调度器、一个寄存器文件以及不同精度的 CUDA 核心组。 Memmory除了计算单元之外，GPU 还具有内存层次结构，其中最大的是 HBM（GPU 主内存），然后是一系列较小的缓存（L2、L1&#x2F;SMEM、TMEM、寄存">
+<meta property="og:description" content="流式多处理器上面是H100的一个SM，显示了 4_个子分区_，每个子分区包含一个张量核心、一个线程束调度器、一个寄存器文件以及不同精度的 CUDA 核心组。 Memmory除了计算单元之外，GPU 还具有内存层次结构，其中最大的是 HBM（GPU 主内存），然后是一系列较小的缓存（L2、L1&#x2F;SMEM、TMEM、寄存器内存）。  寄存器： 每个子分区都有自己的寄存器文件，其中包含 H10">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-01-17T15:15:14.537Z">
-<meta property="article:modified_time" content="2026-01-17T15:15:14.537Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260117231048749.png">
+<meta property="article:published_time" content="2026-01-17T15:15:36.707Z">
+<meta property="article:modified_time" content="2026-01-17T15:15:36.707Z">
 <meta property="article:author" content="HRbenY">
 <meta property="article:tag" content="gpu">
 <meta property="article:tag" content="sm">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260117231048749.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -226,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          863 字
+          829 字
         
       </span>
     
@@ -237,7 +239,7 @@
         
         
         
-          8 分钟
+          7 分钟
         
       </span>
     
@@ -279,7 +281,7 @@
             
               <div class="markdown-body">
                 
-                <p>流式多处理器<br>![[Pasted image 20260104221619.png]]<br>上面是H100的一个SM，显示了 4_个子分区_，每个子分区包含一个张量核心、一个线程束调度器、一个寄存器文件以及不同精度的 CUDA 核心组。</p>
+                <p>流式多处理器<br><img src="https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260117231048749.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20260104221619"><br>上面是H100的一个SM，显示了 4_个子分区_，每个子分区包含一个张量核心、一个线程束调度器、一个寄存器文件以及不同精度的 CUDA 核心组。</p>
 <h2 id="Memmory"><a href="#Memmory" class="headerlink" title="Memmory"></a>Memmory</h2><p>除了计算单元之外，GPU 还具有内存层次结构，其中最大的是 HBM（GPU 主内存），然后是一系列较小的缓存（L2、L1&#x2F;SMEM、TMEM、寄存器内存）。</p>
 <ul>
 <li><p><strong>寄存器：</strong> 每个子分区都有自己的寄存器文件，其中包含 H100&#x2F;B200（每个 SM）上的 16,384 个 32 位字，<code>4 * 16384 * 4 = 256kiB</code>CUDA 内核可以访问该文件。</p>
@@ -373,9 +375,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/01/17/obsidian/cpp/Notes/7.Tree/%E4%BA%8C%E5%8F%89%E6%A0%91/" title="二叉树">
+                      <a href="/2026/01/17/obsidian/cpp/Notes/9.greedy%20algorithm/%E8%B4%AA%E5%BF%83/" title="贪心">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">二叉树</span>
+                        <span class="hidden-mobile">贪心</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
