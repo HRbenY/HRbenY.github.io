@@ -102,3 +102,8 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+search:
+  path: local-search.xml
+  field: post
+  content: true
