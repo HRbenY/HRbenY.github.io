@@ -155,10 +155,17 @@
     if (!result || typeof result !== 'object') return null
     var lat = result.latitude
     var lon = result.longitude
+    if (lat == null && result.lat != null) lat = result.lat
+    if (lon == null) {
+      if (result.lon != null) lon = result.lon
+      else if (result.lng != null) lon = result.lng
+    }
     var city = typeof result.city === 'string' ? result.city.trim() : ''
     var region = typeof result.region === 'string' ? result.region.trim() : ''
+    if (!region) region = typeof result.regionName === 'string' ? result.regionName.trim() : ''
     var country = typeof result.country === 'string' ? result.country.trim() : ''
     var countryName = typeof result.country_name === 'string' ? result.country_name.trim() : ''
+    if (!countryName) countryName = typeof result.countryName === 'string' ? result.countryName.trim() : ''
     if (typeof lat !== 'number') lat = parseFloat(lat)
     if (typeof lon !== 'number') lon = parseFloat(lon)
     if (!isFinite(lat) || !isFinite(lon)) return null
@@ -167,6 +174,7 @@
 
   function fetchIpGeo() {
     var endpoints = [
+      'http://ip-api.com/json/?lang=zh-CN',
       'https://ipwho.is/?fields=success,city,region,country,latitude,longitude',
       'https://ipapi.co/json/',
     ]
@@ -177,6 +185,7 @@
       return fetchJson(url)
         .then(function (result) {
           if (result && result.success === false) return null
+          if (result && typeof result.status === 'string' && result.status.toLowerCase() !== 'success') return null
           return pickGeo(result)
         })
         .catch(function () {
@@ -294,7 +303,7 @@
               var weather = weatherCodeText(w.weatherCode)
               var wind = windDirText(w.windDirection)
               var place = geo.place || '当地'
-              var text = place + '：' + t + 'C' + (weather ? ' ' + weather : '') + (wind ? ' ' + wind : '')
+              var text = place + '：' + t + '℃' + (weather ? ' ' + weather : '') + (wind ? ' ' + wind : '')
               cacheSetText(cacheKey, text, 20 * 60 * 1000)
               return [text]
             })

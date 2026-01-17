@@ -1,3 +1,34 @@
 {
-    "text": "Now: Leetcoding..."
+  "texts": [
+    "Now: Leetcoding...",
+    "Now: 让测试用例先飞一会儿…",
+    "Now: 在写 Bug（顺便修点代码）",
+    "Now: 与 NullPointerException 和解中",
+    "Now: 猜测需求的真实意图…",
+    "Now: 被日志教育中",
+    "Now: 给自己挖坑并优雅填坑",
+    "Now: 编译器说不行，那就再改改",
+    "Now: “这就改完”进度：1%",
+    "Now: Ctrl+C / Ctrl+V 工程师上线",
+    "Now: 与缓存斗智斗勇",
+    "Now: 试图让它“先跑起来”",
+    "Now: 追一个看不见的 bug",
+    "Now: 生产环境瑟瑟发抖",
+    "Now: 写完就睡（大概率写不完）",
+    "Now: Focus mode",
+    "Now: Coding...",
+    "Now: Debugging...",
+    "Now: Reviewing PRs",
+    "Now: Writing tests",
+    "Now: Refactoring...",
+    "Now: Fixing bugs",
+    "Now: Working on feature X",
+    "Now: Updating documentation",
+    "Now: Planning sprint tasks",
+    "Now: Monitoring services",
+    "Now: Investigating incident",
+    "Now: Optimizing performance",
+    "Now: Designing API / architecture",
+    "Now: Deploying to staging / production"
+  ]
 }
