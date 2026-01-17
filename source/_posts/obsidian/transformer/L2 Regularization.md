@@ -18,13 +18,13 @@ L2正则化的目的是权重衰减，让Loss和权重的L2范数正相关。在
 总损失可以表示如下
 
 $$
-\mathcal{L}_{total}(w)=\mathcal{L}_{data}(w)+\frac{\lambda}{2} \|w\|^2
+\mathcal{L}_{total}(w)=\mathcal{L}_{data}(w)+\frac{\lambda}{2} \lVert w \rVert ^2
 $$
 
 对总损失求梯度
 
 $$
-\nabla_w \mathcal{L}_{total}=\nabla_w \mathcal{L}_{data}+\nabla_w \left(\frac{\lambda}{2}\|w\|^2\right)
+\nabla_w \mathcal{L}_{total}=\nabla_w \mathcal{L}_{data}+\nabla_w \left(\frac{\lambda}{2}\lVert w \rVert^2\right)
 $$
 
 可得
