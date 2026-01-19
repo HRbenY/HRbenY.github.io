@@ -232,97 +232,13 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2026/01/17/obsidian/transformer/L2%20Regularization/" target="_self">
-          L2 Regularization
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/transformer/L2%20Regularization/" target="_self">
-        <div>
-          L2正则化的目的是权重衰减，让Loss和权重的L2范数正相关。在SGD和Momentum中不需多余处理就能达到这样的效果。但是Adagrad和Adam由于对梯度做了预处理，不能直接应用公式。（见[[Adamw]]） 作用防止模型过拟合 (Overfitting)。通过限制参数（权重 $w$）的大小，使模型变得更简单、更平滑，避免对训练数据中的噪声死记硬背。 公式总损失可以表示如下 $$\mathc
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 23:23" pubdate>
-              2026-01-17
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/transformer/">#transformer</a>
-            
-              <a href="/tags/regularization/">#regularization</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2026/01/17/obsidian/transformer/LayerNorm/" target="_self">
-          LayerNorm
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/transformer/LayerNorm/" target="_self">
-        <div>
-          并不是BatchNorm简单的交换N和D。  前向传播在前向传播中，LayerNorm的公式就是BatchNorm交换N和D维度。LayerNorm在每个批次内部进行Normalization，而BatchNorm是跨Batch的Norm。导致mean和std_dev稍有不同。 (1) 均值$$\mu &#x3D; \frac{1}{D} \sum_{i&#x3D;1}^{D} x_i$$ (2
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 23:23" pubdate>
-              2026-01-17
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/transformer/">#transformer</a>
-            
-              <a href="/tags/normalization/">#normalization</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2026/01/17/obsidian/transformer/Adamw/" target="_self">
+        <a href="/2026/01/19/obsidian/transformer/Adamw/" target="_self">
           Adamw
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/transformer/Adamw/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/19/obsidian/transformer/Adamw/" target="_self">
         <div>
           从SGD到Adamw，所有优化器的形式都类似$$w ;\leftarrow; w - \text{lr} \cdot \text{transformed_grad}$$区别只在于transformed_grad 是如何由原始梯度 grad 得到的。 1. SGD$$w \leftarrow w - \text{lr} \cdot \nabla_w L$$ 2. SGD+Momentum在SGD的基
         </div>
@@ -332,8 +248,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 23:23" pubdate>
-              2026-01-17
+            <time datetime="2026-01-19 13:55" pubdate>
+              2026-01-19
             </time>
           </div>
         
@@ -360,13 +276,55 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2026/01/17/obsidian/transformer/Self-Attention%E6%9C%BA%E5%88%B6(Q,K,V)/" target="_self">
+        <a href="/2026/01/19/obsidian/transformer/LayerNorm/" target="_self">
+          LayerNorm
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/19/obsidian/transformer/LayerNorm/" target="_self">
+        <div>
+          并不是BatchNorm简单的交换N和D。  前向传播在前向传播中，LayerNorm的公式就是BatchNorm交换N和D维度。LayerNorm在每个批次内部进行Normalization，而BatchNorm是跨Batch的Norm。导致mean和std_dev稍有不同。 (1) 均值$$\mu &#x3D; \frac{1}{D} \sum_{i&#x3D;1}^{D} x_i$$ (2
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2026-01-19 13:55" pubdate>
+              2026-01-19
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/transformer/">#transformer</a>
+            
+              <a href="/tags/normalization/">#normalization</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2026/01/19/obsidian/transformer/Self-Attention%E6%9C%BA%E5%88%B6(Q,K,V)/" target="_self">
           Self-Attention机制(Q,K,V)
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/transformer/Self-Attention%E6%9C%BA%E5%88%B6(Q,K,V)/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/19/obsidian/transformer/Self-Attention%E6%9C%BA%E5%88%B6(Q,K,V)/" target="_self">
         <div>
           $$\text{Attention}(Q, K, V) &#x3D; \text{softmax}\left( \frac{QK^T}{\sqrt{d_k}} \right) V$$ 1. 核心思想转变 之前 (Weighted Sum): 我们用全 1 的矩阵做平均，所有 token 对过去的关注度是一样的（平权的），这与内容无关。  现在 (Self-Attention): 我们希望 toke
         </div>
@@ -376,8 +334,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 23:23" pubdate>
-              2026-01-17
+            <time datetime="2026-01-19 13:55" pubdate>
+              2026-01-19
             </time>
           </div>
         
@@ -402,13 +360,13 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2026/01/17/obsidian/transformer/Tokenizer/" target="_self">
+        <a href="/2026/01/19/obsidian/transformer/Tokenizer/" target="_self">
           Tokenizer
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/transformer/Tokenizer/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/19/obsidian/transformer/Tokenizer/" target="_self">
         <div>
           1. 什么是分词器 (Tokenizer)？模型无法直接理解人类的文本（字符串），它只能处理数字。分词器的作用就是将文本转换成模型可以理解的数字序列。  流程：输入文本 $\rightarrow$ 切分成 Token (词元) $\rightarrow$ 映射为 ID (索引数字) $\rightarrow$ 输入模型。  Token 是什么：Token 可以是一个完整的单词（如 is），一个单词
         </div>
@@ -418,8 +376,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 23:23" pubdate>
-              2026-01-17
+            <time datetime="2026-01-19 13:55" pubdate>
+              2026-01-19
             </time>
           </div>
         
@@ -444,13 +402,13 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2026/01/17/obsidian/transformer/%E4%BD%8D%E7%BD%AE%E6%8E%A9%E7%A0%81/" target="_self">
+        <a href="/2026/01/19/obsidian/transformer/%E4%BD%8D%E7%BD%AE%E6%8E%A9%E7%A0%81/" target="_self">
           位置掩码
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/transformer/%E4%BD%8D%E7%BD%AE%E6%8E%A9%E7%A0%81/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/19/obsidian/transformer/%E4%BD%8D%E7%BD%AE%E6%8E%A9%E7%A0%81/" target="_self">
         <div>
           对于语言模型，我们需要在训练时赋予因果遮蔽，避免模型使用未来的token训练。所以对时间序列维度要进行位置掩码。 串行做法123456789xbow = torch.zeros((B, T, C))for b in range(B):    for t in range(T):        x_prev = x[b, :t + 1]        xbow[b, t] = torch.mean(
         </div>
@@ -460,8 +418,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 23:23" pubdate>
-              2026-01-17
+            <time datetime="2026-01-19 13:55" pubdate>
+              2026-01-19
             </time>
           </div>
         
@@ -486,13 +444,55 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2026/01/17/obsidian/cpp/%E7%AE%97%E6%B3%95/Floyd%E5%88%A4%E5%9C%88%E6%B3%95(%E5%AF%BB%E6%89%BE%E9%87%8D%E5%A4%8D%E6%95%B0)/" target="_self">
+        <a href="/2026/01/19/obsidian/transformer/L2%20Regularization/" target="_self">
+          L2 Regularization
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/19/obsidian/transformer/L2%20Regularization/" target="_self">
+        <div>
+          L2正则化的目的是权重衰减，让Loss和权重的L2范数正相关。在SGD和Momentum中不需多余处理就能达到这样的效果。但是Adagrad和Adam由于对梯度做了预处理，不能直接应用公式。（见[[Adamw]]） 作用防止模型过拟合 (Overfitting)。通过限制参数（权重 $w$）的大小，使模型变得更简单、更平滑，避免对训练数据中的噪声死记硬背。 公式总损失可以表示如下 $$\mathc
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2026-01-19 13:55" pubdate>
+              2026-01-19
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/transformer/">#transformer</a>
+            
+              <a href="/tags/regularization/">#regularization</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2026/01/19/obsidian/cpp/%E7%AE%97%E6%B3%95/Floyd%E5%88%A4%E5%9C%88%E6%B3%95(%E5%AF%BB%E6%89%BE%E9%87%8D%E5%A4%8D%E6%95%B0)/" target="_self">
           Floyd判圈法(寻找重复数)
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/cpp/%E7%AE%97%E6%B3%95/Floyd%E5%88%A4%E5%9C%88%E6%B3%95(%E5%AF%BB%E6%89%BE%E9%87%8D%E5%A4%8D%E6%95%B0)/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/19/obsidian/cpp/%E7%AE%97%E6%B3%95/Floyd%E5%88%A4%E5%9C%88%E6%B3%95(%E5%AF%BB%E6%89%BE%E9%87%8D%E5%A4%8D%E6%95%B0)/" target="_self">
         <div>
           类似lc142环形链表。 1. 核心思维转换将数组抽象为链表（图）：  节点：数组下标 i。  指针：数组的值 nums[i]。  规则：i 指向 nums[i]。  结论：因为有重复数，意味着有两个不同的下标指向同一个值，这在图中形成了一个环。且这个被多次指向的值，就是环的入口。   2. 算法流程 (双指针法)该算法分为两个明确的阶段： Phase 1：快慢指针找相遇点 操作：slow 走 1
         </div>
@@ -502,8 +502,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 23:23" pubdate>
-              2026-01-17
+            <time datetime="2026-01-19 13:55" pubdate>
+              2026-01-19
             </time>
           </div>
         
@@ -528,55 +528,13 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2026/01/17/obsidian/cpp/%E7%AE%97%E6%B3%95/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" target="_self">
-          编辑距离
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/cpp/%E7%AE%97%E6%B3%95/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" target="_self">
-        <div>
-          标准编辑距离标准编辑距离不限制中间态。使用动态规划，dp[i][j]表示字符串1的前i前缀和字符串2的前j前缀的编辑距离。那么可以跟dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]形成递推关系。如下：  如果两个字符串的前缀的最后一个字母相同，那么退化成dp[i - 1][j - 1]的编辑距离。 否则，可以是字符串1删减一个dp[i - 1][j]；字符串
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 23:23" pubdate>
-              2026-01-17
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/cpp/">#cpp</a>
-            
-              <a href="/tags/edit-distance/">#edit-distance</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2026/01/17/obsidian/cpp/%E7%AE%97%E6%B3%95/%E7%BA%BF%E6%AE%B5%E6%A0%91/" target="_self">
+        <a href="/2026/01/19/obsidian/cpp/%E7%AE%97%E6%B3%95/%E7%BA%BF%E6%AE%B5%E6%A0%91/" target="_self">
           线段树
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/cpp/%E7%AE%97%E6%B3%95/%E7%BA%BF%E6%AE%B5%E6%A0%91/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/19/obsidian/cpp/%E7%AE%97%E6%B3%95/%E7%BA%BF%E6%AE%B5%E6%A0%91/" target="_self">
         <div>
           1. 核心概念线段树是一种基于分治思想的二叉树结构，主要用于解决数组的区间查询和单点&#x2F;区间修改问题。  本质：将数组不断二分，每一个节点代表一个区间 [start, end]。  时间复杂度：  建树 (Build): $O(N)$  单点修改 (Update): $O(\log N)$  区间查询 (Query): $O(\log N)$    空间复杂度：$O(4N)$ (需要开 4
         </div>
@@ -586,8 +544,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 23:23" pubdate>
-              2026-01-17
+            <time datetime="2026-01-19 13:55" pubdate>
+              2026-01-19
             </time>
           </div>
         
@@ -612,15 +570,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2026/01/17/obsidian/cpp/Notes/2.ListNode/%E9%93%BE%E8%A1%A8/" target="_self">
-          链表
+        <a href="/2026/01/19/obsidian/cpp/%E7%AE%97%E6%B3%95/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" target="_self">
+          编辑距离
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/17/obsidian/cpp/Notes/2.ListNode/%E9%93%BE%E8%A1%A8/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/19/obsidian/cpp/%E7%AE%97%E6%B3%95/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/" target="_self">
         <div>
-          链表链表是一种通过指针串联在一起的线性结构，每一个节点由两部分组成，一个是数据域一个是指针域（存放指向下一个节点的指针），最后一个节点的指针域指向null（空指针的意思）。 链表的入口节点称为链表的头结点也就是head。  在此基础上，每个节点新增一个指针域，一个指向下一个节点，一个指向上一个节点，就形成了双链表。  将单链表首尾相连，就是循环链表  链表的操作定义123456// 单链表stru
+          标准编辑距离标准编辑距离不限制中间态。使用动态规划，dp[i][j]表示字符串1的前i前缀和字符串2的前j前缀的编辑距离。那么可以跟dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]形成递推关系。如下：  如果两个字符串的前缀的最后一个字母相同，那么退化成dp[i - 1][j - 1]的编辑距离。 否则，可以是字符串1删减一个dp[i - 1][j]；字符串
         </div>
       </a>
 
@@ -628,8 +586,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2026-01-17 23:23" pubdate>
-              2026-01-17
+            <time datetime="2026-01-19 13:55" pubdate>
+              2026-01-19
             </time>
           </div>
         
@@ -640,7 +598,51 @@
             
               <a href="/tags/cpp/">#cpp</a>
             
-              <a href="/tags/linked-list/">#linked-list</a>
+              <a href="/tags/edit-distance/">#edit-distance</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2026/01/19/obsidian/cpp/Notes/6.StackandQueue/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/" target="_self">
+          栈和队列
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2026/01/19/obsidian/cpp/Notes/6.StackandQueue/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/" target="_self">
+        <div>
+          栈和队列 STL概念STL (Standard Template Library, 标准模板库) 是 C++ 标准库的核心部分，它提供了一套功能强大的通用数据结构和算法。STL 基于泛型编程 (Generic Programming) 的思想，通过模板实现了代码的高度可重用性。 STL 四大核心组件 容器 (Containers)  作用：用于存储和管理数据的类模板，即各种数据结构。 分类： 序列
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2026-01-19 13:55" pubdate>
+              2026-01-19
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/cpp/">#cpp</a>
+            
+              <a href="/tags/stack/">#stack</a>
+            
+              <a href="/tags/queue/">#queue</a>
             
           </div>
         
