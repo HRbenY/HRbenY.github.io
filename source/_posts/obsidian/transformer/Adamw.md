@@ -31,7 +31,7 @@ w \leftarrow w - \text{lr} \cdot \frac{\nabla L}{\sqrt{r_t} + \epsilon}
 $$
 
 - transformed_grad
-$$transformed\_grad = grad / sqrt(EMA(grad^2))$$
+$$transformed\_grad = \frac{grad}{\sqrt{(EMA(grad^2))}}$$
 ## 4. Adam
 
 Adam是Momentum和AdaGrad的结合。内部需要保存一阶矩和二阶矩。
