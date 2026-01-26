@@ -55,6 +55,18 @@ prismjs:
   line_number: true
   tab_replace: ''
 
+# Markdown renderer (markdown-it)
+markdown:
+  preset: default
+  render:
+    html: true
+    breaks: false
+    linkify: true
+    typographer: true
+  plugins:
+    - markdown-it-obsidian-callouts
+    - markdown-it-mathjax3
+
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
@@ -96,7 +108,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: fluid
+theme: butterfly
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
