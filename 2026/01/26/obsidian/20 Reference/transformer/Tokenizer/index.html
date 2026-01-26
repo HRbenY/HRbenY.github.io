@@ -1,0 +1,879 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/mai.png">
+  <link rel="icon" href="/img/mai.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="HRbenY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. 什么是分词器 (Tokenizer)？模型无法直接理解人类的文本（字符串），它只能处理数字。分词器的作用就是将文本转换成模型可以理解的数字序列。  流程：输入文本 $\rightarrow$ 切分成 Token (词元) $\rightarrow$ 映射为 ID (索引数字) $\rightarrow$ 输入模型。  Token 是什么：Token 可以是一个完整的单词（如 is），一个单词">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tokenizer">
+<meta property="og:url" content="https://hrbeny.github.io/2026/01/26/obsidian/20%20Reference/transformer/Tokenizer/index.html">
+<meta property="og:site_name" content="Spa-Master 的博客">
+<meta property="og:description" content="1. 什么是分词器 (Tokenizer)？模型无法直接理解人类的文本（字符串），它只能处理数字。分词器的作用就是将文本转换成模型可以理解的数字序列。  流程：输入文本 $\rightarrow$ 切分成 Token (词元) $\rightarrow$ 映射为 ID (索引数字) $\rightarrow$ 输入模型。  Token 是什么：Token 可以是一个完整的单词（如 is），一个单词">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260117145252696.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260117145252697.png">
+<meta property="article:published_time" content="2026-01-26T15:23:31.477Z">
+<meta property="article:modified_time" content="2026-01-26T15:23:31.477Z">
+<meta property="article:author" content="HRbenY">
+<meta property="article:tag" content="topic&#x2F;transformer">
+<meta property="article:tag" content="type&#x2F;note">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260117145252696.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Tokenizer - Spa-Master 的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"hrbeny.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Spa-Master 的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Tokenizer"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-26 23:23" pubdate>
+          2026年1月26日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Tokenizer</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="1-什么是分词器-Tokenizer-？"><a href="#1-什么是分词器-Tokenizer-？" class="headerlink" title="1. 什么是分词器 (Tokenizer)？"></a>1. 什么是分词器 (Tokenizer)？</h2><p>模型无法直接理解人类的文本（字符串），它只能处理数字。分词器的作用就是将文本转换成模型可以理解的数字序列。</p>
+<ul>
+<li><p><strong>流程</strong>：输入文本 $\rightarrow$ 切分成 Token (词元) $\rightarrow$ 映射为 ID (索引数字) $\rightarrow$ 输入模型。</p>
+</li>
+<li><p><strong>Token 是什么</strong>：Token 可以是一个完整的单词（如 <code>is</code>），一个单词的一部分（如 <code>ization</code>），甚至是一个字符或空格。</p>
+</li>
+<li><p><strong>主流算法</strong>：GPT 系列主要使用的是 <strong>BPE (Byte Pair Encoding)</strong> 算法，旨在通过合并高频出现的字符组合来压缩文本，提高效率。</p>
+</li>
+</ul>
+<hr>
+<h2 id="2-截图场景解析与局限性-Limitations"><a href="#2-截图场景解析与局限性-Limitations" class="headerlink" title="2. 截图场景解析与局限性 (Limitations)"></a>2. 截图场景解析与局限性 (Limitations)</h2><p>截图中的不同色块代表了分词器将文本切分后的不同 Token。我们可以从图中展示的四个特定场景，分析 LLM 在分词层面遇到的“怪异现象”和限制：<br><img src="https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260117145252696.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20251228171806">  </p>
+<h3 id="场景一：算术与数字处理-Arithmetic"><a href="#场景一：算术与数字处理-Arithmetic" class="headerlink" title="场景一：算术与数字处理 (Arithmetic)"></a>场景一：算术与数字处理 (Arithmetic)</h3><blockquote>
+<p>截图内容：127 + 677 &#x3D; 804</p>
+<p>现象：数字通常不会被识别为一个整体，而是被切碎。</p>
+</blockquote>
+<ul>
+<li><p><strong>局限性</strong>：<strong>破坏了数值的位值概念。</strong></p>
+<ul>
+<li><p>在 GPT-2（以及许多早期模型）的分词器中，数字往往被切分成不符合直觉的片段。例如，<code>1275</code> 可能被切分为 <code>12</code> 和 <code>75</code>，或者 <code>1</code>、<code>2</code>、<code>7</code>、<code>5</code>。</p>
+</li>
+<li><p><strong>后果</strong>：模型很难学会“进位”等数学逻辑，因为对它来说，这更像是文本拼接预测，而不是数值计算。这就是为什么 LLM 做加减法经常一本正经胡说八道的原因之一。</p>
+</li>
+<li><p><strong>改进</strong>：较新的模型（如 LLaMA 或 GPT-4）尝试将数字按每一位单独分词，以提高数学能力。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="场景二：大小写敏感-Case-Sensitivity"><a href="#场景二：大小写敏感-Case-Sensitivity" class="headerlink" title="场景二：大小写敏感 (Case Sensitivity)"></a>场景二：大小写敏感 (Case Sensitivity)</h3><blockquote>
+<p>截图内容：Egg, I have an Egg, egg, EGG</p>
+<p>现象：Egg (首字母大写)、egg (全小写)、EGG (全大写) 被赋予了不同的颜色，意味着它们是完全不同的 Token。</p>
+</blockquote>
+<ul>
+<li><p><strong>局限性</strong>：<strong>词表浪费与语义分散。</strong></p>
+<ul>
+<li><p>虽然这三个词语义相同，但在模型眼里它们是三个完全不同的 ID。模型必须分别学习这三个 Token 的含义。</p>
+</li>
+<li><p><strong>后果</strong>：这浪费了宝贵的词表空间（Vocabulary Size），并且如果某个变体（如全大写 <code>EGG</code>）在训练数据中出现很少，模型对它的理解就会比 <code>egg</code> 差。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="场景三：非英语-多语言支持-Non-English-Multilingual"><a href="#场景三：非英语-多语言支持-Non-English-Multilingual" class="headerlink" title="场景三：非英语&#x2F;多语言支持 (Non-English &#x2F; Multilingual)"></a>场景三：非英语&#x2F;多语言支持 (Non-English &#x2F; Multilingual)</h3><blockquote>
+<p>截图内容：韩语段落 만나서 반갑습니다…</p>
+<p>现象：韩语文本的色块非常细碎，几乎每个字甚至每个字的部件都被切成了不同的 Token。</p>
+</blockquote>
+<ul>
+<li><p><strong>局限性</strong>：<strong>信息密度低，上下文窗口利用率差。</strong></p>
+<ul>
+<li><p>GPT-2 的词表主要是针对英语优化的。对于韩语、中文等非拉丁语系，分词器往往找不到对应的“整词”，只能回退到按字节或字符切分。</p>
+</li>
+<li><p><strong>后果</strong>：</p>
+<ol>
+<li><p><strong>更贵</strong>：同样的句子，中文或韩语消耗的 Token 数量远多于英语（在 GPT-2&#x2F;3 时代尤其明显），调用 API 时成本更高。</p>
+</li>
+<li><p><strong>更“短”</strong>：因为 Token 数量多，同样的上下文窗口（Context Window）能容纳的非英语内容就变少了。</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="场景四：代码与格式-Code-Formatting"><a href="#场景四：代码与格式-Code-Formatting" class="headerlink" title="场景四：代码与格式 (Code &amp; Formatting)"></a>场景四：代码与格式 (Code &amp; Formatting)</h3><blockquote>
+<p>截图内容：Python 代码 for i in range(1, 101):</p>
+<p>现象：缩进（空格）、关键词（for, in）、标点符号都被切分。</p>
+</blockquote>
+<ul>
+<li><p><strong>局限性</strong>：<strong>对格式极其敏感。</strong></p>
+<ul>
+<li><p>Python 强依赖缩进。如果分词器将 (4个空格) 识别为一个 Token，而将 (2个空格) 识别为另一个，模型就需要精确预测使用哪个 Token 来保证代码运行。</p>
+</li>
+<li><p>像 <code>FizzBuzz</code> 这样的变量名，因为不是通用单词，会被拆解为 <code>Fizz</code> + <code>Buzz</code>。如果代码中有很多生僻变量名，会显著增加 Token 消耗。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="对比分析：GPT-2-gpt2-vs-GPT-4-cl100k-base"><a href="#对比分析：GPT-2-gpt2-vs-GPT-4-cl100k-base" class="headerlink" title="对比分析：GPT-2 (gpt2) vs GPT-4 (cl100k_base)"></a>对比分析：GPT-2 (<code>gpt2</code>) vs GPT-4 (<code>cl100k_base</code>)</h3><p>OpenAI 的模型经历了从 <code>gpt2</code> (用于 GPT-2 和 GPT-3) 到 <code>cl100k_base</code> (用于 GPT-3.5-Turbo 和 GPT-4) 的升级。这次分词器的升级对性能和成本有直接影响。<br><img src="https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260117145252697.png" srcset="/img/loading.gif" lazyload alt="Pasted image 20251228172350"></p>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>GPT-2 Tokenizer (gpt2 &#x2F; r50k_base)</strong></th>
+<th><strong>GPT-4 Tokenizer (cl100k_base)</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>词表大小</strong></td>
+<td><strong>约 50,000 个</strong></td>
+<td><strong>约 100,000 个</strong></td>
+</tr>
+<tr>
+<td><strong>中文支持</strong></td>
+<td><strong>较差</strong>。一个汉字通常被切分为 2-3 个 Token（甚至更多字节级碎片）。</td>
+<td><strong>优秀</strong>。词表更大，包含了更多常用汉字。许多常见汉字现在是一个单独的 Token。</td>
+</tr>
+<tr>
+<td><strong>代码处理</strong></td>
+<td><strong>一般</strong>。对空格、缩进和常见代码关键字的优化不足。</td>
+<td><strong>大幅优化</strong>。针对代码中的常见模式（如连续空格、特定函数名）进行了专门优化，压缩率更高。</td>
+</tr>
+<tr>
+<td><strong>压缩效率</strong></td>
+<td>较低。同样的文本需要更多的 Token 来表示。</td>
+<td><strong>较高</strong>。同样的文本，Token 数量平均减少 <strong>15% - 20%</strong>（英文），中文减少幅度更大。</td>
+</tr>
+<tr>
+<td><strong>数字处理</strong></td>
+<td>经常将数字切碎且不规律（如 <code>1275</code> -&gt; <code>12</code>, <code>75</code>）。</td>
+<td>稍微一致一些，但依然不是完美的按位切分（这主要还是 BPE 的通病）。</td>
+</tr>
+</tbody></table>
+<h3 id="核心差异总结："><a href="#核心差异总结：" class="headerlink" title="核心差异总结："></a>核心差异总结：</h3><ol>
+<li><p><strong>省钱 &amp; 扩容</strong>：<code>cl100k_base</code> 最直接的好处是<strong>更省 Token</strong>。因为它的词表更大（100k），它能“一口吃下”更复杂的词，而不需要切得那么碎。这意味着对于同样的 prompt，使用 GPT-4 往往比 GPT-3 花费的 Token 更少，且能塞进上下文窗口的内容更多。</p>
+</li>
+<li><p><strong>多语言与代码能力增强</strong>：由于在训练分词器时加入了更多代码和多语言语料，<code>cl100k_base</code> 不再像 GPT-2 那样“歧视”非英语内容，这对中文开发者和程序员非常友好。</p>
+</li>
+</ol>
+<h2 id="3-主流的分词器类型-Tokenizer-Types"><a href="#3-主流的分词器类型-Tokenizer-Types" class="headerlink" title="3. 主流的分词器类型 (Tokenizer Types)"></a>3. 主流的分词器类型 (Tokenizer Types)</h2><p>虽然目前 GPT 系列主要使用 BPE，但在 NLP 领域主要有三种主流的分词算法，它们的核心目标都是<strong>平衡词表大小（Vocabulary Size）与文本覆盖率</strong>，尽量避免出现“未知词（[UNK]）”。</p>
+<h3 id="3-1-BPE-Byte-Pair-Encoding"><a href="#3-1-BPE-Byte-Pair-Encoding" class="headerlink" title="3.1 BPE (Byte Pair Encoding)"></a>3.1 BPE (Byte Pair Encoding)</h3><ul>
+<li><p><strong>代表模型</strong>：<strong>GPT 系列 (GPT-2, GPT-3, GPT-4)</strong>, RoBERTa, LLaMA。</p>
+</li>
+<li><p><strong>原理</strong>：统计语料中字符组合出现的频率。从单个字符开始，不断<strong>合并出现频率最高</strong>的相邻字符对，直到词表达到预设大小。</p>
+</li>
+<li><p><strong>特点</strong>：</p>
+<ul>
+<li><p>能很好地处理生僻词（通过拆解为子词）。</p>
+</li>
+<li><p>GPT 使用的是 <strong>Byte-level BPE</strong>（基于字节而非字符），这意味着它可以处理任何 Unicode 字符串（包括 emoji 和各种奇怪符号），不会出现 [UNK]。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-2-WordPiece"><a href="#3-2-WordPiece" class="headerlink" title="3.2 WordPiece"></a>3.2 WordPiece</h3><ul>
+<li><p><strong>代表模型</strong>：<strong>BERT</strong>, DistilBERT。</p>
+</li>
+<li><p><strong>原理</strong>：与 BPE 类似，也是合并子词。但它在选择合并哪两个子词时，不是看频率最高，而是看<strong>合并后能最大程度增加训练数据语言模型的似然概率 (Likelihood)</strong>。</p>
+</li>
+<li><p><strong>特点</strong>：通常比 BPE 稍微紧凑一些，但计算量稍大。</p>
+</li>
+</ul>
+<h3 id="3-3-Unigram-Language-Model"><a href="#3-3-Unigram-Language-Model" class="headerlink" title="3.3 Unigram Language Model"></a>3.3 Unigram Language Model</h3><ul>
+<li><p><strong>代表模型</strong>：<strong>T5</strong>, ALBERT, XLNet (使用 SentencePiece 库)。</p>
+</li>
+<li><p><strong>原理</strong>：思路与 BPE 相反。BPE 是“从下往上”合并，Unigram 是“从上往下”剪枝。它先初始化一个巨大的词表，然后计算丢弃某些词对整体损失函数的影响，<strong>保留概率最高</strong>的子词，剔除贡献小的，直到达到预设词表大小。</p>
+</li>
+<li><p><strong>特点</strong>：它是基于概率的模型，对于同一个句子可以产生多种分词可能（Subword Regularization），这在训练时有时能增加模型的鲁棒性。</p>
+</li>
+</ul>
+<hr>
+<h2 id="4-相关资料"><a href="#4-相关资料" class="headerlink" title="4 相关资料"></a>4 相关资料</h2><p><a target="_blank" rel="noopener" href="https://www.reedbeta.com/blog/programmers-intro-to-unicode/">Programmer’s intro to unicode</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/type-note/" class="print-no-link">#type/note</a>
+      
+        <a href="/tags/topic-transformer/" class="print-no-link">#topic/transformer</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Tokenizer</div>
+      <div>https://hrbeny.github.io/2026/01/26/obsidian/20 Reference/transformer/Tokenizer/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>HRbenY</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年1月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/01/26/obsidian/20%20Reference/transformer/Self-Attention%E6%9C%BA%E5%88%B6(Q,K,V)/" title="Self-Attention机制(Q,K,V)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Self-Attention机制(Q,K,V)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/01/26/obsidian/20%20Reference/transformer/%E4%BD%8D%E7%BD%AE%E6%8E%A9%E7%A0%81/" title="位置掩码">
+                        <span class="hidden-mobile">位置掩码</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+
+      function fallbackTyping() {
+        
+          typing(text);
+        
+      }
+
+      function runTyping() {
+        
+          fallbackTyping();
+        
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', runTyping);
+      } else {
+        runTyping();
+      }
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/slogan-pool.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
