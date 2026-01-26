@@ -7,6 +7,7 @@ tags:
 - type/note
 - type/snippet
 title: Matrix Transpose
+slug: Matrix Transpose
 ---
 
 假设要实现$B = A^T$

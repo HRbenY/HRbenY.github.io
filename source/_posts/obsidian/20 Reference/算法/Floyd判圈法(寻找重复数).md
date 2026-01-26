@@ -6,6 +6,7 @@ tags:
 - type/note
 - lang/cpp
 title: Floyd判圈法(寻找重复数)
+slug: Floyd判圈法(寻找重复数)
 ---
 
 类似lc142环形链表。
