@@ -12,6 +12,26 @@
     return document.getElementById('subtitle')
   }
 
+  function getTitleEl() {
+    return document.getElementById('site-title')
+  }
+
+  function greetingByHour(hour) {
+    if (hour >= 5 && hour < 8) return '早上好'
+    if (hour >= 8 && hour < 11) return '上午好'
+    if (hour >= 11 && hour < 13) return '中午好'
+    if (hour >= 13 && hour < 18) return '下午好'
+    if (hour >= 18 && hour < 23) return '晚上好'
+    return '夜深了'
+  }
+
+  function applyGreetingTitle() {
+    var titleEl = getTitleEl()
+    if (!titleEl) return
+    var hour = new Date().getHours()
+    titleEl.textContent = greetingByHour(hour)
+  }
+
   function applySubtitle(text) {
     var t = typeof text === 'string' ? text.trim() : ''
     if (!t) {
@@ -35,6 +55,7 @@
 
   function run() {
     if (!isHome()) return
+    applyGreetingTitle()
     if (!getSubtitleEl()) return
 
     var pool = window.SpaMasterSloganPool
