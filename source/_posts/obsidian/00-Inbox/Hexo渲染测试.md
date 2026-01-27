@@ -1,5 +1,5 @@
 ---
-title: 简介
+title: Hexo渲染测试
 author: Spa-Master
 date: '2026-01-27 00:00:00'
 updated: '2026-01-27 00:00:00'
