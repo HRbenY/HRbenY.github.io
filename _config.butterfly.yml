@@ -152,12 +152,15 @@ index_top_img_height:
 
 # The subtitle on homepage
 subtitle:
-  enable: false
+  enable: true
   # Typewriter Effect
   effect: true
   # Customize typed.js
   # https://github.com/mattboldt/typed.js/#customization
   typed_option:
+    typeSpeed: 120
+    cursorChar: "_"
+    loop: false
   # Source - Call the third-party service API (Chinese only)
   # It will show the source first, then show the content of sub
   # Choose: false/1/2/3
@@ -1060,7 +1063,8 @@ inject:
     # callout blocks
     - <link rel="stylesheet" href="/css/callout_blocks.css">
   bottom:
-    # - <script src="xxxx"></script>
+    - <script src="/js/slogan-pool.js"></script>
+    - <script src="/js/slogan-butterfly.js"></script>
 
 # CDN Settings
 # Don't modify the following settings unless you know how they work
