@@ -55,7 +55,7 @@ prismjs:
   line_number: true
   tab_replace: ''
 
-# Markdown renderer (markdown-it)
+# Markdown renderer (markdown-it-plus)
 markdown:
   preset: default
   render:
@@ -66,6 +66,11 @@ markdown:
   plugins:
     - markdown-it-obsidian-callouts
     - markdown-it-mathjax3
+
+# hexo-filter-titlebased-link
+# https://github.com/uuanqin/hexo-filter-titlebased-link
+titlebased_link:
+  enable: true
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')

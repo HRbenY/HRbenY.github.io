@@ -29,7 +29,7 @@ menu:
 
 code_blocks:
   # Code block theme: darker / pale night / light / ocean / false
-  theme: light
+  theme: 'pale night'
   macStyle: false
   # Code block height limit (unit: px)
   height_limit: false
@@ -200,7 +200,7 @@ toc:
   scroll_percent: true
 
 post_copyright:
-  enable: true
+  enable: false
   decode: false
   author_href:
   license: CC BY-NC-SA 4.0
@@ -291,7 +291,7 @@ aside:
       text: Follow Me
       link: https://github.com/hrbeny
   card_announcement:
-    enable: true
+    enable: false
     content: This is my Blog
   card_recent_post:
     enable: true
