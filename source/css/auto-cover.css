@@ -1,8 +1,0 @@
-img.post-bg[src^="/img/covers/auto/"],
-img.post-bg[src*="/img/covers/auto/"],
-img.cover[src^="/img/covers/auto/"],
-img.cover[src*="/img/covers/auto/"] {
-  object-fit: contain;
-  object-position: center;
-  background-color: var(--card-bg);
-}
