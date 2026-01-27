@@ -56,7 +56,7 @@ $$transformed_grad = EMA(grad) / sqrt(EMA(grad^2))$$
 值得注意的是，有一段时间人们误以为在 Adam 中简单地添加 L2 正则化（即把 $\lambda w$ 加到梯度中）就能达到权重衰减的效果，就像在 SGD 中那样。但这被证明在 Adam 这类自适应算法中是错误的。
 
 我们上面提到Adam的更新是$$\Delta{\omega_i} = -\text{lr} \cdot \frac{\hat m_t}{\sqrt{\hat v_t} + \epsilon}$$
-注意，这里分子和分母中的$\hat{m}_t$和$\hat{v}_t$都是$\nabla L$的函数。我们在[L2 Regularization](/L2%20Regularization/)提到，L2正则化会给总Loss加上一项，使得最终的梯度$\nabla L' = \nabla L + \lambda \omega$。因此，$\lambda \omega$会混入到分子和分母中，并因为Adam的自适应机制（$m_t$的平滑和 $v_t$的缩放）而扭曲，导致不同参数的正则化程度不同。
+注意，这里分子和分母中的$\hat{m}_t$和$\hat{v}_t$都是$\nabla L$的函数。我们在[L2 Regularization](L2%20Regularization.md)提到，L2正则化会给总Loss加上一项，使得最终的梯度$\nabla L' = \nabla L + \lambda \omega$。因此，$\lambda \omega$会混入到分子和分母中，并因为Adam的自适应机制（$m_t$的平滑和 $v_t$的缩放）而扭曲，导致不同参数的正则化程度不同。
 ## 正确方式
 
 解决方式很简单，我们调整一下加入$\lambda \omega$的时机，不在求出$\nabla L$后立刻引入，而是在最终的公式中加上一项$\lambda \omega$。即
