@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>经验分布 | Spa-Master 的博客</title><meta name="author" content="HRbenY"><meta name="copyright" content="HRbenY"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="![[attachments&#x2F;Pasted image 20260110150357.png]] 就是抽样结果X≤xX \le xX≤x 的概率。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="经验分布">
+<meta property="og:url" content="https://hrbeny.github.io/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E7%BB%8F%E9%AA%8C%E5%88%86%E5%B8%83/index.html">
+<meta property="og:site_name" content="Spa-Master 的博客">
+<meta property="og:description" content="![[attachments&#x2F;Pasted image 20260110150357.png]] 就是抽样结果X≤xX \le xX≤x 的概率。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hrbeny.github.io/img/mai.png">
+<meta property="article:published_time" content="2026-01-27T02:05:20.000Z">
+<meta property="article:modified_time" content="2026-01-27T02:05:20.000Z">
+<meta property="article:author" content="HRbenY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hrbeny.github.io/img/mai.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "经验分布",
+  "url": "https://hrbeny.github.io/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E7%BB%8F%E9%AA%8C%E5%88%86%E5%B8%83/",
+  "image": "https://hrbeny.github.io/img/mai.png",
+  "datePublished": "2026-01-27T02:05:20.000Z",
+  "dateModified": "2026-01-27T02:05:20.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "HRbenY",
+      "url": "https://hrbeny.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hrbeny.github.io/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E7%BB%8F%E9%AA%8C%E5%88%86%E5%B8%83/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '经验分布',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/callout_blocks.css"><meta name="generator" content="Hexo 8.1.1"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Spa-Master 的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">经验分布</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">经验分布</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-27T02:05:20.000Z" title="发表于 2026-01-27 10:05:20">2026-01-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-27T02:05:20.000Z" title="更新于 2026-01-27 10:05:20">2026-01-27</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>![[attachments/Pasted image 20260110150357.png]]</p>
+<p>就是抽样结果<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>≤</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">X \le x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">x</span></span></span></span> 的概率。</p>
+</article><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/mai.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E8%80%83%E8%AF%95%E8%8C%83%E5%9B%B4/" title="考试范围"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">考试范围</div></div><div class="info-2"><div class="info-item-1"> 矩阵论    PPT条目 考试状态 老师录音/PPT批注原话摘录     基底之间的变换 ✅ 划重点 “…它的一个基底、维数、坐标、基底之间的变换…这个一定要知道。”   线性变换的对角化 ✅ 划重点 “线性变换对应个矩阵，它是否可以对角化…寻找特征值或者特征向量。”   Jordan阵、最小多项式 ✅ 划重点 “Jordan阵，最小多项式… 简单的计算我会考它。”   UR分解、SVD分解 ✅ 划重点 “UR分解，SVD分解… 是必须要知道的。”   三角分解、满秩分解 ⚠️ 可能考 录音中提到了一句“三角分解…”，虽然没说必考，但PPT上列出且未划掉，建议作为次重点。      数值分析    PPT条目 考试状态 老师录音/PPT批注原话摘录     Gauss消元法、LU分解 ✅ 划重点 “线性方程组的解法… Gauss消元法，LU分解…” (录音提及保留)   Cholesky分解 ❌ 明确不考 “Cholesky分解… 画掉。” (PPT上打叉)   Jacobi/Gauss-Seidel迭代 ❌ 明确不考 “迭代法：Jacobi 迭代，Gauss-Seidel迭代...</div></div></div></a><a class="pagination-related" href="/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E7%9B%B4%E5%92%8C/" title="直和"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">直和</div></div><div class="info-2"><div class="info-item-1">若 𝑊1+𝑊2𝑊1+𝑊2W1+W2中任一向量只能唯一地分解为 𝑊1𝑊1W1中的一个向量与 𝑊2𝑊2W2中的一个向量之和，则 𝑊1+𝑊2𝑊1+𝑊2W1+W2称为 𝑊1,𝑊2𝑊1,𝑊2W1,W2的直和,记为 𝑊1⊕𝑊2𝑊1⊕𝑊2W1⊕W2. ![[attachments/Pasted image 20260111002037.png]] 证明Rn是V1 V2 的直和，可以V1 V2无交集 + dimV1 + dimV2 = dimRn </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/mai.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">HRbenY</div><div class="author-info-description">个人技术博客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">69</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hrbeny"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hrbeny" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:hrcharck@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E7%9B%B4%E5%92%8C/" title="直和">直和</a><time datetime="2026-01-27T02:05:20.000Z" title="发表于 2026-01-27 10:05:20">2026-01-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E7%BB%8F%E9%AA%8C%E5%88%86%E5%B8%83/" title="经验分布">经验分布</a><time datetime="2026-01-27T02:05:20.000Z" title="发表于 2026-01-27 10:05:20">2026-01-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E8%80%83%E8%AF%95%E8%8C%83%E5%9B%B4/" title="考试范围">考试范围</a><time datetime="2026-01-27T02:05:20.000Z" title="发表于 2026-01-27 10:05:20">2026-01-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E9%9B%B6%E5%8C%96%E5%A4%9A%E9%A1%B9%E5%BC%8F%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%A4%9A%E9%A1%B9%E5%BC%8F/" title="零化多项式与最小多项式">零化多项式与最小多项式</a><time datetime="2026-01-27T02:05:20.000Z" title="发表于 2026-01-27 10:05:20">2026-01-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E9%A2%98%E5%9E%8B/" title="题型">题型</a><time datetime="2026-01-27T02:05:20.000Z" title="发表于 2026-01-27 10:05:20">2026-01-27</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By HRbenY</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

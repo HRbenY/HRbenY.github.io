@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Spa-Master 的博客 - 记录与分享</title><meta name="author" content="HRbenY"><meta name="copyright" content="HRbenY"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="个人技术博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Spa-Master 的博客">
+<meta property="og:url" content="https://hrbeny.github.io/page/2/index.html">
+<meta property="og:site_name" content="Spa-Master 的博客">
+<meta property="og:description" content="个人技术博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hrbeny.github.io/img/mai.png">
+<meta property="article:author" content="HRbenY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hrbeny.github.io/img/mai.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hrbeny.github.io/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Spa-Master 的博客',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><link rel="stylesheet" href="/css/callout_blocks.css"><meta name="generator" content="Hexo 8.1.1"></head><body><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Spa-Master 的博客</span></a></span><div id="menus"></div></nav><div id="site-info"><h1 id="site-title">Spa-Master 的博客</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/hrbeny" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:hrcharck@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/26/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" title="数字通信">数字通信</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-26T14:44:53.000Z" title="发表于 2026-01-26 22:44:53">2026-01-26</time></span></div><div class="content"> 一、 OFDM 系统   1. 核心概念   定义：正交频分复用 (Orthogonal Frequency Division Multiplexing)。将高速数据流拆分为多个低速子流，在相互正交的子载波上并行传输。   主要优势：抗多径衰落能力强，频谱利用率高。   关键参数：   子载波间隔：Δf=B/N\Delta f = B/NΔf=B/N (总带宽 / 子载波数)。   符号时间：Tsym=Tsub+TCPT_{sym} = T_{sub} + T_{CP}Tsym​=Tsub​+TCP​，其中有效符号时间 Tsub=1/ΔfT_{sub} = 1/\Delta fTsub​=1/Δf。   消除 ISI 条件：循环前缀 (CP) 长度 μ\muμ 必须大于信道最大时延扩展 τmax\tau_{max}τmax​ (即 TCP&gt;τmaxT_{CP} &gt; \tau_{max}TCP​&gt;τmax​)。      2. 基于 DFT 的信道估计降噪 (考题难点)   场景：信道模型 Y[n]=H[n]X[n]+Z[n]Y[n] = H[n]X[n] + ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/22/obsidian/20-Reference/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B/" title="多线程编程">多线程编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-22T16:00:00.000Z" title="发表于 2026-01-23 00:00:00">2026-01-23</time></span></div><div class="content"> 创建一个线程 使用C++11引入的thread头文件创建线程。 1234567void thread_fun(int repeat, int threadId)&#123;    while(repeat --)&#123;        cout &lt;&lt; &quot;thread-&quot; &lt;&lt; threadId &lt;&lt; endl;    &#125;&#125;//注意要先声明线程执行的函数thread myThread0(thread_fun, 5, 0); 传参方式如代码中所示，myThread0(thread_fun, 5, 0)而不是myThread0(thread_fun(5, 0))  互斥锁 假如我们声明了两个线程，如下 12345thread myThread0(thread_fun, 5, 0);thread myThread1(thread_fun, 5, 1);cout &lt;&lt; &quot;我是主线程，我也在跑！&quot; &lt;&lt; endl;myThread0.join();myThread1....</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/16/hello-world/" title="你好，世界">你好，世界</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-16T16:00:00.000Z" title="发表于 2026-01-17 00:00:00">2026-01-17</time></span></div><div class="content">欢迎使用 Hexo！这是你的第一篇文章。  快速开始  新建文章 1hexo new &quot;我的新文章&quot;  本地预览 1hexo server  生成静态文件 1hexo generate </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/16/obsidian/20-Reference/GPU/SM/" title="SM">SM</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-16T16:00:00.000Z" title="发表于 2026-01-17 00:00:00">2026-01-17</time></span></div><div class="content">流式多处理器  上面是H100的一个SM，显示了 4_个子分区_，每个子分区包含一个张量核心、一个线程束调度器、一个寄存器文件以及不同精度的 CUDA 核心组。  Memmory 除了计算单元之外，GPU 还具有内存层次结构，其中最大的是 HBM（GPU 主内存），然后是一系列较小的缓存（L2、L1/SMEM、TMEM、寄存器内存）。   寄存器： 每个子分区都有自己的寄存器文件，其中包含 H100/B200（每个 SM）上的 16,384 个 32 位字，4 * 16384 * 4 = 256kiBCUDA 内核可以访问该文件。  每个 CUDA 核心一次最多只能访问 256 个寄存器，因此尽管我们可以为每个 SM 调度多达 64 个“驻留线程束”，但256 * 1024 / (4 * 32 * 256)如果每个线程使用 256 个寄存器，则一次只能容纳 8 个线程束。    SMEM（L1缓存）：每个SM都有其自身的256kB片上缓存，称为SMEM。SMEM既可以由程序员控制作为“共享内存”，也可以由硬件用作片上缓存。SMEM用于存储TC矩阵乘法器的激活值和输入值。   L2...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/16/obsidian/20-Reference/transformer/Adamw/" title="Adamw">Adamw</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-16T16:00:00.000Z" title="发表于 2026-01-17 00:00:00">2026-01-17</time></span></div><div class="content">从SGD到Adamw，所有优化器的形式都类似 w  ←  w−lr⋅transformed_gradw \;\leftarrow\; w - \text{lr} \cdot \text{transformed\_grad} w←w−lr⋅transformed_grad 区别只在于transformed_grad 是如何由原始梯度 grad 得到的。  1. SGD w←w−lr⋅∇wLw \leftarrow w - \text{lr} \cdot \nabla_w L w←w−lr⋅∇w​L  2. SGD+Momentum 在SGD的基础上，进行时间维度平滑。 vt=μvt−1+∇Lv_t = \mu v_{t-1} + \nabla L vt​=μvt−1​+∇L w←w−lr⋅vtw \leftarrow w - \text{lr} \cdot v_t w←w−lr⋅vt​  transformed_grad  transformed_grad=EMA(grad)transformed\_grad = EMA(grad) transformed_grad=EMA(gra...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/16/obsidian/20-Reference/transformer/L2%20Regularization/" title="L2 Regularization">L2 Regularization</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-16T16:00:00.000Z" title="发表于 2026-01-17 00:00:00">2026-01-17</time></span></div><div class="content">L2正则化的目的是权重衰减，让Loss和权重的L2范数正相关。在SGD和Momentum中不需多余处理就能达到这样的效果。但是Adagrad和Adam由于对梯度做了预处理，不能直接应用公式。（见 Adamw）  作用 防止模型过拟合 (Overfitting)。通过限制参数（权重 www）的大小，使模型变得更简单、更平滑，避免对训练数据中的噪声死记硬背。  公式 总损失可以表示如下 Ltotal(w)=Ldata(w)+λ2∥w∥2\mathcal{L}_{total}(w)=\mathcal{L}_{data}(w)+\frac{\lambda}{2} \| w \| ^2 Ltotal​(w)=Ldata​(w)+2λ​∥w∥2 对总损失求梯度 ∇wLtotal=∇wLdata+∇w(λ2∥w∥2)\nabla_w \mathcal{L}_{total}=\nabla_w \mathcal{L}_{data}+\nabla_w \left(\frac{\lambda}{2}\| w \|^2\right) ∇w​Ltotal​=∇w​Ldata​+∇w​(2λ​∥w∥2) 可...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/16/obsidian/20-Reference/transformer/LayerNorm/" title="LayerNorm">LayerNorm</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-16T16:00:00.000Z" title="发表于 2026-01-17 00:00:00">2026-01-17</time></span></div><div class="content"> 并不是BatchNorm简单的交换N和D。   前向传播 在前向传播中，LayerNorm的公式就是BatchNorm交换N和D维度。LayerNorm在每个批次内部进行Normalization，而BatchNorm是跨Batch的Norm。导致mean和std_dev稍有不同。  (1) 均值 μ=1D∑i=1Dxi\mu = \frac{1}{D} \sum_{i=1}^{D} x_i μ=D1​i=1∑D​xi​  (2) 方差 σ2=1D∑i=1D(xi−μ)2\sigma^2 = \frac{1}{D} \sum_{i=1}^{D} (x_i - \mu)^2 σ2=D1​i=1∑D​(xi​−μ)2  (3) 标准差 + eps σ=σ2+ε\sigma = \sqrt{\sigma^2 + \varepsilon} σ=σ2+ε​  (4) 归一化 x^i=xi−μσ\hat{x}_i = \frac{x_i - \mu}{\sigma} x^i​=σxi​−μ​  (5) 仿射变换（gamma / beta） yi=γix^i+βiy_i = \gamma_i...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/16/obsidian/20-Reference/transformer/Self-Attention%E6%9C%BA%E5%88%B6(Q,K,V)/" title="Self-Attention机制(Q,K,V)">Self-Attention机制(Q,K,V)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-16T16:00:00.000Z" title="发表于 2026-01-17 00:00:00">2026-01-17</time></span></div><div class="content">Attention(Q,K,V)=softmax(QKTdk)V\text{Attention}(Q, K, V) = \text{softmax}\left( \frac{QK^T}{\sqrt{d_k}} \right) V Attention(Q,K,V)=softmax(dk​​QKT​)V  1. 核心思想转变   之前 (Weighted Sum): 我们用全 1 的矩阵做平均，所有 token 对过去的关注度是一样的（平权的），这与内容无关。   现在 (Self-Attention): 我们希望 token 能够有选择性地关注过去。   例子：如果当前 token 是名词，它可能更想关注前面的形容词，而不是介词。   数据驱动：权重矩阵 wei 不再是固定的，而是由数据（Token 自身的信息）动态计算出来的。      2. Query, Key, Value 这是注意力机制的灵魂，每个 Token 都会发出三个向量：   Query (Q) - 询问: “我在寻找什么样的信息？”   Key (K) - 标签: “我包含什么样的信息？”   Value (V)...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/16/obsidian/20-Reference/transformer/Tokenizer/" title="Tokenizer">Tokenizer</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-16T16:00:00.000Z" title="发表于 2026-01-17 00:00:00">2026-01-17</time></span></div><div class="content"> 1. 什么是分词器 (Tokenizer)？ 模型无法直接理解人类的文本（字符串），它只能处理数字。分词器的作用就是将文本转换成模型可以理解的数字序列。   流程：输入文本 →\rightarrow→ 切分成 Token (词元) →\rightarrow→ 映射为 ID (索引数字) →\rightarrow→ 输入模型。   Token 是什么：Token 可以是一个完整的单词（如 is），一个单词的一部分（如 ization），甚至是一个字符或空格。   主流算法：GPT 系列主要使用的是 BPE (Byte Pair Encoding) 算法，旨在通过合并高频出现的字符组合来压缩文本，提高效率。     2. 截图场景解析与局限性 (Limitations) 截图中的不同色块代表了分词器将文本切分后的不同 Token。我们可以从图中展示的四个特定场景，分析 LLM 在分词层面遇到的“怪异现象”和限制：   场景一：算术与数字处理 (Arithmetic)  截图内容：127 + 677 = 804 现象：数字通常不会被识别为一个整体，而是被切碎。    局限性：破坏了数...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/16/obsidian/20-Reference/transformer/%E4%BD%8D%E7%BD%AE%E6%8E%A9%E7%A0%81/" title="位置掩码">位置掩码</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-16T16:00:00.000Z" title="发表于 2026-01-17 00:00:00">2026-01-17</time></span></div><div class="content">对于语言模型，我们需要在训练时赋予因果遮蔽，避免模型使用未来的token训练。所以对时间序列维度要进行位置掩码。  串行做法 123456789xbow = torch.zeros((B, T, C))for b in range(B):    for t in range(T):        x_prev = x[b, :t + 1]        xbow[b, t] = torch.mean(x_prev, 0) 这里是一个很简单的token交互，取平均值。可以看到在每个batch维度独立地对时间序列进行遮蔽。对于第t组数据（B, 1, C），我们只让他看到过去的0~t时刻的token内容，即x[b, :t + 1] 。 串行实现逻辑很简单，但是对于GPU不友好。我们可以引入一个数学技巧来处理时间遮蔽。  矩阵做法 12345678910111213torch.manual_seed(1337)B, T, C = 4, 8, 32x = torch.randn(B, T, C)tril = torch.tril(torch.ones(T, T))wei = wei.mas...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#content-inner">7</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/mai.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">HRbenY</div><div class="author-info-description">个人技术博客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">69</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hrbeny"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hrbeny" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:hrcharck@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E7%9B%B4%E5%92%8C/" title="直和">直和</a><time datetime="2026-01-27T02:05:20.000Z" title="发表于 2026-01-27 10:05:20">2026-01-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E7%BB%8F%E9%AA%8C%E5%88%86%E5%B8%83/" title="经验分布">经验分布</a><time datetime="2026-01-27T02:05:20.000Z" title="发表于 2026-01-27 10:05:20">2026-01-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E8%80%83%E8%AF%95%E8%8C%83%E5%9B%B4/" title="考试范围">考试范围</a><time datetime="2026-01-27T02:05:20.000Z" title="发表于 2026-01-27 10:05:20">2026-01-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E9%9B%B6%E5%8C%96%E5%A4%9A%E9%A1%B9%E5%BC%8F%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%A4%9A%E9%A1%B9%E5%BC%8F/" title="零化多项式与最小多项式">零化多项式与最小多项式</a><time datetime="2026-01-27T02:05:20.000Z" title="发表于 2026-01-27 10:05:20">2026-01-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E9%A2%98%E5%9E%8B/" title="题型">题型</a><time datetime="2026-01-27T02:05:20.000Z" title="发表于 2026-01-27 10:05:20">2026-01-27</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/lang-python/" style="font-size: 1.18em; color: #999ca1">lang/python</a> <a href="/tags/topic-gpu/" style="font-size: 1.1em; color: #999">topic/gpu</a> <a href="/tags/lang-shell/" style="font-size: 1.1em; color: #999">lang/shell</a> <a href="/tags/tools-hexo/" style="font-size: 1.1em; color: #999">tools/hexo</a> <a href="/tags/type-note/" style="font-size: 1.42em; color: #99a6b7">type/note</a> <a href="/tags/tools-obsidian/" style="font-size: 1.1em; color: #999">tools/obsidian</a> <a href="/tags/topic-algo/" style="font-size: 1.26em; color: #999fa8">topic/algo</a> <a href="/tags/type-snippet/" style="font-size: 1.18em; color: #999ca1">type/snippet</a> <a href="/tags/lang-cpp/" style="font-size: 1.5em; color: #99a9bf">lang/cpp</a> <a href="/tags/type-note/" style="font-size: 1.18em; color: #999ca1">#type/note</a> <a href="/tags/lang-cpp/" style="font-size: 1.18em; color: #999ca1">#lang/cpp</a> <a href="/tags/topic-algo/" style="font-size: 1.1em; color: #999">#topic/algo</a> <a href="/tags/topic-transformer/" style="font-size: 1.34em; color: #99a3b0">topic/transformer</a> <a href="/tags/lang-cuda/" style="font-size: 1.1em; color: #999">lang/cuda</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              一月 2026
+            </span>
+            <span class="card-archive-list-count">68</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/12/">
+            <span class="card-archive-list-date">
+              十二月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">69</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-01-27T08:17:37.099Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By HRbenY</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

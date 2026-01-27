@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Spa-Master 的博客 - 记录与分享</title><meta name="author" content="HRbenY"><meta name="copyright" content="HRbenY"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="个人技术博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Spa-Master 的博客">
+<meta property="og:url" content="https://hrbeny.github.io/page/5/index.html">
+<meta property="og:site_name" content="Spa-Master 的博客">
+<meta property="og:description" content="个人技术博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hrbeny.github.io/img/mai.png">
+<meta property="article:author" content="HRbenY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hrbeny.github.io/img/mai.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hrbeny.github.io/page/5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Spa-Master 的博客',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><link rel="stylesheet" href="/css/callout_blocks.css"><meta name="generator" content="Hexo 8.1.1"></head><body><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Spa-Master 的博客</span></a></span><div id="menus"></div></nav><div id="site-info"><h1 id="site-title">Spa-Master 的博客</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/hrbeny" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:hrcharck@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/Jacobi%E8%BF%AD%E4%BB%A3%E5%92%8CGauss-Seidel%E8%BF%AD%E4%BB%A3/" title="Jacobi迭代和Gauss-Seidel迭代">Jacobi迭代和Gauss-Seidel迭代</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-13T03:14:07.000Z" title="发表于 2026-01-13 11:14:07">2026-01-13</time></span></div><div class="content">假设我们要解这个方程组： {5x−y=7x+5y=17\begin{cases} 5x - y = 7 \\ x + 5y = 17 \end{cases} {5x−y=7x+5y=17​ 我们可以把它改写成“用其他变量表示当前变量”的形式：   由第1式算出 xxx：x=7+y5x = \frac{7 + y}{5}x=57+y​   由第2式算出 yyy：y=17−x5y = \frac{17 - x}{5}y=517−x​   这两种方法的区别就在于 “什么时候用新算出来的值”。  Jacobi  策略：所有更新同步进行（旧的不去，新的不来）。 在计算第 k+1k+1k+1 轮的 xxx 和 yyy 时，我们只许使用第 kkk 轮（即上一轮）的旧值。哪怕你刚刚算出了新的 xxx，在计算这一轮的 yyy 时也不能用，必须等下一轮。  迭代矩阵 对于线性方程组 Ax=bAx=bAx=b，我们将矩阵 AAA 拆分为三部分： A=D−L−UA = D - L - U A=D−L−U   DDD：对角线矩阵（Diagonal）   LLL：下三角矩阵的相反数（Lower）   UUU...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/13/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E5%9F%BA%E5%92%8C%E7%BB%B4%E6%95%B0/" title="基和维数">基和维数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-13T01:44:19.000Z" title="发表于 2026-01-13 09:44:19">2026-01-13</time></span></div><div class="content"> 基变换 B1B_1B1​到B2B_2B2​的基变换矩阵P: B2=B1PB_2 = B_1P B2​=B1​P  维数公式 dim⁡(W1+W2)=dim⁡(W1)+dim⁡(W2)−dim⁡(W1∩W2)\dim(W_1 + W_2) = \dim(W_1) + \dim(W_2) - \dim(W_1 \cap W_2) dim(W1​+W2​)=dim(W1​)+dim(W2​)−dim(W1​∩W2​)  线性变化的基变换 假设PPP是B1B_1B1​到B2B_2B2​的过度矩阵，B2=B1PB_2=B_1PB2​=B1​P ，B1B_1B1​下的线性变换T的矩阵是AAA，那么T在B2B_2B2​下的矩阵是 B=P−1APB = P^{-1}AP B=P−1AP 本质上是两次坐标翻译的过程。假设我们有新基B2B_2B2​的输入向量，要用T对他线性变换，而这个T只接收旧基B1B_1B1​的输入，输出也是B1B_1B1​的坐标。那么中间就需要两次坐标翻译。首先左乘P翻译成B1B_1B1​下的坐标，输入T后再翻译回B2B_2B2​。如下 最终结果=P−1⏟3.翻译出⋅A⏟2....</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/12/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83/" title="抽样分布">抽样分布</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-12T17:44:26.000Z" title="发表于 2026-01-13 01:44:26">2026-01-13</time></span></div><div class="content">这三个分布（χ2\chi^2χ2、t、F）被称为数理统计中的**“三大抽样分布”**。 它们都有一个共同的“妈妈”——标准正态分布 N(0,1)N(0,1)N(0,1)。 要理解它们，不要死记公式，而是要记住它们的**“出身”（定义）和“用途”**。   1. 卡方分布 (χ2\chi^2χ2 Distribution) —— 衡量“波动的总量”    出身（定义）： 假设你有 nnn 个相互独立的标准正态分布变量 Z1,Z2,…,ZnZ_1, Z_2, \dots, Z_nZ1​,Z2​,…,Zn​。 把它们平方后加起来，这个和就服从自由度为 nnn 的卡方分布： X=Z12+Z22+⋯+Zn2∼χ2(n)X = Z_1^2 + Z_2^2 + \dots + Z_n^2 \sim \chi^2(n) X=Z12​+Z22​+⋯+Zn2​∼χ2(n)   直观理解：   因为是“平方和”，所以卡方分布的值永远是非负的（都在 0 右边）。   它衡量的是一组数据的**“波动总能量”**。   图像是右偏（不对称）的，但随着自由度 nnn 增大，它会越来越像正态分布（中心极限定理）...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/12/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E7%BB%9F%E8%AE%A1%E9%87%8F/" title="统计量">统计量</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-12T17:38:37.000Z" title="发表于 2026-01-13 01:38:37">2026-01-13</time></span></div><div class="content"> 统计量 XXX为抽样结果  (1) Xˉ\bar{X}Xˉ：样本均值 (Sample Mean)   定义：Xˉ=1n∑i=1nXi\bar{X} = \frac{1}{n} \sum_{i=1}^{n} X_iXˉ=n1​∑i=1n​Xi​   含义：它代表你抽取的一组样本数据的平均值。   作用：它是总体均值（Expectation, μ\muμ 或 λ\lambdaλ）的无偏估计量。通俗地说，它是用来猜测总体“中心”在哪里的。    (2) S2S^2S2：样本方差 (Sample Variance)   定义：通常在数理统计教材中，S2S^2S2 特指修正样本方差（无偏方差）。 S2=1n−1∑i=1n(Xi−Xˉ)2S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2 S2=n−11​i=1∑n​(Xi​−Xˉ)2   注意：它的分母是 n−1n-1n−1，而不是 nnn。   含义：它用来衡量样本数据的波动程度（离散程度）。   作用：它是总体方差（Variance, σ2\sigma^2σ2）的无偏估计量。之所以...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/12/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E8%8C%83%E6%95%B0/" title="范数">范数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-12T16:00:50.000Z" title="发表于 2026-01-13 00:00:50">2026-01-13</time></span></div><div class="content"> 一、 基础概念：向量范数 (Vector Norm) 范数是衡量向量“大小”或“长度”的尺子。给定向量 x=[x1,x2,…,xn]Tx = [x_1, x_2, \dots, x_n]^Tx=[x1​,x2​,…,xn​]T：    范数类型 符号 计算公式 直观含义 几何形状（单位球）     1-范数 ∣x∣1|x|_1∣x∣1​ ∑i=1n∣x∣\sum_{i=1}^n |x|∑i=1n​∣x∣ 曼哈顿距离（） 菱形   2-范数 ∣x∣2|x|_2∣x∣2​ ∑i=1nxi2\sqrt{\sum_{i=1}^n x_i^2}∑i=1n​xi2​​ 欧几里得距离。 圆形   ∞\infty∞-范数 |x|_\inf max⁡∣xi∣\max |x_i|max∣xi​∣ 棋盘距离 正方形      二、 进阶概念：矩阵诱导范数 (Induced Matrix Norm) 矩阵范数衡量的是矩阵 AAA 作为“算子”对向量的最大拉伸能力。 定义公式： ∥A∥=max⁡x≠0∥Ax∥∥x∥=max⁡∥x∥=1∥Ax∥\|A\| = \max_{x \neq 0} \frac{\...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/12/obsidian/%E6%97%A5%E5%BF%97/2026/01/2026-01-14/" title="2026-01-14">2026-01-14</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-12T16:00:00.000Z" title="发表于 2026-01-13 00:00:00">2026-01-13</time></span></div><div class="content"> 学习一下obsidian -  这是一个标注块   obsidian[1]  标注块 支持的类型  脚注 创建脚注[2] 也可以行内脚注[3]  内部链接 ^580f90 2026-01-14 或者这样 还可以选择某一块2026-01-14     https://publish.obsidian.md/help-zh ↩︎  这是一个脚注 ↩︎  但是只能在阅读模式下渲染 ↩︎    </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/12/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E6%88%AA%E6%96%AD%E8%AF%AF%E5%B7%AE%E5%92%8C%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%88%86%E6%9E%90/" title="截断误差和稳定性分析">截断误差和稳定性分析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-12T15:34:02.000Z" title="发表于 2026-01-12 23:34:02">2026-01-12</time></span></div><div class="content">比较真解和数值解的误差级别。真解泰勒展开，数值解进行二元泰勒展开，比较多项式。 这里认为数值解的起点是精确的，计算的是截断误差。 考虑 y′(x)=f(x,y),y(a)=y0y&#x27;(x)=f(x,y),\qquad y(a)=y_0 y′(x)=f(x,y),y(a)=y0​ 有方法 yn+1=yn+h f ⁣(xn+h2,  yn+h2f(xn,yn)).y_{n+1}=y_n+h\, f\!\left(x_n+\frac h2,\; y_n+\frac h2 f(x_n,y_n)\right). yn+1​=yn​+hf(xn​+2h​,yn​+2h​f(xn​,yn​)).  真解 因为 xn+1=xn+hx_{n+1}=x_n+hxn+1​=xn​+h，泰勒： y(xn+h)=y(xn)+hy′(xn)+h22y′′(xn)+O(h3).y(x_n+h)=y(x_n)+h y&#x27;(x_n)+\frac{h^2}{2}y&#x27;&#x27;(x_n)+O(h^3). y(xn​+h)=y(xn​)+hy′(xn​)+2h2​y′′(xn​)+O(h3)...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/12/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E6%AD%A3%E4%BA%A4%E5%A4%9A%E9%A1%B9%E5%BC%8F/" title="正交多项式">正交多项式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-12T14:14:02.000Z" title="发表于 2026-01-12 22:14:02">2026-01-12</time></span></div><div class="content"> Legendre多项式 核心思想：Gram-Schmidt 正交化 想象我们在 L2[−1,1]L^2[-1, 1]L2[−1,1] 空间里（权函数 w(x)=1w(x)=1w(x)=1）。我们手里有一堆最原始的素材：{1,x,x2,x3,… }\{1, x, x^2, x^3, \dots\}{1,x,x2,x3,…}。 这些素材并不互相垂直（比如 x2x^2x2 和 111 就不垂直，因为 ∫x2⋅1dx≠0\int x^2 \cdot 1 dx \neq 0∫x2⋅1dx=0）。 我们要做的，就是像雕刻一样，拿原始素材，剔除掉之前已经造好的方向，剩下的就是新的正交多项式。  推导过程：   造 P0(x)P_0(x)P0​(x)： 取第一个素材 111。直接令 P0(x)=1P_0(x) = 1P0​(x)=1。   造 P1(x)P_1(x)P1​(x)： 取素材 xxx。 检查：xxx 和 111 垂直吗？ ∫−11x⋅1dx=0\int_{-1}^1 x \cdot 1 dx = 0 ∫−11​x⋅1dx=0 垂直！太好了，不用修整。 令 P1(x)=xP_1(x...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/12/obsidian/%E6%97%A5%E5%BF%97/2026-01-12/" title="2026-01-12">2026-01-12</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-12T13:11:49.000Z" title="发表于 2026-01-12 21:11:49">2026-01-12</time></span></div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/12/obsidian/%E6%97%A5%E5%BF%97/260103/" title="260103">260103</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-12T13:08:06.000Z" title="发表于 2026-01-12 21:08:06">2026-01-12</time></span></div><div class="content"> transformer  定位到内存泄漏问题  1234567891011121314151617181920212223Step 0 | Loss: 3.62174[step 0] RSS=20.0664 MBrss MB: pre 18.6914 fwd 18.6914 bwd 19.3164 opt 20.0664[backward calls 100] alive TensorImpl=7765 Node=7765 | created TensorImpl=14530 Node=14530Step 100 | Loss: 2.56172[step 100] RSS=180.066 MBrss MB: pre 179.691 fwd 179.691 bwd 180.066 opt 180.066[backward calls 200] alive TensorImpl=15465 Node=15465 | created TensorImpl=28930 Node=28930Step 200 | Loss: 2.54764[step 200] RSS=340.941 MB...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/4/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#content-inner">6</a><a class="page-number" href="/page/7/#content-inner">7</a><a class="extend next" rel="next" href="/page/6/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/mai.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">HRbenY</div><div class="author-info-description">个人技术博客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">69</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hrbeny"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hrbeny" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:hrcharck@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E7%9B%B4%E5%92%8C/" title="直和">直和</a><time datetime="2026-01-27T02:05:20.000Z" title="发表于 2026-01-27 10:05:20">2026-01-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E7%BB%8F%E9%AA%8C%E5%88%86%E5%B8%83/" title="经验分布">经验分布</a><time datetime="2026-01-27T02:05:20.000Z" title="发表于 2026-01-27 10:05:20">2026-01-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E8%80%83%E8%AF%95%E8%8C%83%E5%9B%B4/" title="考试范围">考试范围</a><time datetime="2026-01-27T02:05:20.000Z" title="发表于 2026-01-27 10:05:20">2026-01-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E9%9B%B6%E5%8C%96%E5%A4%9A%E9%A1%B9%E5%BC%8F%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%A4%9A%E9%A1%B9%E5%BC%8F/" title="零化多项式与最小多项式">零化多项式与最小多项式</a><time datetime="2026-01-27T02:05:20.000Z" title="发表于 2026-01-27 10:05:20">2026-01-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/27/obsidian/90-Archived/%E8%AF%BE%E7%A8%8B/%E5%BA%94%E7%94%A8%E9%AB%98%E7%AD%89%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6/%E9%A2%98%E5%9E%8B/" title="题型">题型</a><time datetime="2026-01-27T02:05:20.000Z" title="发表于 2026-01-27 10:05:20">2026-01-27</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/lang-python/" style="font-size: 1.18em; color: #999ca1">lang/python</a> <a href="/tags/topic-gpu/" style="font-size: 1.1em; color: #999">topic/gpu</a> <a href="/tags/lang-shell/" style="font-size: 1.1em; color: #999">lang/shell</a> <a href="/tags/tools-hexo/" style="font-size: 1.1em; color: #999">tools/hexo</a> <a href="/tags/type-note/" style="font-size: 1.42em; color: #99a6b7">type/note</a> <a href="/tags/tools-obsidian/" style="font-size: 1.1em; color: #999">tools/obsidian</a> <a href="/tags/topic-algo/" style="font-size: 1.26em; color: #999fa8">topic/algo</a> <a href="/tags/type-snippet/" style="font-size: 1.18em; color: #999ca1">type/snippet</a> <a href="/tags/lang-cpp/" style="font-size: 1.5em; color: #99a9bf">lang/cpp</a> <a href="/tags/type-note/" style="font-size: 1.18em; color: #999ca1">#type/note</a> <a href="/tags/lang-cpp/" style="font-size: 1.18em; color: #999ca1">#lang/cpp</a> <a href="/tags/topic-algo/" style="font-size: 1.1em; color: #999">#topic/algo</a> <a href="/tags/topic-transformer/" style="font-size: 1.34em; color: #99a3b0">topic/transformer</a> <a href="/tags/lang-cuda/" style="font-size: 1.1em; color: #999">lang/cuda</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              一月 2026
+            </span>
+            <span class="card-archive-list-count">68</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/12/">
+            <span class="card-archive-list-date">
+              十二月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">69</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-01-27T08:17:37.099Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By HRbenY</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
