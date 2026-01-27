@@ -1062,6 +1062,7 @@ inject:
     # - <link rel="stylesheet" href="/xxx.css">
     # callout blocks
     - <link rel="stylesheet" href="/css/callout_blocks.css">
+    - <link rel="stylesheet" href="/css/auto-cover.css">
   bottom:
     - <script src="/js/slogan-pool.js"></script>
     - <script src="/js/slogan-butterfly.js"></script>

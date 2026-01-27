@@ -6,6 +6,7 @@ updated: '2026-01-27 00:00:00'
 tags:
 - tools/hexo
 - type/note
+cover: /img/covers/auto/obsidian-00-inbox-hexo-md-688b46787d.png
 ---
 
 # 简介

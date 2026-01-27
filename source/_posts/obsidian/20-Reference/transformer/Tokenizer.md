@@ -6,6 +6,7 @@ updated: '2026-01-17 00:00:00'
 tags:
 - topic/transformer
 - type/note
+cover: /img/covers/auto/obsidian-20-reference-transformer-tokenizer-md-31c882ac6e.png
 ---
 
 ## 1. 什么是分词器 (Tokenizer)？

@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "hexo generate",
+    "build": "npm run cover:sync && hexo generate",
     "clean": "hexo clean",
-    "deploy": "hexo deploy",
-    "server": "hexo server"
+    "cover:sync": "python tools/cover_sync.py",
+    "deploy": "npm run cover:sync && hexo deploy",
+    "server": "npm run cover:sync && hexo server"
   },
   "hexo": {
     "version": "8.1.1"

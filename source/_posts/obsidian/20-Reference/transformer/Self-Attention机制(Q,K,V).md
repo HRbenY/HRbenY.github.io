@@ -7,6 +7,7 @@ tags:
 - topic/transformer
 - type/note
 - lang/python
+cover: /img/covers/auto/obsidian-20-reference-transformer-self-attention-q-k-v-md-1e8a54a3df.png
 ---
 
 $$\text{Attention}(Q, K, V) = \text{softmax}\left( \frac{QK^T}{\sqrt{d_k}} \right) V$$
