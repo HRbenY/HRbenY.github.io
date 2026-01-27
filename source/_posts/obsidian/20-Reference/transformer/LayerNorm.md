@@ -5,7 +5,6 @@ tags:
 - topic/transformer
 - type/note
 title: LayerNorm
-slug: LayerNorm
 ---
 
 > 并不是BatchNorm简单的交换N和D。

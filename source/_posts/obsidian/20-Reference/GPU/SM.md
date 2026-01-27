@@ -4,7 +4,6 @@ Author: Spa-Master
 tags:
 - topic/gpu
 title: SM
-slug: SM
 ---
 
 流式多处理器

@@ -5,7 +5,6 @@ tags:
 - topic/transformer
 - type/note
 title: Tokenizer
-slug: Tokenizer
 ---
 
 ## 1. 什么是分词器 (Tokenizer)？

@@ -6,7 +6,6 @@ tags:
 - type/note
 - lang/python
 title: Self-Attention机制(Q,K,V)
-slug: Self-Attention机制(Q,K,V)
 ---
 
 $$\text{Attention}(Q, K, V) = \text{softmax}\left( \frac{QK^T}{\sqrt{d_k}} \right) V$$
@@ -93,7 +92,7 @@ wei = q @ k.transpose(-2, -1) * head_size ** 0.5
 
 #### C. Masking (不能看未来)
 
-[位置掩码](/%E4%BD%8D%E7%BD%AE%E6%8E%A9%E7%A0%81/)
+[[位置掩码]]
 
 ```python
 tril = torch.tril(torch.ones(T, T))
