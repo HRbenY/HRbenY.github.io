@@ -67,10 +67,15 @@ markdown:
     - markdown-it-obsidian-callouts
     - markdown-it-mathjax3
 
-# hexo-filter-titlebased-link
-# https://github.com/uuanqin/hexo-filter-titlebased-link
-titlebased_link:
-  enable: true
+# markdown_it_plus 语法渲染插件选项
+markdown_it_plus:
+    plugins:
+        # Obsidian Callouts
+        - plugin:
+            name: mdit-plugin-callouts
+            enable: true
+            options:
+                # this is plugin option
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -111,9 +116,14 @@ exclude:
 ignore:
 
 # Extensions
-## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: butterfly
+
+## Plugins: https://hexo.io/plugins/
+### hexo-filter-titlebased-link
+### https://github.com/uuanqin/hexo-filter-titlebased-link
+titlebased_link:
+  enable: true   # enable this plugin
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

@@ -1054,6 +1054,8 @@ css_prefix: true
 inject:
   head:
     # - <link rel="stylesheet" href="/xxx.css">
+    # callout blocks
+    - <link rel="stylesheet" href="/css/callout_blocks.css">
   bottom:
     # - <script src="xxxx"></script>
 
