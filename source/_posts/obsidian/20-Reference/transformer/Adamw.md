@@ -6,7 +6,6 @@ updated: '2026-01-17 00:00:00'
 tags:
 - topic/transformer
 - type/note
-cover: /img/covers/auto/obsidian-20-reference-transformer-adamw-md-7e5b6cfd3c.png
 ---
 
 从SGD到Adamw，所有优化器的形式都类似

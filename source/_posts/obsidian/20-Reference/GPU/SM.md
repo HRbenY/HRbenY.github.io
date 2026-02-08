@@ -5,7 +5,6 @@ date: '2026-01-17 00:00:00'
 updated: '2026-01-17 00:00:00'
 tags:
 - topic/gpu
-cover: /img/covers/auto/obsidian-20-reference-gpu-sm-md-170ebf83e3.png
 ---
 
 流式多处理器

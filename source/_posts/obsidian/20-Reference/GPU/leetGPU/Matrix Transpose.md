@@ -8,7 +8,6 @@ tags:
 - topic/algo
 - type/note
 - type/snippet
-cover: /img/covers/auto/obsidian-20-reference-gpu-leetgpu-matrix-transpose-md-568b02c19b.png
 ---
 
 假设要实现$B = A^T$

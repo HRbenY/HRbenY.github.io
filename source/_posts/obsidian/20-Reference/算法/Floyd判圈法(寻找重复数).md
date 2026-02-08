@@ -7,7 +7,6 @@ tags:
 - topic/algo
 - type/note
 - lang/cpp
-cover: /img/covers/auto/obsidian-20-reference-floyd-md-161ff4bacd.png
 ---
 
 类似lc142环形链表。
