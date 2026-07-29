@@ -6,7 +6,6 @@ updated: '2026-01-17 00:00:00'
 tags:
 - topic/transformer
 - type/note
-cover: /img/covers/auto/obsidian-20-reference-transformer-layernorm-md-e0ec2b858f.png
 ---
 
 > 并不是BatchNorm简单的交换N和D。
