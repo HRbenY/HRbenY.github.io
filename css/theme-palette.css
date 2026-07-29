@@ -1,0 +1,349 @@
+/**
+ * Site palette — monochromatic teal around #336666
+ * Primary: #336666 | Hover: #478c8c | Active: #244747 | Muted: #e0ecec
+ * BG: #f5f8f8 | Card: #ffffff | Code block: #1e2929 | Divider: #d4e0e0
+ * Heading: #1a2626 | Body: #3d4d4d | Meta: #7a9999
+ * Accent: #d67645 | Info: #4a82b0 | Warning: #d99d36 | Danger: #c75c57
+ */
+
+:root {
+  --palette-primary: #336666;
+  --palette-hover: #478c8c;
+  --palette-active: #244747;
+  --palette-muted: #e0ecec;
+  --palette-bg: #f5f8f8;
+  --palette-card: #ffffff;
+  --palette-code-bg: #1e2929;
+  --palette-divider: #d4e0e0;
+  /* Body/heading: pure black (light) / white (dark). Date & tags keep separate colors. */
+  --palette-text: #000000;
+  --palette-heading: #000000;
+  --palette-body: #000000;
+  --palette-meta: #7a9999; /* 发布时间等 */
+  --palette-tag: #336666; /* 标签（浅色模式） */
+  --palette-accent: #d67645;
+  --palette-info: #4a82b0;
+  --palette-warning: #d99d36;
+  --palette-danger: #c75c57;
+
+  /* Bridge into Butterfly CSS variables where possible */
+  --global-bg: var(--palette-bg);
+  --font-color: var(--palette-text);
+  --card-bg: var(--palette-card);
+  --card-border: var(--palette-divider);
+  --hr-border: var(--palette-divider);
+  --hr-before-color: var(--palette-primary);
+  --card-meta: var(--palette-meta);
+}
+
+/* ---------- Surfaces ---------- */
+body {
+  background-color: var(--palette-bg);
+  color: var(--palette-text);
+}
+
+#aside-content .card-widget,
+.recent-post-item {
+  background: var(--palette-card);
+  border-color: var(--palette-divider);
+}
+
+/* ---------- Typography: default black / white ---------- */
+/* Do not style homepage hero #site-title / #site-subtitle here (need white on banner) */
+h1:not(#site-title),
+h2, h3, h4, h5, h6,
+#article-container h1,
+#article-container h2,
+#article-container h3,
+#article-container h4,
+#article-container h5,
+#article-container h6,
+.recent-post-info .article-title,
+.article-title a,
+#article-container,
+#article-container p,
+#article-container li,
+#article-container td,
+#article-container th,
+.recent-post-info .content,
+#aside-content,
+#aside-content .card-widget,
+.layout,
+#post,
+#page,
+#archive {
+  color: var(--palette-text) !important;
+}
+
+/* Hero greeting (e.g. 夜深了) + subtitle over top_img: pure white */
+#page-header #site-title,
+#page-header #site-subtitle,
+#page-header #site-subtitle #subtitle,
+#page-header #scroll-down .scroll-down-effects {
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* 发布时间：单独配色（不是正文黑/白） */
+.post-meta-date,
+.post-meta-date *,
+.article-meta time,
+.article-meta .post-meta-date,
+time.post-meta-date-created,
+time.post-meta-date-updated,
+.post-meta > .post-meta-date {
+  color: var(--palette-meta) !important;
+}
+
+/* ---------- Links & interactions ---------- */
+a {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  color: var(--palette-text);
+}
+
+/* 正文内链接：默认随正文黑/白，悬浮用主色区分 */
+#article-container a,
+.recent-post-info .article-title,
+.recent-post-info a {
+  color: var(--palette-text) !important;
+}
+
+#article-container a:hover,
+.recent-post-info .article-title:hover,
+a:hover {
+  color: var(--palette-hover) !important;
+}
+
+/* Keep hero text white even if global a:hover fires */
+#page-header #site-title:hover,
+#page-header a:hover {
+  color: #ffffff !important;
+}
+
+/* Footer sits on primary teal bar — keep light text (not mode black/white) */
+#footer,
+#footer a,
+#footer span,
+#footer-wrap,
+#footer-wrap a,
+#footer-wrap span {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+#footer a:hover,
+#footer-wrap a:hover {
+  color: #ffffff !important;
+}
+
+a:active,
+button:active,
+.btn-beautify:active {
+  color: var(--palette-active) !important;
+}
+
+/* Active / pressed denser teal */
+.pagination .page-number.current {
+  background: var(--palette-primary) !important;
+  border-color: var(--palette-primary) !important;
+}
+
+.pagination .page-number:hover,
+.btn-beautify:hover {
+  background: var(--palette-hover) !important;
+  border-color: var(--palette-hover) !important;
+}
+
+/* ---------- Rightside (settings / go-up) ----------
+ * Footer uses primary #336666; buttons use a different step so they don't blend.
+ */
+#rightside > div > button,
+#rightside > div > a {
+  background-color: var(--palette-hover) !important; /* #478c8c，比底栏亮一档 */
+  color: #ffffff !important;
+  border: none !important;
+}
+
+#rightside > div > button:hover,
+#rightside > div > a:hover {
+  background-color: var(--palette-active) !important; /* #244747 */
+  color: #ffffff !important;
+}
+
+#rightside > div > button:active,
+#rightside > div > a:active {
+  background-color: var(--palette-primary) !important;
+  color: #ffffff !important;
+}
+
+/* ---------- Tags: no background；颜色单独一套（不是正文黑/白） ---------- */
+.tagcloud a,
+#aside-content .card-tag-cloud a,
+.post-meta__tags,
+.article-meta .article-meta__tags,
+.article-meta__tags {
+  background: transparent !important;
+  color: var(--palette-tag) !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.tagcloud a:hover,
+#aside-content .card-tag-cloud a:hover,
+.post-meta__tags:hover,
+.article-meta .article-meta__tags:hover {
+  background: transparent !important;
+  color: var(--palette-hover) !important;
+  text-decoration: underline;
+}
+
+/* ---------- Code ---------- */
+/* Inline */
+#article-container code,
+code:not([class*="language-"]) {
+  color: var(--palette-primary) !important;
+  background: var(--palette-muted) !important;
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+
+/* Fenced / highlight blocks — deep teal-black */
+figure.highlight,
+#article-container figure.highlight,
+#article-container pre,
+#article-container .highlight,
+.code-area,
+figure.highlight table,
+figure.highlight .code {
+  background: var(--palette-code-bg) !important;
+}
+
+figure.highlight {
+  border: 1px solid rgba(51, 102, 102, 0.35);
+  border-radius: 6px;
+}
+
+/* Keep inline code inside highlight from using muted light bg */
+figure.highlight code {
+  background: transparent !important;
+  color: inherit !important;
+  padding: 0;
+}
+
+/* ---------- Dividers ---------- */
+hr {
+  border-color: var(--palette-divider) !important;
+  background: transparent !important;
+}
+
+#article-container hr:before {
+  color: var(--palette-primary) !important;
+}
+
+.card-widget,
+.recent-post-item {
+  box-shadow: 0 2px 8px rgba(26, 38, 38, 0.06);
+}
+
+/* ---------- Accent (complementary terracotta) ---------- */
+/* Use sparingly: e.g. social/share emphasis if present */
+.social-share .icon-weibo,
+a[href*="rss"],
+.rss,
+#footer-wrap a.footer-rss {
+  color: var(--palette-accent) !important;
+}
+
+/* ---------- Callouts / functional accents ---------- */
+.callout[data-callout="note"],
+.callout[data-callout="info"],
+.callout[data-callout="todo"] {
+  border-color: rgba(74, 130, 176, 0.55) !important;
+}
+.callout[data-callout="note"] > .callout-title,
+.callout[data-callout="note"] > summary,
+.callout[data-callout="info"] > .callout-title,
+.callout[data-callout="info"] > summary,
+.callout[data-callout="todo"] > .callout-title,
+.callout[data-callout="todo"] > summary {
+  background-color: rgba(74, 130, 176, 0.12) !important;
+  color: var(--palette-info) !important;
+}
+
+.callout[data-callout="warning"],
+.callout[data-callout="caution"],
+.callout[data-callout="attention"] {
+  border-color: rgba(217, 157, 54, 0.55) !important;
+}
+.callout[data-callout="warning"] > .callout-title,
+.callout[data-callout="warning"] > summary,
+.callout[data-callout="caution"] > .callout-title,
+.callout[data-callout="caution"] > summary,
+.callout[data-callout="attention"] > .callout-title,
+.callout[data-callout="attention"] > summary {
+  background-color: rgba(217, 157, 54, 0.12) !important;
+  color: var(--palette-warning) !important;
+}
+
+.callout[data-callout="danger"],
+.callout[data-callout="error"],
+.callout[data-callout="failure"],
+.callout[data-callout="fail"],
+.callout[data-callout="bug"] {
+  border-color: rgba(199, 92, 87, 0.55) !important;
+}
+.callout[data-callout="danger"] > .callout-title,
+.callout[data-callout="danger"] > summary,
+.callout[data-callout="error"] > .callout-title,
+.callout[data-callout="error"] > summary,
+.callout[data-callout="failure"] > .callout-title,
+.callout[data-callout="failure"] > summary,
+.callout[data-callout="fail"] > .callout-title,
+.callout[data-callout="fail"] > summary,
+.callout[data-callout="bug"] > .callout-title,
+.callout[data-callout="bug"] > summary {
+  background-color: rgba(199, 92, 87, 0.12) !important;
+  color: var(--palette-danger) !important;
+}
+
+/* Tip / success stay in primary teal family */
+.callout[data-callout="tip"],
+.callout[data-callout="hint"],
+.callout[data-callout="important"],
+.callout[data-callout="success"],
+.callout[data-callout="check"],
+.callout[data-callout="done"] {
+  border-color: rgba(51, 102, 102, 0.55) !important;
+}
+.callout[data-callout="tip"] > .callout-title,
+.callout[data-callout="tip"] > summary,
+.callout[data-callout="hint"] > .callout-title,
+.callout[data-callout="hint"] > summary,
+.callout[data-callout="important"] > .callout-title,
+.callout[data-callout="important"] > summary,
+.callout[data-callout="success"] > .callout-title,
+.callout[data-callout="success"] > summary,
+.callout[data-callout="check"] > .callout-title,
+.callout[data-callout="check"] > summary,
+.callout[data-callout="done"] > .callout-title,
+.callout[data-callout="done"] > summary {
+  background-color: rgba(51, 102, 102, 0.1) !important;
+  color: var(--palette-primary) !important;
+}
+
+/* ---------- Dark mode ---------- */
+[data-theme="dark"] {
+  --palette-bg: #121a1a;
+  --palette-card: #1a2424;
+  --palette-text: #ffffff;
+  --palette-heading: #ffffff;
+  --palette-body: #ffffff;
+  --palette-meta: #8aa3a3; /* 发布时间：比正文白略淡 */
+  --palette-tag: #8aa3a3; /* 标签：比正文白略淡 */
+  --palette-muted: #243333;
+  --palette-divider: #2a3a3a;
+  --global-bg: var(--palette-bg);
+  --font-color: var(--palette-text);
+  --card-bg: var(--palette-card);
+}
+
+/* 深色模式：标签保持次要色（变量已换），无需再写一遍结构 */
