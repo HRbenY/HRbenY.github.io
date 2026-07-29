@@ -184,10 +184,28 @@ scripts/
   normalize-tags.js         # tag 去 #
   generate-root-json-assets.js  # words.json / status.json → public
 source/css/callout_blocks.css   # Callout + 任务列表样式
-tools/cover_sync.py         # 自动头图
+tools/cover_sync.py         # 按规则自动生成文章封面 PNG（标题/标签）
+source/img/jvgou2.jpg       # 站点横幅与滚动背景（源文件：Downloads/巨构2.jpg）
+source/css/theme-palette.css # 青绿调色盘（主色 #336666 + 相近色阶）
+source/img/covers/auto/     # cover_sync 生成的文章封面
 source/_posts/obsidian/     # 同步来的笔记
   90-Archived/Obsidian/     # OFM 测试语料（官方帮助三篇）
 ```
+
+### 全站头图 vs 文章封面（区分）
+
+| 用途 | 资源 | 配置 |
+|---|---|---|
+| 首页/归档等**横幅**、滚动**背景** | `source/img/jvgou2.jpg` | `default_top_img` / `index_img` / `archive_img` / `background` 等 |
+| 文章列表/文章页 **cover 卡片图** | `source/img/covers/auto/*.png` | `tools/cover_sync.py` 写入 front matter `cover:` |
+
+不要把静态巨构图写进各篇 `cover`，否则会覆盖自动生成规则。`cover: false` 可关闭单篇封面。
+
+### 主题色盘（#336666 同色系）
+
+- Butterfly `theme_color`：主色/链接/TOC 等用 `#336666`，Hover/选中用 `#478c8c`，meta 用 `#7a9999`，行内 code 底 `#e0ecec`
+- `source/css/theme-palette.css`：页面底 `#f5f8f8`、卡片白、标题 `#1a2626`、正文 `#3d4d4d`、代码块 `#1e2929`、分割线 `#d4e0e0`；功能色 Info/Warning/Danger/Accent 仅用于 callout/强调
+- 注入：`_config.butterfly.yml` → `inject.head` 引入 `theme-palette.css`
 
 依赖（与 OFM 相关）：
 

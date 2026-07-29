@@ -65,17 +65,18 @@ avatar:
 # Disable all banner images
 disable_top_img: false
 
+# Site-wide header banner (巨构2.jpg → source/img/jvgou2.jpg)
 # If the banner of page not setting, it will show the default_top_img
-default_top_img:
+default_top_img: /img/jvgou2.jpg
 
 # The banner image of index page
-index_img:
+index_img: /img/jvgou2.jpg
 
 # The banner image of archive page
-archive_img:
+archive_img: /img/jvgou2.jpg
 
 # Note: tag page, not tags page
-tag_img:
+tag_img: /img/jvgou2.jpg
 
 # The banner image of tag page, you can set the banner image for each tag
 # Format:
@@ -83,7 +84,7 @@ tag_img:
 tag_per_img:
 
 # Note: category page, not categories page
-category_img:
+category_img: /img/jvgou2.jpg
 
 # The banner image of category page, you can set the banner image for each category
 # Format:
@@ -93,10 +94,10 @@ category_per_img:
 # The background image of footer
 footer_img: false
 
-# Website Background
+# Website Background (fixed layer behind content; visible when scrolling past banners)
 # Can set it to color, image URL or an array containing colors and/or image URLs
 # If an array is provided, a random background will be selected from the array on each load
-background:
+background: /img/jvgou2.jpg
 
 cover:
   # Disable the cover or not
@@ -104,8 +105,9 @@ cover:
   aside_enable: true
   archives_enable: true
   # When cover is not set, the default cover is displayed
+  # Post cards use per-post covers from tools/cover_sync.py (auto PNG).
+  # Leave empty so generated covers take effect after cover:sync.
   default_cover:
-    # - xxx.jpg
 
 # Replace Broken Images
 error_img:
@@ -763,23 +765,25 @@ site_verification:
 # Theme color for customize
 # Notice: color value must in double quotes like "#000" or may cause error!
 
-# theme_color:
-#   enable: true
-#   main: "#49B1F5"
-#   paginator: "#00c4b6"
-#   button_hover: "#FF7242"
-#   text_selection: "#00c4b6"
-#   link_color: "#99a9bf"
-#   meta_color: "#858585"
-#   hr_color: "#A4D8FA"
-#   code_foreground: "#F47466"
-#   code_background: "rgba(27, 31, 35, .05)"
-#   toc_color: "#00c4b6"
-#   blockquote_padding_color: "#49b1f5"
-#   blockquote_background_color: "#49b1f5"
-#   scrollbar_color: "#49b1f5"
-#   meta_theme_color_light: "ffffff"
-#   meta_theme_color_dark: "#0d0d0d"
+# Palette: deep teal #336666 + monochromatic steps + muted accents
+# (full surface/typography overrides in /css/theme-palette.css)
+theme_color:
+  enable: true
+  main: "#336666"                 # Primary
+  paginator: "#336666"
+  button_hover: "#478c8c"         # Hover (brighter)
+  text_selection: "#478c8c"
+  link_color: "#336666"
+  meta_color: "#7a9999"           # Meta text
+  hr_color: "#336666"
+  code_foreground: "#336666"      # Inline code text
+  code_background: "#e0ecec"      # Soft muted teal
+  toc_color: "#336666"
+  blockquote_padding_color: "#336666"
+  blockquote_background_color: "#336666"
+  scrollbar_color: "#478c8c"
+  meta_theme_color_light: "#f5f8f8"
+  meta_theme_color_dark: "#1e2929"
 
 # The user interface setting of category and tag page
 # Choose: index - same as Homepage UI / default - same as archives UI
@@ -1064,6 +1068,8 @@ inject:
     # - <link rel="stylesheet" href="/xxx.css">
     # callout blocks
     - <link rel="stylesheet" href="/css/callout_blocks.css">
+    # teal palette surfaces / typography / accents
+    - <link rel="stylesheet" href="/css/theme-palette.css">
   bottom:
     - <script src="/js/slogan-pool.js"></script>
     - <script src="/js/slogan-butterfly.js"></script>
