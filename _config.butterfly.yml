@@ -458,7 +458,9 @@ busuanzi:
 math:
   # Choose: mathjax, katex
   # Leave it empty if you don't need math
-  use: mathjax
+  # Use katex to match hexo-renderer-markdown-it-plus (server-side KaTeX HTML).
+  # mathjax would leave formulas unstyled because $...$ are already consumed at build time.
+  use: katex
   per_page: true
   hide_scrollbar: false
 

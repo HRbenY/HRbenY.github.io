@@ -1,5 +1,7 @@
 # SPA-Master 的 Hexo 博客仓库
 
+> Obsidian → Hexo 渲染适配、配置坑与插件清单见 **[CLAUDE.md](./CLAUDE.md)**。
+
 ## Workflow
 
 使用Obsidian编写Markdown笔记，同步到github。Obsidian的repo配置了Github Action，当检查到front-matter为published = true的笔记有变化时自动推送这部分笔记到当前仓库的 main 分支。本repo的Action检查到main分支变化

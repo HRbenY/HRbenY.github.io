@@ -68,14 +68,20 @@ markdown:
     - markdown-it-mathjax3
 
 # markdown_it_plus 语法渲染插件选项
+# 注意：hexo-renderer-markdown-it-plus 只读本段，上面的 markdown: 段对该渲染器无效
 markdown_it_plus:
-    plugins:
-        # Obsidian Callouts
-        - plugin:
-            name: mdit-plugin-callouts
-            enable: true
-            options:
-                # this is plugin option
+  plugins:
+    # Obsidian 官方 Callout 语法：> [!note]- / > [!tip]+
+    - plugin:
+        name: markdown-it-obsidian-callouts
+        enable: true
+    # GFM / Obsidian 任务列表：- [ ] / - [x]
+    - plugin:
+        name: markdown-it-task-lists
+        enable: true
+        options:
+          enabled: true
+          label: true
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
