@@ -1,5 +1,5 @@
 ---
-title: null
+title: FlowR 阅读笔记
 author: Spa-Master
 date: 2026-07-30 20:34:00
 updated: 2026-07-30 20:34:00
@@ -36,4 +36,4 @@ $$\boldsymbol{\Sigma}_k := \mathbf{U}_k \mathrm{diag}(\mathbf{s}_k)^2 \mathbf{U}
 
 ## Flow Matching
 
-参考 [[Flow matching]]
+原理参考 [[Flow matching]]
