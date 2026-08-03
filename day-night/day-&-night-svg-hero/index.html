@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day & Night SVG Hero</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              day: {
+                sky: '#60A5FA', // blue-400
+                land: '#4ADE80', // green-400
+              },
+              night: {
+                sky: '#1E1B4B', // indigo-950
+                land: '#111827', // gray-900
+              }
+            },
+            animation: {
+              'twinkle-1': 'twinkle 4s ease-in-out infinite',
+              'twinkle-2': 'twinkle 6s ease-in-out infinite 2s',
+              'twinkle-3': 'twinkle 8s ease-in-out infinite 1s',
+            },
+            keyframes: {
+              twinkle: {
+                '0%, 100%': { opacity: 0.6, transform: 'scale(0.9)' },
+                '50%': { opacity: 0.9, transform: 'scale(1.0)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Smooth background transition for the whole page */
+      body {
+        transition: background-color 0.5s ease, color 0.5s ease;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 transition-colors duration-500">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

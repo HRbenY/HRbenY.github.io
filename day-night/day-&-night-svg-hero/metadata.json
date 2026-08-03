@@ -1,0 +1,5 @@
+{
+  "name": "Day & Night SVG Hero",
+  "description": "A responsive, animated SVG hero section that transitions between day and night modes based on system preferences or user toggle.",
+  "requestFramePermissions": []
+}

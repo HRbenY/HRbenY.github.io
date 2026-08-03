@@ -4,6 +4,8 @@ author: Spa-Master
 date: 2026-07-27 22:42:00
 updated: 2026-07-29 22:42:00
 tags: []
+
+cover: https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260727224203927.png
 ---
 
 ![image.png](https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260727224203927.png)

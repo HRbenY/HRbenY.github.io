@@ -172,16 +172,15 @@ def write_text(path, text):
     with open(path, "w", encoding="utf-8", newline="\n") as handle:
         handle.write(text)
 
-def build_tags_for_image(tags):
-    result = []
-    for tag in tags:
-        if not tag:
-            continue
-        if tag.startswith("#"):
-            result.append(tag)
-        else:
-            result.append(f"#{tag}")
-    return result
+MD_IMAGE_RE = re.compile(r"!\[[^\]]*\]\(([^)\s]+)\)")
+
+def find_first_image(body):
+    """取正文第一个 markdown 图片 URL；只认 http(s)（图床），本地路径/Obsidian 嵌入返回 None 走生成 fallback。"""
+    for match in MD_IMAGE_RE.finditer(body):
+        url = match.group(1).strip()
+        if url.startswith(("http://", "https://")):
+            return url
+    return None
 
 def process_post(path, referenced):
     text = load_text(path)
@@ -197,9 +196,26 @@ def process_post(path, referenced):
     if cover is False:
         return {"skipped": 1}
 
+    # 正文第一个图片优先作为封面（仅当没有显式自定义 cover）
+    first_img = find_first_image(body)
+    has_custom_cover = isinstance(cover, str) and bool(cover) and not cover.startswith(AUTO_URL_PREFIX)
+    if first_img and not has_custom_cover:
+        updates = {}
+        if cover != first_img:
+            updates["cover"] = first_img
+        updated = 0
+        if updates:
+            new_front = update_front_matter(front_lines, updates)
+            new_text = "---\n" + "".join(new_front) + "---\n" + body
+            if new_text != text:
+                write_text(path, new_text)
+                updated = 1
+        return {"updated": updated}
+
     is_auto = isinstance(cover, str) and cover.startswith(AUTO_URL_PREFIX)
     if cover and not is_auto:
         return {"skipped": 1}
+
 
     post_rel = os.path.relpath(path, POSTS_DIR).replace(os.sep, "/")
     cover_filename = build_cover_filename(post_rel, title, tags)
