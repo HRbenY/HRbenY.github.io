@@ -3,7 +3,6 @@ title: Self-Attention机制(Q,K,V)
 author: Spa-Master
 date: '2026-01-17 00:00:00'
 updated: '2026-01-17 00:00:00'
-cover: /img/covers/auto/obsidian-20-reference-transformer-self-attention-q-k-v-md-9f0bdd73ca.png
 ---
 
 $$\text{Attention}(Q, K, V) = \text{softmax}\left( \frac{QK^T}{\sqrt{d_k}} \right) V$$

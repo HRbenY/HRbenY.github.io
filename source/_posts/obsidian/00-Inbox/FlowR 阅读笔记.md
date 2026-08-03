@@ -4,7 +4,6 @@ author: Spa-Master
 date: 2026-07-30 20:34:00
 updated: 2026-07-30 20:34:00
 tags: []
-cover: https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260730212059602.png
 ---
 
 ## 引入

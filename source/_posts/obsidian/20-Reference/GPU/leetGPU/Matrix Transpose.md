@@ -3,7 +3,6 @@ title: Matrix Transpose
 author: Spa-Master
 date: '2026-01-17 00:00:00'
 updated: '2026-01-17 00:00:00'
-cover: /img/covers/auto/obsidian-20-reference-gpu-leetgpu-matrix-transpose-md-3644dd8807.png
 ---
 
 假设要实现$B = A^T$

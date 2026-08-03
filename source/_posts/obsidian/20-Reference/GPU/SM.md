@@ -3,8 +3,6 @@ title: SM
 author: Spa-Master
 date: '2026-01-17 00:00:00'
 updated: '2026-01-17 00:00:00'
-
-cover: https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260117231048749.png
 ---
 
 流式多处理器
