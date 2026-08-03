@@ -3,11 +3,6 @@ title: Matrix Transpose
 author: Spa-Master
 date: '2026-01-17 00:00:00'
 updated: '2026-01-17 00:00:00'
-tags:
-- lang/cuda
-- topic/algo
-- type/note
-- type/snippet
 ---
 
 假设要实现$B = A^T$

@@ -3,9 +3,6 @@ title: Adamw
 author: Spa-Master
 date: '2026-01-17 00:00:00'
 updated: '2026-01-17 00:00:00'
-tags:
-- topic/transformer
-- type/note
 ---
 
 从SGD到Adamw，所有优化器的形式都类似

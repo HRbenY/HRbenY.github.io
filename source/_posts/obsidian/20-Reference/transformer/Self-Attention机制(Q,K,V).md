@@ -3,10 +3,6 @@ title: Self-Attention机制(Q,K,V)
 author: Spa-Master
 date: '2026-01-17 00:00:00'
 updated: '2026-01-17 00:00:00'
-tags:
-- topic/transformer
-- type/note
-- lang/python
 ---
 
 $$\text{Attention}(Q, K, V) = \text{softmax}\left( \frac{QK^T}{\sqrt{d_k}} \right) V$$

@@ -3,9 +3,6 @@ title: LayerNorm
 author: Spa-Master
 date: '2026-01-17 00:00:00'
 updated: '2026-01-17 00:00:00'
-tags:
-- topic/transformer
-- type/note
 ---
 
 > 并不是BatchNorm简单的交换N和D。

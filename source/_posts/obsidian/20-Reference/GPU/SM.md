@@ -3,8 +3,6 @@ title: SM
 author: Spa-Master
 date: '2026-01-17 00:00:00'
 updated: '2026-01-17 00:00:00'
-tags:
-- topic/gpu
 ---
 
 流式多处理器
