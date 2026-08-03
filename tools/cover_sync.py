@@ -172,6 +172,17 @@ def write_text(path, text):
     with open(path, "w", encoding="utf-8", newline="\n") as handle:
         handle.write(text)
 
+def build_tags_for_image(tags):
+    result = []
+    for tag in tags:
+        if not tag:
+            continue
+        if tag.startswith("#"):
+            result.append(tag)
+        else:
+            result.append(f"#{tag}")
+    return result
+
 MD_IMAGE_RE = re.compile(r"!\[[^\]]*\]\(([^)\s]+)\)")
 
 def find_first_image(body):
