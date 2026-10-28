@@ -55,3 +55,9 @@ tags: []
 
 - Redundancy so that a failing piece doesn't make the whole system fail.
 - Applies to everything from datacenters to storage to memory ...to instructions.
+
+### 2~4
+
+二进制，C 语言语法
+
+### 5 C : Memory Management
