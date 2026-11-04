@@ -73,3 +73,29 @@ RISC-V 32 I 指令集架构规定了 32 个 32 位宽的寄存器。其中，零
 ### 零寄存器
 
 寄存器 `x0` 被硬件连线置零，无法修改数值。
+
+### 位运算指令
+
+![image.png](https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20261104210510566.png)
+
+注意 `not` 是一个伪指令，`not rd rs1` 底层实现是 `xori rd rs1 -1` 。而且 `not` 没有立即数版本，因为将立即数取反并存入，相当于直接存入立即数取反后的结果，没必要专门创建一个指令。
+
+### 数据传输
+
+
+
+![image.png](https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20261104210900561.png)
+
+如上图，处理器通过发出地址来读取或写入数据，从而与内存通信。
+
+- **从内存加载**：将数据从内存读取到处理器中。
+- **存储到**内存：将数据从处理器写入内存。
+
+> [!Note]-
+> As computer architects, our world is processor-centric–because that’s where all the action happens. So the direction of this operation is with respect to the operation: load _from_, store _to_.
+
+RISC-V 只允许对**寄存器**中的数据进行操作。对内存中的数据进行任何操作都必须涉及多条指令：
+
+1. 将内存中的数据**加载到寄存器中**
+2. 对处理器中的寄存器**执行操作。**
+3. （如有必要）将数据**存储回内存。**
