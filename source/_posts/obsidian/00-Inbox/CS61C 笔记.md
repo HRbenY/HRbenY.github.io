@@ -94,8 +94,36 @@ RISC-V 32 I 指令集架构规定了 32 个 32 位宽的寄存器。其中，零
 > [!Note]-
 > As computer architects, our world is processor-centric–because that’s where all the action happens. So the direction of this operation is with respect to the operation: load _from_, store _to_.
 
+#### 读取字
+
+| Instruction       | Name       | Description                            |
+| ----------------- | ---------- | -------------------------------------- |
+| `lw rd imm(rs1)`  | Load Word  | `R[rd] = M[R[rs1] + imm][31:0]`        |
+| `sw rs2 imm(rs1)` | Store Word | `M[R[rs1] + imm][31:0] = R[rs2][31:0]` |
+
 RISC-V 只允许对**寄存器**中的数据进行操作。对内存中的数据进行任何操作都必须涉及多条指令：
 
 1. 将内存中的数据**加载到寄存器中**
 2. 对处理器中的寄存器**执行操作。**
 3. （如有必要）将数据**存储回内存。**
+
+#### 字节序和对齐
+
+> 在 RISC-V 中，字节序与字节地址无关。
+
+无论在大端还是小端系统中，从该字节的地址加载一个字节大小的数据，都将返回存储的值。因为无论字节序如何，字节的存储都是相同的。比如 `0x12345678`，存入大端为 `78 56 34 12`，存入小端为 `12 34 56 78` 。虽然字节之间的顺序不同，但是字节是相同的，都是 `12` `34` `56` `78` 这四个。
+
+> 根据 RISC-V 标准，字的加载和存储操作**应该使用字对齐的地址**。
+
+对于 RV32I 来说，这意味着地址 `R[rs1] + imm` 应该是 4 的倍数。非字对齐的地址会导致依赖于具体实现的行为。换句话说，虽然 RISC-V 在技术上允许非对齐访问以支持旧代码，但这非常慢且混乱。
+
+
+#### 读取字节
+
+对于大小小于 32 位的数据类型，如果按照字存取方式申请完整的 word，会比较浪费。 RV32I 提供字节大小和半字大小存储方式。
+
+| Instruction       | Name            | Description                            |
+| ----------------- | --------------- | -------------------------------------- |
+| `sb rs2 imm(rs1)` | Store Byte      | `M[R[rs1] + imm][7:0] = R[rs2][7:0]`   |
+| `sh rs2 imm(rs1)` | Store Half-word | `M[R[rs1] + imm][15:0] = R[rs2][15:0]` |
+| `sw rs2 imm(rs1)` | Store Word      | `M[R[rs1] + imm][31:0] = R[rs2][31:0]` |
