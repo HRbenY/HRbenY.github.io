@@ -6,6 +6,8 @@ updated: 2026-10-27 16:43:00
 tags: []
 ---
 
+> [RV32I Green Card](https://notes.cs61c.org/content/misc/rv32i-green-card/#sec-green-card)
+
 ### 6 great ideas in computer architecture
 
 #### 1. 架构的抽象
@@ -233,3 +235,138 @@ End:   # …
 如果这里没有 else 分支，意味着只有 if 的时候需要跳转一次。那么总是写法 B 最优。因为反转了 if 条件之后，满足条件的只需要顺序执行，不用跳转，不满足条件就跳转一次；不反转则无论满不满足都需要跳转一次。如下图
 
 ![image.png](https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20261109155118113.png)
+
+#### **Control Structure Reductions**
+
+上面介绍的通过条件取反的方式改变汇编地址顺序的方式就称作 **Control Structure Reductions**。这里列举一些常用条件语句的规约方式。
+
+##### 1 `if` conditional
+
+Consider the below C code. The code reduction uses the idea leveraged in **Example 1** and **Example 2** to **flip the conditional** with a `goto` statement. [原文](https://notes.cs61c.org/content/rv-decision-making/loops/)
+
+```c
+If (cond) {
+    Line 1;
+    Line 2;
+}
+Line 3;
+```
+
+
+> [!Show Reduction]-
+> ```c
+> if (! cond) goto afterIf;
+> line 1;
+> line 2;
+> afterIf:
+>     line 3;
+> ```
+
+##### 2 `while` loop
+
+```c
+while(cond) {
+    line1;
+    line2;
+} 
+line3;
+```
+
+> [!Show Reduction]-
+> ```c
+> Loop:
+>     if(!cond) goto AfterLoop;
+>     line1;
+>     line2;
+>     goto Loop;
+> 
+> AfterLoop:
+>     line3;
+> ```
+
+
+
+### 4.3 `while` loop with `break`
+
+In the below code, `break` reduces to a `goto` statement:[](https://notes.cs61c.org/content/rv-decision-making/loops/)
+
+```c
+while(true) {
+    line;
+    break;
+}
+line;
+```
+
+> [!Show Reduction]-
+> ```c
+> while(true) {
+>     line;
+>     goto AfterWhile;
+> }
+> AfterWhile:
+>     line;
+> ```
+
+
+
+### 4.4 `for` loop
+
+```c
+for(startline;cond;incline) {
+    line1;
+    line2;
+} 
+line3;
+```
+
+We recommend first translating `for` loops into the equivalent `while` loop:[](https://notes.cs61c.org/content/rv-decision-making/loops/)
+
+```c
+startline;
+while(cond) {
+    line1;
+    line2;
+    incline;
+} 
+line3;
+```
+
+Finally, reduce with `goto`.[](https://notes.cs61c.org/content/rv-decision-making/loops/)
+
+> [!Show Reduction]-
+> ```c
+> startline;
+> 
+> Loop:
+>     if(!cond) goto AfterLoop
+>     line1;
+>     line2;
+>     incline;
+>     goto Loop
+> 
+> AfterLoop:
+>     line3;
+> ```
+
+### 4.5 `do-while` loop
+
+The C code:
+
+```c
+do {
+    line1;
+    line2;
+} while(cond)
+line3;
+```
+
+> [!Show Reduction]-
+> ```c
+> Loop:
+>     line1;
+>     line2;
+>     if(cond) goto Loop;
+>  
+> line3;
+> ```
