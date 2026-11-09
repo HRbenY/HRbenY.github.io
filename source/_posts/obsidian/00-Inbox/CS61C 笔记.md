@@ -147,3 +147,56 @@ RISC-V 只允许对**寄存器**中的数据进行操作。对内存中的数据
 
 > [!为什么没有 存储无符号？]-
 > 因为有无符号的规定只出现在需要补位的场景。存储时不管有没有符号都是相同的，直接逐位写入内存即可。
+
+
+### 条件分支
+
+对应 c 的 if 语句，满足条件时跳转。
+
+| Instruction          | Name/Description                                 |
+| -------------------- | ------------------------------------------------ |
+| `beq rs1 rs2 Label`  | Branch if Equal                                  |
+| `bne rs1 rs2 Label`  | Branch if Not Equal                              |
+| `blt rs1 rs2 Label`  | Branch if Less Than (signed) (rs1 < rs2)         |
+| `bge rs1 rs2 Label`  | Branch if Greater or Equal (signed) (rs1 >= rs2) |
+| `bltu rs1 rs2 Label` | Branch if Less Than (unsigned)                   |
+| `bgeu rs1 rs2 Label` | Branch if Greater or Equal (unsigned)            |
+
+> [!关于Label]-
+> 写汇编时为了便于人类理解，跳转指令会加一个 Label，表示跳转位置。但是编译之后会直接把跳转目的的地址偏移量存储为立即数，存储到跳转指令中。
+
+当跳转时，pc 不再顺序执行。现代处理器一般会一次抓取一批指令，如果中间发生条件跳转，会导致流水线冲刷（Pipeline Flush），让这批指令末尾都失效，需要重新取指。因此在设计指令时需要尽量让大概率的分支顺序执行，小概率的分支使用条件跳转。
+
+例子：
+
+``` c
+If (i == j) {
+  X = y + z;
+} else {
+  X = y - z;
+}
+// …
+```
+
+我们有两种编译为汇编的方式。如下：
+
+``` rv32
+# Choice A
+       beq x13 x14 If
+       sub x10 x11 x12
+       j End
+If:    add x10 x11 x12
+End:   # …
+```
+
+```rv32
+# Choice B
+       bne x13 x14 Else
+       add x10 x11 x12
+       j End
+Else:  sub x10 x11 x12
+End:   # …
+```
+
+
+假如 `i == j` 的概率更大，
