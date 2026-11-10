@@ -8,6 +8,7 @@ tags: []
 
 > [RV32I Green Card](https://notes.cs61c.org/content/misc/rv32i-green-card/#sec-green-card)
 
+## 前序知识
 ### 6 great ideas in computer architecture
 
 #### 1. 架构的抽象
@@ -66,7 +67,9 @@ tags: []
 
 ## RISC-V
 
-### 32个RV32I寄存器
+### 简介
+
+#### 32个RV32I寄存器
 
 RISC-V 32 I 指令集架构规定了 32 个 32 位宽的寄存器。其中，零寄存器 `x0` 被硬连线设置为零。
 
@@ -97,11 +100,11 @@ RISC-V 32 I 指令集架构规定了 32 个 32 位宽的寄存器。其中，零
 >     
 > - 这会导致高 20 位被“借位”减 1，最终结果比预期少了 `0x1000`。
 
-### 零寄存器
+#### 零寄存器
 
 寄存器 `x0` 被硬件连线置零，无法修改数值。
 
-### 位运算指令
+#### 位运算指令
 
 ![image.png](https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20261104210510566.png)
 
@@ -175,8 +178,8 @@ RISC-V 只允许对**寄存器**中的数据进行操作。对内存中的数据
 > [!为什么没有 存储无符号？]-
 > 因为有无符号的规定只出现在需要补位的场景。存储时不管有没有符号都是相同的，直接逐位写入内存即可。
 
-
-### 条件分支
+### 决策
+#### 条件分支
 
 对应 c 的 if 语句，满足条件时跳转。
 
@@ -370,3 +373,20 @@ line3;
 >  
 > line3;
 > ```
+
+### 程序 Procedures
+
+#### Procedure Calls
+
+
+### Jump and Stack Frames
+
+
+|Instruction or Pseudoinstruction|Name|Description|If pseudo, translation|
+|---|---|---|---|
+|`jal rd label`|Jump And Link|`R[rd] = PC + 4;`  <br>`PC = PC + offset`|-|
+|`jalr rd rs1 imm`|Jump And Link Register|`R[rd] = PC + 4;`  <br>`PC = R[rs1] + imm`|-|
+|`j label`|Jump|`PC = PC + offset`|`jal x0 label`|
+|`jal label`|Jump And Link (Pseudo)|`R[ra] = PC + 4`  <br>`PC = PC + offset`|`jal ra label`|
+|`jr rs1`|Jump Register|`PC = R[rs1]`|`jalr x0 rs1 0`|
+|`ret`|RETurn (`jr ra`)|`PC = R[ra]`|`jalr x0 ra 0`|
