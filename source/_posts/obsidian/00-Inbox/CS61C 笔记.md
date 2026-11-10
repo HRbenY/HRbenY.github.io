@@ -1,9 +1,11 @@
 ---
-title: CS61C 笔记
 author: Spa-Master
 date: 2026-10-27 16:43:00
 updated: 2026-10-27 16:43:00
+discription: CS61C学习笔记
+permalink: CS61C
 tags: []
+title: CS61C 笔记
 ---
 
 > [RV32I Green Card](https://notes.cs61c.org/content/misc/rv32i-green-card/#sec-green-card)
@@ -177,6 +179,16 @@ RISC-V 只允许对**寄存器**中的数据进行操作。对内存中的数据
 
 > [!为什么没有 存储无符号？]-
 > 因为有无符号的规定只出现在需要补位的场景。存储时不管有没有符号都是相同的，直接逐位写入内存即可。
+
+#### 扩展：地址从哪来？
+
+绿卡上的 RV 32 I memory 指令只有 `lb/lbu/lh/lhu/lw/sb/sh/sw`，它们只负责：
+
+> **给定 `R[rs1] + imm` 这个地址，去读写内存。**
+
+**它们不负责“地址怎么来”。** 地址来源是另一个层面的事。
+
+![image.png](https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20261110162203552.png)
 
 ### 决策
 #### 条件分支
@@ -377,16 +389,96 @@ line3;
 ### 程序 Procedures
 
 #### Procedure Calls
+程序在运行中如果需要调用其他程序，需要提供某些参数给子函数，Caller 的现场应该在调用中被存储在某处，Procedure Call 结束后正常恢复。Callee 运行过程中应该有完整的能力，包括访问自身的局部变量，执行指令等。
+
+Procedure Call 天然支持嵌套，每层的现场都需要单独保存，逐层返回。
 
 
+> [!Procedure calls generally involve two parties:]-
+> - **CalleR**: the calling procedure
+>     
+> - **CalleE**: the procedure being called
+
+> [!Six Fundamental Steps to Procedure Calls]-
+> 1. [Caller] **Set up arguments**. Put arguments in registers.
+>     
+> 2. [Caller] **Transfer control to procedure**. Use `jal` (jump-and-link) instruction: `jal ra fnLabel`
+>     
+> 3. [Callee] **Prologue**. Acquire (local) storage resources: stack space (e.g., push a frame on the stack), save register values, etc.
+>     
+> 4. [Callee] **Perform the desired task**.
+>     
+> 5. [Callee] **Epilogue**. Put the return value in a place where the caller can access it, restore register values, and release local storage on stack (e.g., pop frame off the stack).
+>     
+> 6. [Callee] **Epilogue: Return control to point of origin**. Use the `jr` instruction: `jr ra`
 ### Jump and Stack Frames
 
+每次 Procedure Call 都会在栈上分配一个栈帧（Stack Frame），用来保存这次调用的返回地址、参数、局部变量、保存的寄存器等。
+要点：
+- Caller 有自己的栈帧，Callee 被调用时也有自己的栈帧。
+- “Caller 的现场”只是栈帧内容的一部分。
+- 栈帧里可能有：
+    - 返回地址 `ra`
+    - 参数
+    - 局部变量
+    - Caller-saved 寄存器（Caller 自己保存的）
+    - Callee-saved 寄存器（Callee 保存的旧值）
+    - 旧的帧指针等
 
-|Instruction or Pseudoinstruction|Name|Description|If pseudo, translation|
-|---|---|---|---|
-|`jal rd label`|Jump And Link|`R[rd] = PC + 4;`  <br>`PC = PC + offset`|-|
-|`jalr rd rs1 imm`|Jump And Link Register|`R[rd] = PC + 4;`  <br>`PC = R[rs1] + imm`|-|
-|`j label`|Jump|`PC = PC + offset`|`jal x0 label`|
-|`jal label`|Jump And Link (Pseudo)|`R[ra] = PC + 4`  <br>`PC = PC + offset`|`jal ra label`|
-|`jr rs1`|Jump Register|`PC = R[rs1]`|`jalr x0 rs1 0`|
-|`ret`|RETurn (`jr ra`)|`PC = R[ra]`|`jalr x0 ra 0`|
+Caller 和 Callee 都可以保存 Stack Frame，这里主要看实际应用约定，在 RV 的 ABI 约定中一般把寄存器分成 s, t, a 几类，其中 t, a 是临时寄存器，任何程序都可以随意覆盖；s 寄存器则要求 Callee 返回时必须恢复。因此，现场究竟是由 Caller 还是 Callee 保存，主要是看用到的寄存器类型，以及 Caller 还需不需要该变量。Caller 还需要的变量，如果放到了 t、a 寄存器，就得自己 save，放到 s 就不用管；Callee 如果要用 s 寄存器就需要先 save，用 t、a 就不用管。
+
+之所以如此复杂地区分 Caller-saved 和 Callee-saved，完全是因为出于性能考虑。如果全部让 Caller 来保存，那每次调用前 Caller 都要保存所有它要用到的寄存器，即使 Callee 根本用不到。平白多出了内存存取开销。
+
+> [!关于 ABI]-
+> Linux RISC-V 的 ABI 由 RISC-V psABI 规范定义，Linux 内核和 GCC/Clang 都遵守它。
+> 这里提到的 s、t、a 寄存器是 ABI 层级对底层寄存器贴的标签，本体还是前面学的那 32 个寄存器。
+> 
+> |`x` 编号|ABI 别名|角色描述|保存责任方|
+> |---|---|---|---|
+> |**x5 – x7**|**`t0 – t2`**|临时寄存器 (Temporaries)|**Caller**|
+> |**x28 – x31**|**`t3 – t6`**|临时寄存器 (Temporaries)|**Caller**|
+> |**x8 – x9**|**`s0 – s1`**|保存寄存器 (Saved) / `s0` 也常作帧指针 `fp`|**Callee**|
+> |**x18 – x27**|**`s2 – s11`**|保存寄存器 (Saved)|**Callee**|
+> |**x10 – x17**|**`a0 – a7`**|函数参数 (Arguments) / **`a0–a1` 兼作返回值**|**Caller**|
+> 
+> 所以这本质上是一种约定，如果手写汇编可以自定义约定，甚至不用区分什么 sta，所有寄存器都自己管。但是只要我们要调用 libc，被 C 代码调用，链接标准库，发起系统调用，就必须遵守平台 ABI。因为 libc 的函数是按 ABI 编译的，它默认程序按约定传参，按约定保护寄存器。
+
+> 小问题：ra 是谁保存？
+
+> [!answer]-
+> Caller-saved。`jal` 会自动写 ra，此时会覆盖 ra 寄存器。所以必须由 Caller 来保存，原则就**是谁会让 `ra` 被覆盖，谁来保存**。
+> 当然，Callee 也无法得知它的 Caller 的 `ra` 寄存器的值，因为执行到 Callee 的时候 `ra` 就已经被覆盖了。
+****
+
+在汇编中Stack Frame 是手动管理的，RISC-V 硬件不会在 `call` / `jal` 时自动保存任何寄存器到栈上。栈帧的分配、保存、恢复、释放，全部需要汇编码明确写出，通常由编译器生成。如下示例：
+
+```rv32
+foo:
+    # Prologue：建立栈帧、保存现场
+    addi sp, sp, -16      # 分配 16 字节栈帧
+    sw   ra, 12(sp)       # 保存返回地址
+    sw   s0, 8(sp)        # 保存用到的 callee-saved 寄存器
+    sw   t0, 4(sp)        # 如果调用后还要用 t0，Caller 自己保存
+
+    # 函数体
+    ...
+    call bar              # jal 只写 ra 并跳转，不保存任何东西
+
+    # Epilogue：恢复现场、释放栈帧
+    lw   t0, 4(sp)
+    lw   s0, 8(sp)
+    lw   ra, 12(sp)
+    addi sp, sp, 16       # 释放栈帧
+    ret
+```
+
+`sp` 意为 Stack Pointer，栈指针。由于栈地址是高位向低位扩展，所以分配栈帧后是 `sp-16`，将栈指针向下移动 16 字节。一般约定 `sp` 为寄存器 `x2`，单线程函数中所有程序共享一个 `sp`; 多线程程序里每个线程有自己的栈和自己的 `sp`。任何函数都可以读 `sp`，但必须遵守约定：**返回时把 `sp` 恢复成进入时的值**（栈平衡）。
+
+| Instruction or Pseudoinstruction | Name                   | Description                                | If pseudo, translation |
+| -------------------------------- | ---------------------- | ------------------------------------------ | ---------------------- |
+| `jal rd label`                   | Jump And Link          | `R[rd] = PC + 4;`  <br>`PC = PC + offset`  | -                      |
+| `jalr rd rs1 imm`                | Jump And Link Register | `R[rd] = PC + 4;`  <br>`PC = R[rs1] + imm` | -                      |
+| `j label`                        | Jump                   | `PC = PC + offset`                         | `jal x0 label`         |
+| `jal label`                      | Jump And Link (Pseudo) | `R[ra] = PC + 4`  <br>`PC = PC + offset`   | `jal ra label`         |
+| `jr rs1`                         | Jump Register          | `PC = R[rs1]`                              | `jalr x0 rs1 0`        |
+| `ret`                            | RETurn (`jr ra`)       | `PC = R[ra]`                               | `jalr x0 ra 0`         |
