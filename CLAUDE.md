@@ -138,7 +138,9 @@ Obsidian 常见 `#tag` / front matter 带 `#` 前缀。
 permalink: syntax          # 无尾斜杠
 ```
 
-Hexo 会生成**无扩展名裸文件**，本地/部分服务器返回 `Content-Type: application/octet-stream`，浏览器会**下载**而不是打开页面。
+Hexo 原生会生成**无扩展名裸文件**，本地/部分服务器返回 `Content-Type: application/octet-stream`，浏览器会**下载**而不是打开页面。
+
+本仓的 `scripts/normalize-permalinks.js` 在构建时为无扩展名且缺少尾斜杠的文章路径补 `/`，已有尾斜杠或 `.html` 等扩展名的路径保持原样。过滤器在双链插件缓存地址前执行，使文章路由和 `[[双链]]` 使用同一规范化路径。
 
 **正确写法：**
 
@@ -182,6 +184,7 @@ _config.butterfly.yml       # 主题：math.use=katex、inject callout CSS 等
 scripts/
   normalize-display-math.js # $$ display 规范化
   normalize-tags.js         # tag 去 #
+  normalize-permalinks.js   # 无扩展名的文章路径补尾斜杠
   generate-root-json-assets.js  # words.json / status.json → public
 source/css/callout_blocks.css   # Callout + 任务列表样式
 tools/cover_sync.py         # 按规则自动生成文章封面 PNG（标题/标签）
