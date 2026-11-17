@@ -4,7 +4,8 @@ date: 2026-10-27 16:43:00
 updated: 2026-10-27 16:43:00
 description: CS61C学习笔记
 permalink: CS61C
-tags: []
+tags:
+- '#计算机'
 title: CS61C 笔记
 ---
 
