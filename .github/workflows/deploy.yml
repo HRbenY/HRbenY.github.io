@@ -33,7 +33,7 @@ jobs:
 
       - name: Build
         run: |
-          node --test test/permalinks.test.js
+          node --test test/*.test.js
           npm run build
 
       - name: Deploy

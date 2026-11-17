@@ -2,6 +2,10 @@ mixin indexPostUI()
   - const indexLayout = theme.index_layout
   - const masonryLayoutClass = (indexLayout === 6 || indexLayout === 7) ? 'masonry' : ''
   #recent-posts.recent-posts.nc(class=masonryLayoutClass)
+    if globalPageType === 'home'
+      .feed-heading
+        h2 最近的笔记
+        a(href=url_for('/archives/')) 查看归档 #[i.fas.fa-arrow-right(aria-hidden="true")]
     .recent-post-items
       each article, index in page.posts.data
         .recent-post-item
@@ -15,14 +19,17 @@ mixin indexPostUI()
             .post_cover(class=leftOrRight)
               a(href=url_for(link) title=title)
                 if article.cover_type === 'img'
-                  img.post-bg(src=url_for(post_cover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title)
+                  img.post-bg(src=url_for(post_cover) onerror="this.onerror=null;this.closest('.post_cover').remove()" alt=title)
                 else
                   div.post-bg(style=`background: ${post_cover}`)
           .recent-post-info(class=no_cover)
             a.article-title(href=url_for(link) title=title)
               if globalPageType === 'home' && (article.top || article.sticky > 0)
                 i.fas.fa-thumbtack.sticky
-              = title
+              span.article-title-text= title
+              span.article-enter(aria-hidden="true")
+                svg(viewBox="0 0 24 24" width="20" height="20" fill="none" focusable="false")
+                  path(d="M6 18 18 6M6 6h12v12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round")
             .article-meta-wrap
               if theme.post_meta.page.date_type
                 span.post-meta-date

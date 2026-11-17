@@ -29,3 +29,10 @@ hexo.extend.generator.register('root-json-assets', function () {
   return generated;
 });
 
+
+hexo.extend.generator.register('gsap-asset', function () {
+  return {
+    path: 'js/gsap.min.js',
+    data: fs.readFileSync(require.resolve('gsap/dist/gsap.min.js')),
+  };
+});
