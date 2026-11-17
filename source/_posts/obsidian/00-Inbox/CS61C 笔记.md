@@ -2,7 +2,7 @@
 author: Spa-Master
 date: 2026-10-27 16:43:00
 updated: 2026-10-27 16:43:00
-discription: CS61C学习笔记
+description: CS61C学习笔记
 permalink: CS61C
 tags: []
 title: CS61C 笔记
