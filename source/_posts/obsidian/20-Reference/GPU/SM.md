@@ -1,8 +1,12 @@
 ---
-title: SM
 author: Spa-Master
-date: '2026-01-17 00:00:00'
-updated: '2026-01-17 00:00:00'
+date: 2026-01-17 00:00:00
+updated: 2026-01-17 00:00:00
+description: GPU的结构
+permalink: SM
+tags:
+- '#GPU'
+title: SM
 ---
 
 流式多处理器
