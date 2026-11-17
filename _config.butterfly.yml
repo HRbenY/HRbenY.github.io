@@ -200,7 +200,7 @@ index_post_content:
 toc:
   post: true
   page: false
-  number: true
+  number: false
   expand: false
   # Only for post
   style_simple: true
@@ -405,11 +405,11 @@ rightside_scroll_percent: false
 # Choose: readmode,translate,darkmode,hideAside,toc,chat,comment
 # Don't repeat the same value
 rightside_item_order:
-  enable: false
+  enable: true
   # Default: readmode,translate,darkmode,hideAside
-  hide:
+  hide: darkmode
   # Default: toc,chat,comment
-  show:
+  show: readmode,hideAside,toc
 
 # Animation for the bottom right config button
 rightside_config_animation: false
@@ -445,9 +445,9 @@ wordcount:
 
 # Busuanzi count for PV / UV in site
 busuanzi:
-  site_uv: true
-  site_pv: true
-  page_pv: true
+  site_uv: false
+  site_pv: false
+  page_pv: false
 
 # --------------------------------------
 # Math
@@ -520,7 +520,7 @@ search:
 share:
   # Choose: sharejs / addtoany
   # Leave it empty if you don't need share
-  use: sharejs
+  use:
 
   # Share.js
   # https://github.com/overtrue/share.js
@@ -919,7 +919,7 @@ clickShowText:
 # https://github.com/francoischalifour/medium-zoom
 # https://fancyapps.com/fancybox/
 # Leave it empty if you don't need lightbox
-lightbox:
+lightbox: medium_zoom
 
 # --------------------------------------
 # Tag Plugins settings

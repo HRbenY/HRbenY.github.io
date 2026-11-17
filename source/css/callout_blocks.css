@@ -38,7 +38,7 @@
 .callout-fold { display: flex; align-items: center; margin-left: auto; transform: rotate(-90deg); transition: transform .2s; }
 .callout-fold::before { content: ""; width: 7px; height: 7px; margin-right: 4px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); }
 details.callout[open] > summary > .callout-fold { transform: rotate(0); }
-.callout-content { margin: 0; padding: 1rem 1.1rem; }
+.callout-content { margin: 0; padding: 1rem 1.1rem; font-size: .94em; line-height: 1.75; }
 #article-container .callout-content > :first-child { margin-top: 0; }
 #article-container .callout-content > :last-child { margin-bottom: 0; }
 #article-container .callout-content > p { margin-bottom: .8em; }
