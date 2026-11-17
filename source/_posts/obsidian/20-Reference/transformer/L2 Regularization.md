@@ -3,7 +3,7 @@ author: Spa-Master
 date: 2026-01-17 00:00:00
 updated: 2026-01-17 00:00:00
 description: 什么是正则化？介绍L2正则
-permalink: L2 Regularization
+permalink: L2-Regularization
 tags:
 - '#机器学习'
 title: L2 Regularization

@@ -3,7 +3,7 @@ author: Spa-Master
 date: 2026-01-17 00:00:00
 updated: 2026-01-17 00:00:00
 description: cuda编写矩阵转置的几种方式
-permalink: Matrix Transpose
+permalink: Matrix-Transpose
 tags:
 - '#GPU'
 title: Matrix Transpose
