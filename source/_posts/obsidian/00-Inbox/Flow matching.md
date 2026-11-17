@@ -1,9 +1,12 @@
 ---
-title: Flow matching
 author: Spa-Master
 date: 2026-07-27 22:42:00
 updated: 2026-07-29 22:42:00
-tags: []
+tags:
+- '#机器学习'
+description: 流匹配：目标函数和条件分布
+permalink: Flow-Matching
+title: Flow matching
 ---
 
 ![image.png](https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260727224203927.png)

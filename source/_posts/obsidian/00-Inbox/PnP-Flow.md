@@ -1,9 +1,12 @@
 ---
-title: PnP-Flow
 author: Spa-Master
 date: 2026-07-31 10:58:00
 updated: 2026-07-31 10:58:00
-tags: null
+tags:
+- '#机器学习'
+description: 即插即用模式下，将flowmatching用作条件去噪器。fm生成先验，观测负责似然。
+permalink: pnp-fm
+title: PnP-Flow
 ---
 
 ## 最大似然估计器

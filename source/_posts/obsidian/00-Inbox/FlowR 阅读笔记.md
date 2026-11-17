@@ -1,9 +1,12 @@
 ---
-title: FlowR 阅读笔记
 author: Spa-Master
 date: 2026-07-30 20:34:00
 updated: 2026-07-30 20:34:00
-tags: []
+tags:
+- '#机器学习'
+description: 流匹配+高斯泼溅，多视角3D恢复
+permalink: FlowR
+title: FlowR 阅读笔记
 ---
 
 ## 引入
