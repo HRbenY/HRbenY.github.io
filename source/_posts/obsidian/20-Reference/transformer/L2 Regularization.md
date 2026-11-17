@@ -1,8 +1,12 @@
 ---
-title: L2 Regularization
 author: Spa-Master
-date: '2026-01-17 00:00:00'
-updated: '2026-01-17 00:00:00'
+date: 2026-01-17 00:00:00
+updated: 2026-01-17 00:00:00
+description: 什么是正则化？介绍L2正则
+permalink: L2 Regularization
+tags:
+- '#机器学习'
+title: L2 Regularization
 ---
 
 L2正则化的目的是权重衰减，让Loss和权重的L2范数正相关。在SGD和Momentum中不需多余处理就能达到这样的效果。但是Adagrad和Adam由于对梯度做了预处理，不能直接应用公式。（见 [[Adamw]]）

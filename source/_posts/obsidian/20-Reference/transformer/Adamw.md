@@ -1,8 +1,12 @@
 ---
-title: Adamw
 author: Spa-Master
-date: '2026-01-17 00:00:00'
-updated: '2026-01-17 00:00:00'
+date: 2026-01-17 00:00:00
+updated: 2026-01-17 00:00:00
+description: 优化器从SGD到Adamw
+permalink: Adamw
+tags:
+- '#机器学习'
+title: Adamw
 ---
 
 从SGD到Adamw，所有优化器的形式都类似

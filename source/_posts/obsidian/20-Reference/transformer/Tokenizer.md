@@ -1,8 +1,12 @@
 ---
-title: Tokenizer
 author: Spa-Master
-date: '2026-01-17 00:00:00'
-updated: '2026-01-17 00:00:00'
+date: 2026-01-17 00:00:00
+updated: 2026-01-17 00:00:00
+description: 介绍模型的分词器，原理，发展流程与不同分词器对比。
+permalink: Tokenizer
+tags:
+- 机器学习
+title: Tokenizer
 ---
 
 ## 1. 什么是分词器 (Tokenizer)？

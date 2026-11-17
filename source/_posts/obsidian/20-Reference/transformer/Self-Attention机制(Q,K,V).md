@@ -1,8 +1,12 @@
 ---
-title: Self-Attention机制(Q,K,V)
 author: Spa-Master
-date: '2026-01-17 00:00:00'
-updated: '2026-01-17 00:00:00'
+date: 2026-01-17 00:00:00
+updated: 2026-01-17 00:00:00
+description: transformer的核心，QKV
+permalink: Self-Attention
+tags:
+- '#机器学习'
+title: Self-Attention机制(Q,K,V)
 ---
 
 $$\text{Attention}(Q, K, V) = \text{softmax}\left( \frac{QK^T}{\sqrt{d_k}} \right) V$$

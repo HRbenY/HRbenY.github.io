@@ -1,8 +1,12 @@
 ---
-title: LayerNorm
 author: Spa-Master
-date: '2026-01-17 00:00:00'
-updated: '2026-01-17 00:00:00'
+date: 2026-01-17 00:00:00
+updated: 2026-01-17 00:00:00
+description: Norm层，BatchNorm和LayerNorm
+permalink: LayerNorm
+tags:
+- '#机器学习'
+title: LayerNorm
 ---
 
 > 并不是BatchNorm简单的交换N和D。
