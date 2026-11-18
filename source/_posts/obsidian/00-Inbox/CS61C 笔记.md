@@ -523,3 +523,15 @@ foo:
 | `jal label`                      | Jump And Link (Pseudo) | `R[ra] = PC + 4`  <br>`PC = PC + offset`   | `jal ra label`         |
 | `jr rs1`                         | Jump Register          | `PC = R[rs1]`                              | `jalr x0 rs1 0`        |
 | `ret`                            | RETurn (`jr ra`)       | `PC = R[ra]`                               | `jalr x0 ra 0`         |
+
+> [!为什么同时有jal和jalr ?]-
+> 一般来说，`jal` 由 caller 使用，lable 是 callee 的标签，用于已知 callee 的场景。`jalr` 由 callee 使用，因为 callee 在编译时不知道谁会调用它，所以跳转地址由寄存器指定。
+> 不过这也不是绝对的，凡是跳转目标无法（或不便）在指令中写死为标签的场景，就需要使用 `jalr`。对于 caller 而言，这包括了运行时才能确定的函数指针/虚函数、需要优化栈帧的尾调用、超出范围的远距离调用，以及特殊的协程切换。
+
+### 指令格式
+
+根据 `opcode` 不同, 可以分为 RISBJU 六种格式。
+
+#### R-type
+
+![image.png](https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20261118110030419.png)
