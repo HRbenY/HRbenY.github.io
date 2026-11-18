@@ -1,7 +1,7 @@
 ---
 author: Spa-Master
 date: 2026-10-27 16:43:00
-updated: 2026-10-27 16:43:00
+updated: 2026-11-19 00:00:17
 description: CS61C学习笔记
 permalink: CS61C
 tags:
@@ -541,3 +541,11 @@ foo:
 R 是寄存器的意思。下图显示了一个 R 型指令的不同指令字段，所有的寄存器-寄存器指令遵循相同的汇编指令语法 `opname rd rs1 rs2`。注意汇编指令 `opname rd rs1 rs2` 与指令字段共享一些命名法，但并不是全部。例如，`rs1` 、`rs2` 和 `rd` 是字段名称，但 `opname` 不是。
 
 ![image.png](https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20261118164038956.png)
+
+`opcode` `funct3` `funct7` 可以理解成一个分层判断过程，先确定是寄存器算数运算，再判断具体操作。
+
+#### I-type
+
+I 是立即数 immediate。涉及立即数操作时
+
+![image.png](https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20261118212925575.png)
