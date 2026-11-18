@@ -530,8 +530,14 @@ foo:
 
 ### 指令格式
 
-根据 `opcode` 不同, 可以分为 RISBJU 六种格式。
+根据 `opcode` 不同, 可以分为 RISBUJ 六种格式。
+![image.png](https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20261118162233043.png)
 
+为了底层电路实现更简单，不同格式会尽量复用对应位，比如 `11:7` 位总是表示 `rd`（如果该格式需要的话）。基于这个原则，经常见到长立即数被拆成不同部分，由后续电路进一步拼接。比如 S type, `31：25` 和 `11:7` 共同表示一个立即数，中间被复用的 `rs2`，`rs1`，`funct3` 隔开了。
+
+在将机器指令翻译为汇编时，硬件首先查看 7 位 `opcode` 以识别指令格式类型。一旦识别出格式类型，硬件就知道如何处理指令的其余部分。
 #### R-type
 
-![image.png](https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20261118110030419.png)
+R 是寄存器的意思。下图显示了一个 R 型指令的不同指令字段，所有的寄存器-寄存器指令遵循相同的汇编指令语法 `opname rd rs1 rs2`。注意汇编指令 `opname rd rs1 rs2` 与指令字段共享一些命名法，但并不是全部。例如，`rs1` 、`rs2` 和 `rd` 是字段名称，但 `opname` 不是。
+
+![image.png](https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20261118164038956.png)
