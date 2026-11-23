@@ -1,7 +1,7 @@
 ---
 author: Spa-Master
 date: 2026-10-27 16:43:00
-updated: 2026-11-19 00:00:17
+updated: 2026-11-23 14:05:42
 description: CS61C学习笔记
 permalink: CS61C
 tags:
@@ -546,6 +546,6 @@ R 是寄存器的意思。下图显示了一个 R 型指令的不同指令字段
 
 #### I-type
 
-I 是立即数 immediate。涉及立即数操作时
+I 是立即数 immediate。涉及立即数操作时，所需的位数一般比寄存器地址要长。所以在原 `rs2` 的基础上，占用 `funct7` 比特位，总共 12 个比特用于表示立即数。这个 12 位的立即数是一个二进制补码整数，范围为 $−2^{11}=−2048$ 到 $2^{11}−1=2047$ 。在将这个 12 位宽的值用于操作之前，硬件会将其符号扩展为 32 位宽的值。
 
 ![image.png](https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20261118212925575.png)
