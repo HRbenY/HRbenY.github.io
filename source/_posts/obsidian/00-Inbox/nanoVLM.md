@@ -1,13 +1,26 @@
 ---
 author: Spa-Master
 date: 2026-07-09 14:59:00
-updated: 2026-11-26 18:18:05
+updated: 2026-11-27 00:53:39
 description: nanoVLM的学习记录
 permalink: nanoVLM
 tags:
 - 机器学习
 title: nanoVLM
 ---
+
+### Attention
+
+Token embedding 后，进入 Self Attention 计算注意力。三个权重矩阵 `Wq` `Wk` `Wv` 是可以学习的参数，同一个注意力头共用一套权重矩阵。
+
+首先进行投影，$X \cdot W_q$, $X \cdot W_k$, $X \cdot W_v$ 称为 QKV 投影，由于注意力公式中要计算 $Q\cdot K^T$ ，所以 Q 和 K 的 `hidden dim` 一定是相同的，矩阵乘后输出注意力分数，是一个 `[B,S,S]` 形状的矩阵。跟 V 相乘后，再经过线性层，将 V 的 hidden dim 映射到 embed dim 作为 Attention 的最终输出。流程如下图。
+
+![image.png](https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20261126212347746.png)
+
+如上介绍的单头注意力计算流程，当采用多头时，将 embed dim 分给不同的注意力头，每个注意力头都各自有一套 QKV 权重，各自可能负责捕捉不同的注意力信息。在输出时先 concact 后，过 linear 层输出成 `[B,S,D]` 大小的语义更新向量。
+
+
+
 
 ### Modality Projector
 
@@ -35,3 +48,11 @@ NanoVLM 的 Pixel Shuffle 实际上是将空间维度上的多个 Token 合并�
 
 Pixel Shuffle 完成后，每个视觉 token 有 12288 维，但是语言模型只需要 960 维。所以需要一个线性层进行降维映射。
 ### 多模态 embedding 融合
+
+### KV cache
+
+由于采用 casual mask，未来的 kv 不会对历史 q 有影响。据此可以保存历史 k cache 和 v cache，用于新 token 的注意力快速计算。
+
+Decode 阶段，输入一个新 token 时，我们只需要计算新的 token query K 的结果，然后把这个结果与所有 V 相乘得到 Attention 输出。新 token 的 K 和 V 则 append 到 KVcache 末尾，用于下一个 token 的计算。
+
+这样一来，新 token 的计算量就只与序列长度线性相关了。
