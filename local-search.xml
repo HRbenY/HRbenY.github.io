@@ -99,6 +99,25 @@
     
     
     <entry>
+      <title>nanoVLM</title>
+      <link href="/nanoVLM/"/>
+      <url>/nanoVLM/</url>
+      
+        <content type="html"><![CDATA[<h3 id="modality-projector"><a class="markdownIt-Anchor" href="#modality-projector"></a> Modality Projector</h3><p>由于 vit 输出维度是 <code>[N,1024,768]</code>, 但是语言模型的 Hidden Dimension 是 960。这里存在两个问题：</p><ol><li><strong>特征维度不匹配：</strong> 768 需要变成 960。</li><li><strong>视觉 Token 太多：</strong> 每个图像块有 1024 个 Token，会增加语言模型的计算量。<br />Modality Projector 就是负责解决这两个问题的。</li></ol><h4 id="pixel-shuffle"><a class="markdownIt-Anchor" href="#pixel-shuffle"></a> Pixel shuffle</h4><p>NanoVLM 的 Pixel Shuffle 实际上是将空间维度上的多个 Token 合并到特征维度上。假设有 4×4 个 Patch，每个 Patch 只有一个特征值，合并因子为 2。合并之前需要使用 16 个图像 token（对应原始的 16 个 patch）。进行 pixel shuffle 后，每 <code>2x2</code> 个相邻 token 被合并为一个大 token，这四个 token 的特征维度被 concact。<br /><img src="https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20261126154151486.png" alt="image.png" /></p><table><thead><tr><th>步骤</th><th>Tensor Shape</th></tr></thead><tbody><tr><td>原始输入</td><td><code>[N,1024,768]</code></td></tr><tr><td>恢复二维空间</td><td><code>[N,32,32,768]</code></td></tr><tr><td>拆分空间维度</td><td><code>[N,8,4,8,4,768]</code></td></tr><tr><td><code>permute(0,1,3,2,4,5)</code></td><td><code>[N,8,8,4,4,768]</code></td></tr><tr><td>合并局部 Patch</td><td><code>[N,64,12288]</code></td></tr><tr><td>注意 permute 步骤，将外层坐标放在一次，每个局部 <code>4x4</code> 区域内的特征放在一起，最后通过 reshape 完成 concact 合并。如果不 permute，虽然最终 shape 也是 <code>[N,64,12288]</code>，但合并的就不一定是空间上相邻的 4×4 个 Patch。</td><td></td></tr></tbody></table><h4 id="linear-投影"><a class="markdownIt-Anchor" href="#linear-投影"></a> Linear 投影</h4><p>Pixel Shuffle 完成后，每个视觉 token 有 12288 维，但是语言模型只需要 960 维。所以需要一个线性层进行降维映射。</p><h3 id="多模态-embedding-融合"><a class="markdownIt-Anchor" href="#多模态-embedding-融合"></a> 多模态 embedding 融合</h3>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>多线程编程</title>
       <link href="/multithread-programing/"/>
       <url>/multithread-programing/</url>
@@ -110,25 +129,6 @@
         <tags>
             
             <tag> cpp </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>SM</title>
-      <link href="/SM/"/>
-      <url>/SM/</url>
-      
-        <content type="html"><![CDATA[<p>流式多处理器<br /><img src="https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260117231048749.png" alt="Pasted image 20260104221619" /><br />上面是H100的一个SM，显示了 4_个子分区_，每个子分区包含一个张量核心、一个线程束调度器、一个寄存器文件以及不同精度的 CUDA 核心组。</p><h2 id="memmory"><a class="markdownIt-Anchor" href="#memmory"></a> Memmory</h2><p>除了计算单元之外，GPU 还具有内存层次结构，其中最大的是 HBM（GPU 主内存），然后是一系列较小的缓存（L2、L1/SMEM、TMEM、寄存器内存）。</p><ul><li><p><strong>寄存器：</strong> 每个子分区都有自己的寄存器文件，其中包含 H100/B200（每个 SM）上的 16,384 个 32 位字，<code>4 * 16384 * 4 = 256kiB</code>CUDA 内核可以访问该文件。</p><ul><li>每个 CUDA 核心一次最多只能访问 256 个寄存器，因此尽管我们可以为每个 SM 调度多达 64 个“驻留线程束”，但<code>256 * 1024 / (4 * 32 * 256)</code>如果每个线程使用 256 个寄存器，则一次只能容纳 8 个线程束。</li></ul></li><li><p><strong>SMEM（L1缓存）</strong>：每个SM都有其自身的256kB片上缓存，称为SMEM。SMEM既可以由程序员控制作为“共享内存”，也可以由硬件用作片上缓存。SMEM用于存储TC矩阵乘法器的激活值和输入值。</p></li><li><p><strong>L2缓存</strong>：所有SM共享9使用相对较大的约 50MB L2 缓存来减少主内存访问。</p><ul><li>它的大小与TPU的VMEM类似，但速度慢<strong>得多</strong>，而且不受程序员控制。这就导致了一种“远程控制”的现象：程序员需要修改内存访问模式，以确保L2缓存得到充分利用。10</li><li>NVIDIA并未公布其芯片的L2带宽，但经测量约为5.5TB/s。这大约是HBM带宽的1.6倍，但由于是全双工模式，因此实际双向带宽接近3倍。相比之下，TPU的VMEM容量是其两倍，带宽也更高（约为40TB/s）。</li></ul></li><li><p><strong>HBM：</strong> GPU 主内存，用于存储模型权重、梯度、激活值等。</p><ul><li>HBM 容量从 Volta 的 32GB 大幅增加到 Blackwell (B200) 的 192GB。</li><li>从 HBM 到 CUDA Tensor Core 的带宽称为 HBM 带宽或内存带宽，在 H100 上约为 3.35TB/s，在 B200 上约为 9TB/s。</li></ul></li></ul>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> GPU </tag>
             
         </tags>
       
@@ -243,6 +243,25 @@
         <tags>
             
             <tag> 机器学习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>SM</title>
+      <link href="/SM/"/>
+      <url>/SM/</url>
+      
+        <content type="html"><![CDATA[<p>流式多处理器<br /><img src="https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20260117231048749.png" alt="Pasted image 20260104221619" /><br />上面是H100的一个SM，显示了 4_个子分区_，每个子分区包含一个张量核心、一个线程束调度器、一个寄存器文件以及不同精度的 CUDA 核心组。</p><h2 id="memmory"><a class="markdownIt-Anchor" href="#memmory"></a> Memmory</h2><p>除了计算单元之外，GPU 还具有内存层次结构，其中最大的是 HBM（GPU 主内存），然后是一系列较小的缓存（L2、L1/SMEM、TMEM、寄存器内存）。</p><ul><li><p><strong>寄存器：</strong> 每个子分区都有自己的寄存器文件，其中包含 H100/B200（每个 SM）上的 16,384 个 32 位字，<code>4 * 16384 * 4 = 256kiB</code>CUDA 内核可以访问该文件。</p><ul><li>每个 CUDA 核心一次最多只能访问 256 个寄存器，因此尽管我们可以为每个 SM 调度多达 64 个“驻留线程束”，但<code>256 * 1024 / (4 * 32 * 256)</code>如果每个线程使用 256 个寄存器，则一次只能容纳 8 个线程束。</li></ul></li><li><p><strong>SMEM（L1缓存）</strong>：每个SM都有其自身的256kB片上缓存，称为SMEM。SMEM既可以由程序员控制作为“共享内存”，也可以由硬件用作片上缓存。SMEM用于存储TC矩阵乘法器的激活值和输入值。</p></li><li><p><strong>L2缓存</strong>：所有SM共享9使用相对较大的约 50MB L2 缓存来减少主内存访问。</p><ul><li>它的大小与TPU的VMEM类似，但速度慢<strong>得多</strong>，而且不受程序员控制。这就导致了一种“远程控制”的现象：程序员需要修改内存访问模式，以确保L2缓存得到充分利用。10</li><li>NVIDIA并未公布其芯片的L2带宽，但经测量约为5.5TB/s。这大约是HBM带宽的1.6倍，但由于是全双工模式，因此实际双向带宽接近3倍。相比之下，TPU的VMEM容量是其两倍，带宽也更高（约为40TB/s）。</li></ul></li><li><p><strong>HBM：</strong> GPU 主内存，用于存储模型权重、梯度、激活值等。</p><ul><li>HBM 容量从 Volta 的 32GB 大幅增加到 Blackwell (B200) 的 192GB。</li><li>从 HBM 到 CUDA Tensor Core 的带宽称为 HBM 带宽或内存带宽，在 H100 上约为 3.35TB/s，在 B200 上约为 9TB/s。</li></ul></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> GPU </tag>
             
         </tags>
       
