@@ -1,7 +1,7 @@
 ---
 author: Spa-Master
 date: 2026-07-09 14:59:00
-updated: 2026-11-27 00:53:39
+updated: 2026-11-27 18:59:05
 description: nanoVLM的学习记录
 permalink: nanoVLM
 tags:
@@ -56,3 +56,29 @@ Pixel Shuffle 完成后，每个视觉 token 有 12288 维，但是语言模型�
 Decode 阶段，输入一个新 token 时，我们只需要计算新的 token query K 的结果，然后把这个结果与所有 V 相乘得到 Attention 输出。新 token 的 K 和 V 则 append 到 KVcache 末尾，用于下一个 token 的计算。
 
 这样一来，新 token 的计算量就只与序列长度线性相关了。
+
+
+### RoPE
+
+Rotary Position Embedding 旋转位置编码也是引入位置信息的一个手段。根据 Token 的位置，给 Token 的 embed 向量引入不同的旋转角度，就可以编码 Token 之间的相对距离。
+
+以一个二维向量 $q=\begin{bmatrix}x\\y\end{bmatrix}$ 举例，如果将它逆时针旋转 $\theta$ 角度，那么 $$\begin{bmatrix}x'\\y'\end{bmatrix} = \begin{bmatrix} \cos\theta&-\sin\theta\\ \sin\theta&\cos\theta \end{bmatrix} \begin{bmatrix}x\\y\end{bmatrix}$$
+展开就是
+$$
+x'=x\cos\theta-y\sin\theta\\
+y'=x\sin\theta+y\cos\theta
+$$
+旋转之后向量的模长不变，只是方向改变。最终的 QK 点积也会改变。
+
+实际中 QK 不止两维，nanoVLM 中是 64 维，RoPE 将这 64 维分成 32 对，每一对构成一个二维平面，在各自的平面中进行旋转。配对方式是 `xn` 与 `xn+32 ` 配对。每一对采用不同的旋转频率，$\theta_{m, i}=m\omega_i$ 这样不同位置就会产生更丰富的 $\theta$ 角，有更丰富的位置表示。
+
+实际上旋转公式还可以写成向量形式：
+
+$$
+\begin{bmatrix}x'\\y'\end{bmatrix} = \begin{bmatrix}x\\y\end{bmatrix}\cos\theta+ \begin{bmatrix}-y\\x\end{bmatrix}\sin\theta
+$$
+这样旋转之后的向量 $\begin{bmatrix}x'\\y'\end{bmatrix}$ 就可以用原始向量 $\begin{bmatrix}x\\y\end{bmatrix}$ 和逆时针旋转 90 度后的原始向量 $\begin{bmatrix}-y\\x\end{bmatrix}$ 共同表示了。
+
+![image.png](https://cdn.jsdelivr.net/gh/HRbenY/blog-assets@master//img/20261127162721339.png)
+
+注意只有 QK 需要位置编码。此时 Attention Score 已经编码进了相对位置信息，不需要再重复编码 V 了。
